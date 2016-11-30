@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Gank</string>
+    <string name="searchText">搜索</string>
 </resources>

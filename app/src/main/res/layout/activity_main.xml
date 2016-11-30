@@ -50,16 +50,17 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:contentDescription="@null"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/seach"/>
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@mipmap/icon_search"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="搜索 "/>
+                    android:text="@string/searchText"/>
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
@@ -87,4 +88,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab_info_add"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_marginRight="@dimen/fab_right_margin"-->
+        <!--android:layout_marginBottom="@dimen/fab_bottom_margin"-->
+        <!--app:srcCompat="@mipmap/icon_add"/>-->
 </android.support.design.widget.CoordinatorLayout>
