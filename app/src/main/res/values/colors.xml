@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#24AA42</color>
+    <color name="colorPrimaryDark">#24AA42</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="edit_text_color">#B5C4D8</color>//editText颜色
+    <color name="info_tab_color">#FFFFFF</color>
+    <color name="title_center_text_color">#FFFFFF</color>
+</resources>
