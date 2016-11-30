@@ -39,7 +39,7 @@ public class MyFragment extends BaseFragment {
         }
 
 
-        mMyListAdapter = new MyListAdapter(mContext, list, R.layout.item_publish_sale_compay);
+        mMyListAdapter = new MyListAdapter(mContext, list, R.layout.item);
         my_recycler_view.setLayoutManager(new LinearLayoutManager(mContext));
         my_recycler_view.setAdapter(mMyListAdapter);
     }

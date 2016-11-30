@@ -29,19 +29,19 @@ public class MainActivity extends AppCompatActivity {
 
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
-        MyFragment infoSaleCompanyFragment = new MyFragment(); // 卖公司
-        MyFragment infoSaleCompanyFragment1 = new MyFragment(); // 卖公司
-        MyFragment infoSaleCompanyFragment2 = new MyFragment(); // 卖公司
-        MyFragment infoSaleCompanyFragment3 = new MyFragment(); // 卖公司
-        MyFragment infoSaleCompanyFragment4 = new MyFragment(); // 卖公司
-        MyFragment infoSaleCompanyFragment5 = new MyFragment(); // 卖公司
+        MyFragment myFragment = new MyFragment();
+        MyFragment myFragment1 = new MyFragment();
+        MyFragment myFragment2 = new MyFragment();
+        MyFragment myFragment3 = new MyFragment();
+        MyFragment myFragment4 = new MyFragment();
+        MyFragment myFragment5 = new MyFragment();
 
-        infoPagerAdapter.addFragment(infoSaleCompanyFragment);
-        infoPagerAdapter.addFragment(infoSaleCompanyFragment1);
-        infoPagerAdapter.addFragment(infoSaleCompanyFragment2);
-        infoPagerAdapter.addFragment(infoSaleCompanyFragment3);
-        infoPagerAdapter.addFragment(infoSaleCompanyFragment4);
-        infoPagerAdapter.addFragment(infoSaleCompanyFragment5);
+        infoPagerAdapter.addFragment(myFragment);
+        infoPagerAdapter.addFragment(myFragment1);
+        infoPagerAdapter.addFragment(myFragment2);
+        infoPagerAdapter.addFragment(myFragment3);
+        infoPagerAdapter.addFragment(myFragment4);
+        infoPagerAdapter.addFragment(myFragment5);
 
         mVp.setAdapter(infoPagerAdapter);
         mTl.setupWithViewPager(mVp);
