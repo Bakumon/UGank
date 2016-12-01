@@ -6,8 +6,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.melnykov.fab.FloatingActionButton;
 import com.tiancaicc.springfloatingactionmenu.MenuItemView;
 import com.tiancaicc.springfloatingactionmenu.OnMenuActionListener;
@@ -15,21 +17,63 @@ import com.tiancaicc.springfloatingactionmenu.SpringFloatingActionMenu;
 
 import me.bakumon.gank.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.fragment.MyFragment;
+import me.bakumon.gank.model.GankBeautyResult;
+import me.bakumon.gank.network.NetWork;
 import me.bakumon.gank.utills.ToastUtil;
+import rx.Observer;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TabLayout mTl;
     private ViewPager mVp;
+    private ImageView mIv;
 
     private SpringFloatingActionMenu mSpringFloatingActionMenu;
+
+    Observer<GankBeautyResult> observer = new Observer<GankBeautyResult>() {
+        @Override
+        public void onCompleted() {
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            Toast.makeText(MainActivity.this, "banner 加载失败", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onNext(GankBeautyResult gankBeautyResult) {
+            Glide.with(MainActivity.this).load(gankBeautyResult.beauties.get(0).url).into(mIv);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        getBanner();
+    }
+
+    private Subscription subscription;
+
+    private void getBanner() {
+        subscription = NetWork.getGankApi()
+                .getBeauties(1, 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 
     /**
@@ -86,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         mTl = (TabLayout) findViewById(R.id.tl);
         mVp = (ViewPager) findViewById(R.id.vp);
+        mIv = (ImageView) findViewById(R.id.iv);
 
         createTumblrStyleFab();
 
