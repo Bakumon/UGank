@@ -23,7 +23,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <ImageView
-                android:id="@+id/iv_content"
+                android:id="@+id/iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
