@@ -1,5 +1,3 @@
-// (c)2016 Flipboard Inc, All Rights Reserved.
-
 package me.bakumon.gank.model;
 
 import com.google.gson.annotations.SerializedName;

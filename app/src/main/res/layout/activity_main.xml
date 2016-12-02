@@ -29,7 +29,6 @@
                 android:contentDescription="@null"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/a"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.4"/>
 
@@ -38,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="70dp"
+                android:layout_marginBottom="60dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/shape_bg_white"
@@ -54,9 +53,11 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
+                    android:tint="@color/colorPrimary"
                     android:src="@mipmap/icon_search"/>
 
                 <TextView
+                    android:id="@+id/tv_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

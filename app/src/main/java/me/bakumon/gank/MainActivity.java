@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -15,9 +16,13 @@ import com.tiancaicc.springfloatingactionmenu.MenuItemView;
 import com.tiancaicc.springfloatingactionmenu.OnMenuActionListener;
 import com.tiancaicc.springfloatingactionmenu.SpringFloatingActionMenu;
 
+import java.util.List;
+
+import me.bakumon.gank.Cache.Data;
 import me.bakumon.gank.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.fragment.MyFragment;
 import me.bakumon.gank.model.GankBeautyResult;
+import me.bakumon.gank.model.Item;
 import me.bakumon.gank.network.NetWork;
 import me.bakumon.gank.utills.ToastUtil;
 import rx.Observer;
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TabLayout mTl;
     private ViewPager mVp;
     private ImageView mIv;
+    private TextView mTv;
 
     private SpringFloatingActionMenu mSpringFloatingActionMenu;
 
@@ -55,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        getBanner();
+        getBannerByCache();
     }
 
     private Subscription subscription;
@@ -66,6 +72,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
+    }
+
+    private long startingTime;
+
+    private void getBannerByCache() {
+        unsubscribe();
+        startingTime = System.currentTimeMillis();
+        subscription = Data.getInstance()
+                .subscribeData(new Observer<List<Item>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this, "banner 加载失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onNext(List<Item> items) {
+                        int loadingTime = (int) (System.currentTimeMillis() - startingTime);
+                        mTv.setText(loadingTime + "ms" + Data.getInstance().getDataSourceText());
+                        Glide.with(MainActivity.this).load(items.get(0).imageUrl).into(mIv);
+                    }
+                });
+    }
+
+    private void unsubscribe() {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
     }
 
     @Override
@@ -131,6 +169,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTl = (TabLayout) findViewById(R.id.tl);
         mVp = (ViewPager) findViewById(R.id.vp);
         mIv = (ImageView) findViewById(R.id.iv);
+        mTv = (TextView) findViewById(R.id.tv_search);
+
+        mTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getBannerByCache();
+            }
+        });
 
         createTumblrStyleFab();
 

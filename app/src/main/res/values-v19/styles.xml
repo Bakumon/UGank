@@ -6,6 +6,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- api 19 -->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@mipmap/loading</item>
+        <item name="android:windowFullscreen">false</item>
+        <!-- 透明状态栏 api19 以上 -->
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 </resources>
