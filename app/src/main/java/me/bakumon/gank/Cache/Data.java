@@ -75,7 +75,7 @@ public class Data {
 
     public void loadFromNetwork() {
         NetWork.getGankApi()
-                .getBeauties(1, 1)
+                .getBeauties(1, 5)
                 .subscribeOn(Schedulers.io())
                 .map(GankBeautyResultToItemsMapper.getInstance())
                 .doOnNext(new Action1<List<Item>>() {

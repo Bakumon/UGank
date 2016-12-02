@@ -43,12 +43,11 @@ public class Database {
 
     public List<Item> readItems() {
         // Hard code adding some delay, to distinguish reading from memory and reading disk clearly
-        // TODO: 2016/12/2 删除硬编码延时
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         try {
             Reader reader = new FileReader(dataFile);
