@@ -16,7 +16,7 @@
         </activity>
         <!-- 启动页 -->
         <activity
-            android:name=".LoadingActivity"
+            android:name=".launcher.LauncherActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

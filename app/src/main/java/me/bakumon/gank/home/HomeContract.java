@@ -11,7 +11,7 @@ import me.bakumon.gank.BaseView;
  * @class HomeContract
  * @describe 包装 view 和 presenter
  */
-interface HomeContract {
+public interface HomeContract {
     interface View extends BaseView<Presenter> {
 
         void showBannerFail(String failMessage);

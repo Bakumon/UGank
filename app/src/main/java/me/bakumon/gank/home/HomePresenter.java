@@ -16,7 +16,7 @@ import rx.subscriptions.CompositeSubscription;
  * @author mafei
  * @version 1.0.0
  */
-class HomePresenter implements HomeContract.Presenter {
+public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mHomeView;
 

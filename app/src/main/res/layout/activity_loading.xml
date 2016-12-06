@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#64000000"
     android:orientation="vertical"
-    tools:context="me.bakumon.gank.LoadingActivity">
+    tools:context="me.bakumon.gank.launcher.LauncherActivity">
 
     <ImageView
         android:id="@+id/launch_icon"
