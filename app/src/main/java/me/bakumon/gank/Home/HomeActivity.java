@@ -96,5 +96,16 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         Glide.with(this).load(imgUrl).into(mIvHomeBanner);
     }
 
+    private long mTimeStamp;
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mTimeStamp > 2000) {
+            ToastUtil.showToastDefault(this, "再按一次退出程序");
+        } else {
+            finish();
+        }
+        mTimeStamp = System.currentTimeMillis();
+    }
 
 }

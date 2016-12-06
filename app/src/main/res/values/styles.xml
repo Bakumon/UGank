@@ -26,10 +26,23 @@
     <style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item>
     </style>
-
+    <style name="Theme.AnimationStyle.Fade" parent="android:style/Animation.Activity">
+        <!--<item name="android:windowEnterAnimation">@anim/anim_activity_fade_in</item>-->
+        <!--<item name="android:windowExitAnimation">@anim/anim_activity_fade_out</item>-->
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_activity_fade_out</item>
+    </style>
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@mipmap/loading</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowBackground">@drawable/ic_launcher_bg</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/Theme.AnimationStyle.Fade.Scale</item>
+    </style>
+    <style name="Theme.AnimationStyle.Fade.Scale" parent="Theme.AnimationStyle.Fade">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_entry_fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_entry_scale_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_entry_fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_entry_scale_out</item>
     </style>
 </resources>

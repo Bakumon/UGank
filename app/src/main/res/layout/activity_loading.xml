@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#64000000"
     android:orientation="vertical"
     tools:context="me.bakumon.gank.LoadingActivity">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:text="hhhhh"
-    android:textSize="26sp"/>
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/launch_icon"
+        android:layout_width="172dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_launcher_logo"
+        android:visibility="invisible"/>
+</FrameLayout>
