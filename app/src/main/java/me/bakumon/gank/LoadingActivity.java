@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import me.bakumon.gank.home.HomeActivity;
+
 public class LoadingActivity extends AppCompatActivity {
 
 
@@ -30,7 +32,7 @@ public class LoadingActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(LoadingActivity.this, MainActivity.class));
+                startActivity(new Intent(LoadingActivity.this, HomeActivity.class));
                 finish();
             }
         }, delayMillis);

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- 主页 -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".home.HomeActivity">
         </activity>
         <!-- 启动页 -->
         <activity
