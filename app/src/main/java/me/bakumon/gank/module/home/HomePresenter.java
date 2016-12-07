@@ -2,6 +2,8 @@ package me.bakumon.gank.module.home;
 
 import android.support.annotation.NonNull;
 
+import java.util.Random;
+
 import me.bakumon.gank.entity.GankBeautyResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
@@ -11,9 +13,9 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by mafei on 2016/12/6 11:07.
+ * Created by bakumon on 2016/12/6 11:07.
  *
- * @author mafei
+ * @author bakumon
  * @version 1.0.0
  */
 public class HomePresenter implements HomeContract.Presenter {
@@ -32,7 +34,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void subscribe() {
-        getBanner();
+        getBanner(1);
     }
 
     @Override
@@ -40,9 +42,17 @@ public class HomePresenter implements HomeContract.Presenter {
         mSubscriptions.clear();
     }
 
-    private void getBanner() {
+
+    @Override
+    public void getRandomBanner() {
+        Random random = new Random();
+        int randomPage = random.nextInt(394);
+        getBanner(randomPage);
+    }
+
+    private void getBanner(int page) {
         Subscription subscription = NetWork.getGankApi()
-                .getBeauties(1, 1)
+                .getBeauties(1, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<GankBeautyResult>() {

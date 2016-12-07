@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @BindView(R.id.vp_home_category)
     ViewPager mVpCategory;
 
-    private HomeContract.Presenter homePresenter = new HomePresenter(this);
+    private HomeContract.Presenter mHomePresenter = new HomePresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +48,19 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
      */
     @Override
     public void setPresenter(@NonNull HomeContract.Presenter presenter) {
-//        homePresenter = presenter;
+//        mHomePresenter = presenter;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        homePresenter.subscribe();
+        mHomePresenter.subscribe();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        homePresenter.unsubscribe();
+        mHomePresenter.unsubscribe();
     }
 
     private void initView() {
@@ -103,7 +103,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @OnClick(R.id.fab_home_add)
     public void add(View view) {
-        Snackbar.make(view, "TODO Submit Gank", Snackbar.LENGTH_LONG).show();
+//        Snackbar.make(view, "Submit Gank", Snackbar.LENGTH_LONG).show();
+        mHomePresenter.getRandomBanner();
     }
 
     private long mTimeStamp;
