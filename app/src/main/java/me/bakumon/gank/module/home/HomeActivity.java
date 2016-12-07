@@ -3,7 +3,6 @@ package me.bakumon.gank.module.home;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.adapter.CommonViewPagerAdapter;
-import me.bakumon.gank.fragment.MyFragment;
+import me.bakumon.gank.fragment.AndroidFragment;
 import me.bakumon.gank.utills.ToastUtil;
 
 
@@ -69,19 +68,19 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
-        MyFragment myFragment = new MyFragment();
-        MyFragment myFragment1 = new MyFragment();
-        MyFragment myFragment2 = new MyFragment();
-        MyFragment myFragment3 = new MyFragment();
-        MyFragment myFragment4 = new MyFragment();
-        MyFragment myFragment5 = new MyFragment();
+        AndroidFragment androidFragment = new AndroidFragment();
+        AndroidFragment androidFragment1 = new AndroidFragment();
+        AndroidFragment androidFragment2 = new AndroidFragment();
+        AndroidFragment androidFragment3 = new AndroidFragment();
+        AndroidFragment androidFragment4 = new AndroidFragment();
+        AndroidFragment androidFragment5 = new AndroidFragment();
 
-        infoPagerAdapter.addFragment(myFragment);
-        infoPagerAdapter.addFragment(myFragment1);
-        infoPagerAdapter.addFragment(myFragment2);
-        infoPagerAdapter.addFragment(myFragment3);
-        infoPagerAdapter.addFragment(myFragment4);
-        infoPagerAdapter.addFragment(myFragment5);
+        infoPagerAdapter.addFragment(androidFragment);
+        infoPagerAdapter.addFragment(androidFragment1);
+        infoPagerAdapter.addFragment(androidFragment2);
+        infoPagerAdapter.addFragment(androidFragment3);
+        infoPagerAdapter.addFragment(androidFragment4);
+        infoPagerAdapter.addFragment(androidFragment5);
 
 
         mVpCategory.setAdapter(infoPagerAdapter);
