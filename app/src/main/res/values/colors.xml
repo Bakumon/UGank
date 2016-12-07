@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3B3665</color>
-    <color name="colorPrimaryDark">#3B3665</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#34384B</color>
+    <color name="colorPrimaryDark">#34384B</color>
+    <color name="colorAccent">#14B4FF</color>
 
-    <color name="colorTabTextUnSelected">#e5e9ed</color>
-    <color name="colorTabTextSelected">#FFFFFF</color>
-    <color name="colorTabIndicator">#FFFFFF</color>
-
-    <color name="colorFabBackGroundiOS">#559fca</color>
-    <color name="colorFabBackGroundMeizi">#f0983c</color>
-    <color name="colorFabBackGroundRes">#5abb8b</color>
-    <color name="colorFabBackGroundH5">#a67fc0</color>
-    <color name="colorFabBackGroundAndroid">#d75f45</color>
-    <color name="colorFabBackGroundVideo">#444444</color>
-
-    <color name="colorFabText">#949ca8</color>
-    <color name="colorFabRipple">#949ca8</color>
-    <color name="colorFabNormal">#559fca</color>
+    <color name="colorTabTextUnSelected">#D3D3D2</color>
+    <color name="colorTabTextSelected">#FDFDFD</color>
+    <color name="colorTabIndicator">#FDFDFD</color>
 
 </resources>

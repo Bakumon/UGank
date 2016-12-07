@@ -8,6 +8,7 @@
                                                  android:fitsSystemWindows="true"
                                                  tools:context=".module.home.HomeActivity">
 
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -49,12 +50,12 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:contentDescription="@null"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:tint="@color/colorPrimary"
-                    android:src="@mipmap/icon_search"/>
+                    android:contentDescription="@null"
+                    android:src="@mipmap/icon_search"
+                    android:tint="@color/colorPrimary"/>
 
                 <TextView
                     android:id="@+id/tv_search"
@@ -89,12 +90,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab_info_add"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:layout_marginRight="@dimen/fab_right_margin"-->
-        <!--android:layout_marginBottom="@dimen/fab_bottom_margin"-->
-        <!--app:srcCompat="@mipmap/icon_add"/>-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_home_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@mipmap/icon_add"/>
 </android.support.design.widget.CoordinatorLayout>

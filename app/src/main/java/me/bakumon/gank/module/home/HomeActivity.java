@@ -3,15 +3,18 @@ package me.bakumon.gank.module.home;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.fragment.MyFragment;
@@ -98,12 +101,17 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         Glide.with(this).load(imgUrl).into(mIvHomeBanner);
     }
 
+    @OnClick(R.id.fab_home_add)
+    public void add(View view) {
+        Snackbar.make(view, "TODO Submit Gank", Snackbar.LENGTH_LONG).show();
+    }
+
     private long mTimeStamp;
 
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() - mTimeStamp > 2000) {
-            ToastUtil.showToastDefault(this, "再按一次退出程序");
+            ToastUtil.showToastDefault(this, getString(R.string.exit_app_tip_text));
         } else {
             finish();
         }
