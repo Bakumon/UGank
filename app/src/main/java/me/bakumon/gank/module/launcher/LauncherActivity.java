@@ -1,4 +1,4 @@
-package me.bakumon.gank.launcher;
+package me.bakumon.gank.module.launcher;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -8,15 +8,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import java.util.concurrent.TimeUnit;
-
 import me.bakumon.gank.R;
-import me.bakumon.gank.home.HomeActivity;
-import me.bakumon.gank.utills.ToastUtil;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import me.bakumon.gank.module.home.HomeActivity;
 
 public class LauncherActivity extends AppCompatActivity implements LauncherContract.View {
 

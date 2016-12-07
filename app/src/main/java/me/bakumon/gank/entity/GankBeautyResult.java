@@ -1,4 +1,4 @@
-package me.bakumon.gank.model;
+package me.bakumon.gank.entity;
 
 import com.google.gson.annotations.SerializedName;
 

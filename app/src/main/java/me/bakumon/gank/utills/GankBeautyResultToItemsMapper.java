@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import me.bakumon.gank.model.GankBeauty;
-import me.bakumon.gank.model.GankBeautyResult;
-import me.bakumon.gank.model.Item;
+import me.bakumon.gank.entity.GankBeauty;
+import me.bakumon.gank.entity.GankBeautyResult;
+import me.bakumon.gank.entity.Item;
 import rx.functions.Func1;
 
 public class GankBeautyResultToItemsMapper implements Func1<GankBeautyResult, List<Item>> {

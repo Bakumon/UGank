@@ -7,7 +7,7 @@ import java.util.List;
 
 import me.bakumon.gank.App;
 import me.bakumon.gank.R;
-import me.bakumon.gank.model.Item;
+import me.bakumon.gank.entity.Item;
 import me.bakumon.gank.network.NetWork;
 import me.bakumon.gank.utills.GankBeautyResultToItemsMapper;
 import rx.Observable;

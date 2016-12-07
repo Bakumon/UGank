@@ -13,7 +13,7 @@ import java.io.Writer;
 import java.util.List;
 
 import me.bakumon.gank.App;
-import me.bakumon.gank.model.Item;
+import me.bakumon.gank.entity.Item;
 
 /**
  * Created by mafei on 2016/12/2 15:00.

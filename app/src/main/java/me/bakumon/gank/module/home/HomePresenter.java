@@ -1,8 +1,8 @@
-package me.bakumon.gank.home;
+package me.bakumon.gank.module.home;
 
 import android.support.annotation.NonNull;
 
-import me.bakumon.gank.model.GankBeautyResult;
+import me.bakumon.gank.entity.GankBeautyResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
 import rx.Subscription;

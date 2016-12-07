@@ -1,4 +1,4 @@
-package me.bakumon.gank.launcher;
+package me.bakumon.gank.module.launcher;
 
 import android.support.annotation.NonNull;
 

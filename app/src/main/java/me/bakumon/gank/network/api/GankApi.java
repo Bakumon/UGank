@@ -1,6 +1,6 @@
 package me.bakumon.gank.network.api;
 
-import me.bakumon.gank.model.GankBeautyResult;
+import me.bakumon.gank.entity.GankBeautyResult;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;

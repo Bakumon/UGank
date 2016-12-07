@@ -1,4 +1,4 @@
-package me.bakumon.gank.home;
+package me.bakumon.gank.module.home;
 
 import me.bakumon.gank.BasePresenter;
 import me.bakumon.gank.BaseView;

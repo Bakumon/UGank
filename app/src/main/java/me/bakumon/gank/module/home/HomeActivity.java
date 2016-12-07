@@ -1,4 +1,4 @@
-package me.bakumon.gank.home;
+package me.bakumon.gank.module.home;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;

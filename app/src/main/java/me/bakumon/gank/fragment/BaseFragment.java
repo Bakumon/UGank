@@ -113,38 +113,4 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    /**
-     * 打印出当前类名的log，调用Log.d();
-     *
-     * @param s 需要打LOG的字符串
-     */
-    protected void logForDebug(String s) {
-        if (!TextUtils.isEmpty(s))
-            Log.d(this.getClass().getSimpleName(), s);
-    }
-
-    /**
-     * 跳转到相应的Activity
-     *
-     * @param clazz 跳转的Activity
-     */
-    protected void openActivity(Class clazz) {
-        Intent intent = new Intent(mContext, clazz);
-        mContext.startActivity(intent);
-    }
-
-    /**
-     * 先判断是否登录再跳转到相应的Activity
-     *
-     * @param trueCls  登录成功时跳转的Activity
-     * @param falseCls 未登录时跳转的Activity
-     */
-//    protected void isLoginWithOpenActivity(Class<?> trueCls, Class<?> falseCls) {
-//        if (AppConfig.isLogin) {
-//            openActivity(trueCls);
-//        } else {
-//            openActivity(falseCls);
-//        }
-//    }
-
 }

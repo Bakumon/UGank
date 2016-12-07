@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- 主页 -->
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".module.home.HomeActivity">
         </activity>
         <!-- 启动页 -->
         <activity
-            android:name=".launcher.LauncherActivity"
+            android:name=".module.launcher.LauncherActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
