@@ -2,8 +2,6 @@ package me.bakumon.gank.module.home;
 
 import android.support.annotation.NonNull;
 
-import java.util.Random;
-
 import me.bakumon.gank.entity.GankBeautyResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
@@ -45,9 +43,30 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void getRandomBanner() {
-        Random random = new Random();
-        int randomPage = random.nextInt(394);
-        getBanner(randomPage);
+        Subscription subscription = NetWork.getGankApi()
+                .getRandomBeauties(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<GankBeautyResult>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mHomeView.showBannerFail("Banner 图加载失败，请重试。103 " + e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(GankBeautyResult gankBeautyResult) {
+                        if (gankBeautyResult != null && gankBeautyResult.beauties != null && gankBeautyResult.beauties.size() > 0 && gankBeautyResult.beauties.get(0).url != null) {
+                            mHomeView.setBanner(gankBeautyResult.beauties.get(0).url);
+                        } else {
+                            mHomeView.showBannerFail("Banner 图加载失败，请重试。104");
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
     }
 
     private void getBanner(int page) {
@@ -62,7 +81,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mHomeView.showBannerFail("Banner 图加载失败，请重试。01 " + e.getMessage());
+                        mHomeView.showBannerFail("Banner 图加载失败，请重试。101 " + e.getMessage());
                     }
 
                     @Override
@@ -70,7 +89,7 @@ public class HomePresenter implements HomeContract.Presenter {
                         if (gankBeautyResult != null && gankBeautyResult.beauties != null && gankBeautyResult.beauties.size() > 0 && gankBeautyResult.beauties.get(0).url != null) {
                             mHomeView.setBanner(gankBeautyResult.beauties.get(0).url);
                         } else {
-                            mHomeView.showBannerFail("Banner 图加载失败，请重试。02");
+                            mHomeView.showBannerFail("Banner 图加载失败，请重试。102");
                         }
                     }
                 });
