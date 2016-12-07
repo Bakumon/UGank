@@ -1,5 +1,6 @@
 package me.bakumon.gank.home;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -31,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
