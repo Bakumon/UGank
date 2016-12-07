@@ -41,28 +41,27 @@
                 android:layout_marginBottom="60dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:background="@drawable/shape_bg_white"
+                android:background="@drawable/shape_corners_white"
                 android:fitsSystemWindows="true"
                 android:orientation="horizontal"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     android:contentDescription="@null"
-                    android:src="@mipmap/icon_search"
-                    android:tint="@color/colorPrimary"/>
+                    app:srcCompat="@drawable/ic_search_gank" />
 
                 <TextView
                     android:id="@+id/tv_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/searchText"/>
+                    android:text="@string/home_search"/>
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
@@ -97,5 +96,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@mipmap/icon_add"/>
+        app:srcCompat="@drawable/ic_random_meizu"/>
 </android.support.design.widget.CoordinatorLayout>

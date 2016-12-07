@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() - mTimeStamp > 2000) {
-            ToastUtil.showToastDefault(this, getString(R.string.exit_app_tip_text));
+            ToastUtil.showToastDefault(this, getString(R.string.exit_app_tip));
         } else {
             finish();
         }
