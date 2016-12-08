@@ -1,4 +1,4 @@
-package me.bakumon.gank.fragment;
+package me.bakumon.gank.module.android;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

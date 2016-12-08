@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.adapter.CommonViewPagerAdapter;
-import me.bakumon.gank.fragment.AndroidFragment;
+import me.bakumon.gank.module.android.AndroidFragment;
 import me.bakumon.gank.utills.ToastUtil;
 
 
