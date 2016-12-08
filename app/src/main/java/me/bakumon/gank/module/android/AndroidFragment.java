@@ -2,6 +2,7 @@ package me.bakumon.gank.module.android;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,12 +15,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
+
 /**
  * AndroidFragment
  * Created by bakumon on 2016/12/8.
  */
-public class AndroidFragment extends Fragment implements AndroidContract.View {
+public class AndroidFragment extends Fragment implements AndroidContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMore.OnLoadMoreListener {
 
     @BindView(R.id.rv_android)
     RecyclerView mRvAndroid;
@@ -29,6 +32,7 @@ public class AndroidFragment extends Fragment implements AndroidContract.View {
     private AndroidListAdapter mAndroidListAdapter;
     private AndroidContract.Presenter mPresenter = new AndroidPresenter(this);
 
+    private int mPage;
 
     @Nullable
     @Override
@@ -36,6 +40,12 @@ public class AndroidFragment extends Fragment implements AndroidContract.View {
 
         View view = inflater.inflate(R.layout.fragment_android, container, false);
         ButterKnife.bind(this, view);
+
+        mSrlAndroid.setColorSchemeResources(R.color.colorPrimary);
+        mSrlAndroid.setOnRefreshListener(this);
+
+        LoadMore loadMore = new LoadMore(mRvAndroid);
+        loadMore.setOnLoadMoreListener(this);
 
         mAndroidListAdapter = new AndroidListAdapter(getContext());
 
@@ -47,9 +57,21 @@ public class AndroidFragment extends Fragment implements AndroidContract.View {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onRefresh() {
+        mPage = 1;
+        mPresenter.getAndroidItems(20, mPage, true);
+    }
 
+    @Override
+    public void onLoadMore() {
+        mPage += 1;
+        mPresenter.getAndroidItems(20, mPage, false);
+    }
+
+    @Override
+    public void getAndroidItemsFail(String failMessage) {
+        mSrlAndroid.setRefreshing(false);
+        Snackbar.make(mSrlAndroid, failMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -68,5 +90,13 @@ public class AndroidFragment extends Fragment implements AndroidContract.View {
     public void setAndroidItems(AndroidResult androidResult) {
         mAndroidListAdapter.mData = androidResult.results;
         mAndroidListAdapter.notifyDataSetChanged();
+        mSrlAndroid.setRefreshing(false);
     }
+
+    @Override
+    public void addAndroidItems(AndroidResult androidResult) {
+        mAndroidListAdapter.mData.addAll(androidResult.results);
+        mAndroidListAdapter.notifyDataSetChanged();
+    }
+
 }

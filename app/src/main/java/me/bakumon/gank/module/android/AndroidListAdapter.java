@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonAdapter4RecyclerView;
 import me.bakumon.gank.base.adapter.CommonHolder4RecyclerView;
@@ -27,9 +29,11 @@ public class AndroidListAdapter extends CommonAdapter4RecyclerView<AndroidResult
     @Override
     public void convert(CommonHolder4RecyclerView holder, AndroidResult.ResultsBean androidResult) {
         if (androidResult != null) {
+            ImageView imageView = holder.getView(R.id.iv_item_img);
             if (androidResult.images != null && androidResult.images.size() > 0) {
-                ImageView imageView = holder.getView(R.id.iv_item_img);
                 GlideUtil.showImgIfGIf(mContext, androidResult.images.get(0) + "?imageView2/0/w/400", imageView);
+            } else {
+                Glide.with(mContext).load(R.mipmap.image_default).into(imageView);
             }
             holder.setTextViewText(R.id.tv_item_title, androidResult.desc == null ? "unknown" : androidResult.desc);
             holder.setTextViewText(R.id.tv_item_publisher, androidResult.who == null ? "unknown" : androidResult.who);

@@ -13,9 +13,13 @@ public interface AndroidContract {
     interface View extends BaseView {
 
         void setAndroidItems(AndroidResult androidResult);
+
+        void addAndroidItems(AndroidResult androidResult);
+
+        void getAndroidItemsFail(String failMessage);
     }
 
     interface Presenter extends BasePresenter {
-
+        void getAndroidItems(int number, int page, boolean isRefresh);
     }
 }

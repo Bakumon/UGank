@@ -29,7 +29,7 @@ public class AndroidPresenter implements AndroidContract.Presenter {
     @Override
     public void subscribe() {
 
-        getAndroidItems();
+        getAndroidItems(20, 1, true);
     }
 
     @Override
@@ -37,9 +37,10 @@ public class AndroidPresenter implements AndroidContract.Presenter {
         mSubscriptions.clear();
     }
 
-    private void getAndroidItems() {
+    @Override
+    public void getAndroidItems(int number, int page, final boolean isRefresh) {
         Subscription subscription = NetWork.getGankApi()
-                .getAndroid(20, 1)
+                .getAndroid(number, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AndroidResult>() {
@@ -49,12 +50,17 @@ public class AndroidPresenter implements AndroidContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mAndroidView.getAndroidItemsFail("Android 列表数据获取失败，请重试。201");
                     }
 
                     @Override
                     public void onNext(AndroidResult androidResult) {
-                        mAndroidView.setAndroidItems(androidResult);
+                        if (isRefresh) {
+                            mAndroidView.setAndroidItems(androidResult);
+                        } else {
+                            mAndroidView.addAndroidItems(androidResult);
+                        }
+
                     }
 
 
