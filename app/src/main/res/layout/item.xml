@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/ll_publish_sale_company_item"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -16,7 +17,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:contentDescription="@null"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/image_default"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,7 +26,7 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tv_ll_publish_sale_company_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,22 +41,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <TextView
+            <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_item_author"
+                app:srcCompat="@drawable/ic_item_author"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="代码家"
                 android:textSize="12sp"/>
 
-            <TextView
-                android:id="@+id/tv_ll_publish_sale_company_name"
+            <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:drawableLeft="@drawable/ic_item_time"
+                app:srcCompat="@drawable/ic_item_time"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_ll_publish_sale_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="2016-12-08"

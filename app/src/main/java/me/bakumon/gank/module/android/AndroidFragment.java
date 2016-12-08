@@ -35,7 +35,7 @@ public class AndroidFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_android, container, false);
         ButterKnife.bind(this, view);
 
-        mMyListAdapter = new MyListAdapter(getActivity());
+        mMyListAdapter = new MyListAdapter(getContext());
 
         mRvAndroid.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvAndroid.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
