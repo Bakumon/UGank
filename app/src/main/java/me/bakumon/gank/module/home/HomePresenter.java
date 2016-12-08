@@ -2,7 +2,7 @@ package me.bakumon.gank.module.home;
 
 import android.support.annotation.NonNull;
 
-import me.bakumon.gank.entity.GankBeautyResult;
+import me.bakumon.gank.entity.MeiziResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
 import rx.Subscription;
@@ -25,9 +25,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     HomePresenter(HomeContract.View homeView) {
         mHomeView = homeView;
-
         mSubscriptions = new CompositeSubscription();
-//        mHomeView.setPresenter(this);
     }
 
     @Override
@@ -47,23 +45,24 @@ public class HomePresenter implements HomeContract.Presenter {
                 .getRandomBeauties(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<GankBeautyResult>() {
+                .subscribe(new Observer<MeiziResult>() {
                     @Override
                     public void onCompleted() {
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mHomeView.showBannerFail("Banner 图加载失败，请重试。103 " + e.getMessage());
+                        mHomeView.showBannerFail("Banner 图加载失败，请重试。103");
                     }
 
                     @Override
-                    public void onNext(GankBeautyResult gankBeautyResult) {
-                        if (gankBeautyResult != null && gankBeautyResult.beauties != null && gankBeautyResult.beauties.size() > 0 && gankBeautyResult.beauties.get(0).url != null) {
-                            mHomeView.setBanner(gankBeautyResult.beauties.get(0).url);
+                    public void onNext(MeiziResult meiziResult) {
+                        if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
+                            mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
                             mHomeView.showBannerFail("Banner 图加载失败，请重试。104");
                         }
+
                     }
                 });
         mSubscriptions.add(subscription);
@@ -74,20 +73,20 @@ public class HomePresenter implements HomeContract.Presenter {
                 .getBeauties(1, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<GankBeautyResult>() {
+                .subscribe(new Observer<MeiziResult>() {
                     @Override
                     public void onCompleted() {
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mHomeView.showBannerFail("Banner 图加载失败，请重试。101 " + e.getMessage());
+                        mHomeView.showBannerFail("Banner 图加载失败，请重试。101");
                     }
 
                     @Override
-                    public void onNext(GankBeautyResult gankBeautyResult) {
-                        if (gankBeautyResult != null && gankBeautyResult.beauties != null && gankBeautyResult.beauties.size() > 0 && gankBeautyResult.beauties.get(0).url != null) {
-                            mHomeView.setBanner(gankBeautyResult.beauties.get(0).url);
+                    public void onNext(MeiziResult meiziResult) {
+                        if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
+                            mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
                             mHomeView.showBannerFail("Banner 图加载失败，请重试。102");
                         }

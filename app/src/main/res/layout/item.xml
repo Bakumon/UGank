@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/ll_publish_sale_company_item"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -11,7 +12,7 @@
               android:paddingTop="10dp">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/iv_item_img"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginLeft="10dp"
@@ -27,14 +28,14 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tv_ll_publish_sale_company_address"
+            android:id="@+id/tv_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:ellipsize="end"
             android:lineSpacingMultiplier="1.1"
             android:maxLines="2"
-            android:text="主题换色，夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式，省流量，这可能是最友好的Gank.io客户端了"
+            tools:text="主题换色，夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式，省流量，这可能是最友好的Gank.io客户端了"
             android:textColor="#323232"/>
 
         <LinearLayout
@@ -51,9 +52,10 @@
                 />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_item_publisher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="代码家"
+                tools:text="代码家"
                 android:textSize="12sp"/>
 
             <android.support.v7.widget.AppCompatImageView
@@ -64,12 +66,12 @@
                 />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_ll_publish_sale_company_name"
+                android:id="@+id/tv_item_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="2016-12-08"
+                tools:text="2016-12-08"
                 android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>

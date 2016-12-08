@@ -25,7 +25,6 @@ public class LauncherPresenter implements LauncherContract.Presenter {
     public LauncherPresenter(LauncherContract.View launcherView) {
         mLauncherView = launcherView;
         mSubscriptions = new CompositeSubscription();
-//        mHomeView.setPresenter(this);
     }
 
     @Override

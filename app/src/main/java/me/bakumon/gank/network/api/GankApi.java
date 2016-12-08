@@ -1,6 +1,8 @@
 package me.bakumon.gank.network.api;
 
+import me.bakumon.gank.entity.AndroidResult;
 import me.bakumon.gank.entity.GankBeautyResult;
+import me.bakumon.gank.entity.MeiziResult;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -11,8 +13,14 @@ import rx.Observable;
  */
 
 public interface GankApi {
+
     @GET("data/福利/{number}/{page}")
-    Observable<GankBeautyResult> getBeauties(@Path("number") int number, @Path("page") int page);
+    Observable<MeiziResult> getBeauties(@Path("number") int number, @Path("page") int page);
+
+    @GET("data/Android/{number}/{page}")
+    Observable<AndroidResult> getAndroid(@Path("number") int number, @Path("page") int page);
+
     @GET("random/data/福利/{number}")
-    Observable<GankBeautyResult> getRandomBeauties(@Path("number") int number);
+    Observable<MeiziResult> getRandomBeauties(@Path("number") int number);
+
 }

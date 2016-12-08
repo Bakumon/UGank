@@ -1,7 +1,7 @@
 package me.bakumon.gank.module.launcher;
 
-import me.bakumon.gank.BasePresenter;
-import me.bakumon.gank.BaseView;
+import me.bakumon.gank.base.BasePresenter;
+import me.bakumon.gank.base.BaseView;
 
 /**
  * Launcher 包装　view presenter
@@ -10,7 +10,7 @@ import me.bakumon.gank.BaseView;
 
 public interface LauncherContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
         void startAnim();
 

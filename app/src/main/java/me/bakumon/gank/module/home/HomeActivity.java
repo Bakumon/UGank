@@ -2,7 +2,7 @@ package me.bakumon.gank.module.home;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +15,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
-import me.bakumon.gank.adapter.CommonViewPagerAdapter;
+import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.android.AndroidFragment;
+import me.bakumon.gank.module.other.OtherFragment;
 import me.bakumon.gank.utills.ToastUtil;
 
 
@@ -40,16 +41,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         initView();
     }
 
-    /*
-       关于 setPresenter 方法：
-          由于 googleSimple 中的 Presenter 是在 Activity 中 new 的，在 view 接口，也就是对应的 fragment 中
-          不需要在创建 presenter ，所以需要此方法设置拿到 presenter
-     */
-    @Override
-    public void setPresenter(@NonNull HomeContract.Presenter presenter) {
-//        mHomePresenter = presenter;
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -68,19 +59,21 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
+        // Android
         AndroidFragment androidFragment = new AndroidFragment();
-        AndroidFragment androidFragment1 = new AndroidFragment();
-        AndroidFragment androidFragment2 = new AndroidFragment();
-        AndroidFragment androidFragment3 = new AndroidFragment();
-        AndroidFragment androidFragment4 = new AndroidFragment();
-        AndroidFragment androidFragment5 = new AndroidFragment();
 
+        OtherFragment otherFragment1 = new OtherFragment();
+        OtherFragment otherFragment2 = new OtherFragment();
+        OtherFragment otherFragment3 = new OtherFragment();
+        OtherFragment otherFragment4 = new OtherFragment();
+        OtherFragment otherFragment5 = new OtherFragment();
+
+        infoPagerAdapter.addFragment(otherFragment1);
         infoPagerAdapter.addFragment(androidFragment);
-        infoPagerAdapter.addFragment(androidFragment1);
-        infoPagerAdapter.addFragment(androidFragment2);
-        infoPagerAdapter.addFragment(androidFragment3);
-        infoPagerAdapter.addFragment(androidFragment4);
-        infoPagerAdapter.addFragment(androidFragment5);
+        infoPagerAdapter.addFragment(otherFragment2);
+        infoPagerAdapter.addFragment(otherFragment3);
+        infoPagerAdapter.addFragment(otherFragment4);
+        infoPagerAdapter.addFragment(otherFragment5);
 
 
         mVpCategory.setAdapter(infoPagerAdapter);
@@ -92,7 +85,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void showBannerFail(String failMessage) {
-        ToastUtil.showToastDefault(this, failMessage);
+        Snackbar.make(mVpCategory, failMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -102,7 +95,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @OnClick(R.id.fab_home_add)
     public void add(View view) {
-//        Snackbar.make(view, "Submit Gank", Snackbar.LENGTH_LONG).show();
         mHomePresenter.getRandomBanner();
     }
 

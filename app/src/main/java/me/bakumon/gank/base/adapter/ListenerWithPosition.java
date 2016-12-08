@@ -1,4 +1,4 @@
-package me.bakumon.gank.adapter;
+package me.bakumon.gank.base.adapter;
 
 import android.text.Editable;
 import android.text.TextWatcher;

@@ -23,11 +23,6 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
     }
 
     @Override
-    public void setPresenter(LauncherContract.Presenter presenter) {
-//        mLauncherPresenter = presenter;
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         mLauncherPresenter.subscribe();

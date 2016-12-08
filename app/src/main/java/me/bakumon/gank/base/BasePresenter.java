@@ -1,4 +1,4 @@
-package me.bakumon.gank;
+package me.bakumon.gank.base;
 
 /**
  * Created by mafei on 2016/12/6 11:00.
