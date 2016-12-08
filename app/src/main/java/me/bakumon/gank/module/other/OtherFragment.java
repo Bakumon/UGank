@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import me.bakumon.gank.R;
 
+/**
+ * OtherFragment
+ * Created by bakumon on 16-12-6.
+ */
 public class OtherFragment extends Fragment {
 
     @Nullable

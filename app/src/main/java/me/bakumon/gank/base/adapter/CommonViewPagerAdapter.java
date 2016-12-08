@@ -8,16 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 公共的左右滑动ViewPager适配器
- * Created by DuanLu on 2016/8/5.
+ * BaseView
+ * Created by bakumon on 2016/12/6.
  */
 public class CommonViewPagerAdapter extends FragmentPagerAdapter {
     private String[] title;
-    List<Fragment> mFragments = new ArrayList<>();
-
-    public CommonViewPagerAdapter(FragmentManager fm) {
-        super(fm);
-    }
+    private List<Fragment> mFragments = new ArrayList<>();
 
     public CommonViewPagerAdapter(FragmentManager fm, String[] titles) {
         super(fm);

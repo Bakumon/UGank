@@ -40,6 +40,8 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="60dp"
                 android:layout_marginLeft="25dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/shape_corners_white"
                 android:fitsSystemWindows="true"
@@ -51,8 +53,6 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginRight="7dp"
                     android:contentDescription="@null"
                     app:srcCompat="@drawable/ic_search_gank" />
 
@@ -60,6 +60,8 @@
                     android:id="@+id/tv_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
                     android:layout_gravity="center_vertical"
                     android:text="@string/home_search" />
             </LinearLayout>

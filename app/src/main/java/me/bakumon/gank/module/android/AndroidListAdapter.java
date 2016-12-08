@@ -11,10 +11,11 @@ import me.bakumon.gank.base.adapter.ListenerWithPosition;
 import me.bakumon.gank.entity.AndroidResult;
 import me.bakumon.gank.utills.DateUtil;
 import me.bakumon.gank.utills.GlideUtil;
+import me.bakumon.gank.utills.ToastUtil;
 
 /**
- * 卖公司列表适配器
- * Created by mafei on 2016/10/13.
+ * AndroidListAdapter
+ * Created by bakumon on 2016/10/13.
  */
 
 public class AndroidListAdapter extends CommonAdapter4RecyclerView<AndroidResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener<CommonHolder4RecyclerView> {
@@ -33,11 +34,12 @@ public class AndroidListAdapter extends CommonAdapter4RecyclerView<AndroidResult
             holder.setTextViewText(R.id.tv_item_title, androidResult.desc == null ? "unknown" : androidResult.desc);
             holder.setTextViewText(R.id.tv_item_publisher, androidResult.who == null ? "unknown" : androidResult.who);
             holder.setTextViewText(R.id.tv_item_time, DateUtil.dateFormat(androidResult.createdAt));
+            holder.setOnClickListener(this, R.id.ll_item);
         }
     }
 
     @Override
     public void onClick(View v, int position, CommonHolder4RecyclerView holder) {
-
+        ToastUtil.showToastDefault(mContext, mData.get(position).url);
     }
 }

@@ -4,12 +4,8 @@ import me.bakumon.gank.base.BasePresenter;
 import me.bakumon.gank.base.BaseView;
 
 /**
- * Created by mafei on 2016/12/6 10:48.
- *
- * @author mafei
- * @version 1.0.0
- * @class HomeContract
- * @describe 包装 view 和 presenter
+ * HomeContract
+ * Created by bakumon on 2016/12/6 10:48.
  */
 public interface HomeContract {
     interface View extends BaseView {

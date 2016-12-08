@@ -3,24 +3,17 @@ package me.bakumon.gank.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by mafei on 2016/12/8 11:41.
- *
- * @author mafei
- * @version 1.0.0
- * @class RecycleViewDivider
- * @describe
+ * RecycleView 分割线
+ * Created by bakumon on 2016/12/8 11:41.
  */
 public class RecycleViewDivider extends RecyclerView.ItemDecoration {
-    private Paint mPaint;
     private Drawable mDivider;
     private int mDividerHeight = 2;//分割线高度，默认为1px
     private int mOrientation;//列表的方向：LinearLayoutManager.VERTICAL或LinearLayoutManager.HORIZONTAL
@@ -29,12 +22,12 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     /**
      * 默认分割线：高度为2px，颜色为灰色
      *
-     * @param context
+     * @param context     上下文
      * @param orientation 列表方向
      */
     public RecycleViewDivider(Context context, int orientation) {
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
-            throw new IllegalArgumentException("请输入正确的参数！");
+            throw new IllegalArgumentException("请输入正确的参数！LinearLayoutManager.VERTICAL or LinearLayoutManager.HORIZONTAL");
         }
         mOrientation = orientation;
 
@@ -42,36 +35,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         mDivider = a.getDrawable(0);
         a.recycle();
     }
-
-    /**
-     * 自定义分割线
-     *
-     * @param context
-     * @param orientation 列表方向
-     * @param drawableId  分割线图片
-     */
-    public RecycleViewDivider(Context context, int orientation, int drawableId) {
-        this(context, orientation);
-        mDivider = ContextCompat.getDrawable(context, drawableId);
-        mDividerHeight = mDivider.getIntrinsicHeight();
-    }
-
-    /**
-     * 自定义分割线
-     *
-     * @param context
-     * @param orientation   列表方向
-     * @param dividerHeight 分割线高度
-     * @param dividerColor  分割线颜色
-     */
-    public RecycleViewDivider(Context context, int orientation, int dividerHeight, int dividerColor) {
-        this(context, orientation);
-        mDividerHeight = dividerHeight;
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setColor(dividerColor);
-        mPaint.setStyle(Paint.Style.FILL);
-    }
-
 
     //获取分割线尺寸
     @Override
@@ -105,9 +68,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
                 mDivider.setBounds(left, top, right, bottom);
                 mDivider.draw(canvas);
             }
-            if (mPaint != null) {
-                canvas.drawRect(left, top, right, bottom, mPaint);
-            }
         }
     }
 
@@ -124,9 +84,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             if (mDivider != null) {
                 mDivider.setBounds(left, top, right, bottom);
                 mDivider.draw(canvas);
-            }
-            if (mPaint != null) {
-                canvas.drawRect(left, top, right, bottom, mPaint);
             }
         }
     }

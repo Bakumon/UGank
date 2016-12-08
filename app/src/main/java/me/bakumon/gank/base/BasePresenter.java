@@ -1,10 +1,8 @@
 package me.bakumon.gank.base;
 
 /**
- * Created by mafei on 2016/12/6 11:00.
- *
- * @author mafei
- * @version 1.0.0
+ * BasePresenter
+ * Created by bakumon on 2016/12/6.
  */
 public interface BasePresenter {
 

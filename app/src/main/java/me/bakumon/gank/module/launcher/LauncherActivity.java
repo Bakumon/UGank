@@ -10,7 +10,10 @@ import android.view.animation.AnimationUtils;
 
 import me.bakumon.gank.R;
 import me.bakumon.gank.module.home.HomeActivity;
-
+/**
+ * LauncherActivity
+ * Created by bakumon on 2016/12/6 11:07.
+ */
 public class LauncherActivity extends AppCompatActivity implements LauncherContract.View {
 
     private LauncherContract.Presenter mLauncherPresenter = new LauncherPresenter(this);

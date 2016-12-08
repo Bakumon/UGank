@@ -1,14 +1,13 @@
 package me.bakumon.gank.network.api;
 
 import me.bakumon.gank.entity.AndroidResult;
-import me.bakumon.gank.entity.GankBeautyResult;
 import me.bakumon.gank.entity.MeiziResult;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
 
 /**
- * gank.io
+ * gank.io 接口
  * Created by bakumon on 16-12-1.
  */
 

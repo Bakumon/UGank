@@ -18,9 +18,11 @@ import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.android.AndroidFragment;
 import me.bakumon.gank.module.other.OtherFragment;
-import me.bakumon.gank.utills.ToastUtil;
 
-
+/**
+ * HomeActivity
+ * Created by bakumon on 2016/12/8 16:42.
+ */
 public class HomeActivity extends AppCompatActivity implements HomeContract.View {
 
     @BindView(R.id.iv_home_banner)
@@ -96,18 +98,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @OnClick(R.id.fab_home_add)
     public void add(View view) {
         mHomePresenter.getRandomBanner();
-    }
-
-    private long mTimeStamp;
-
-    @Override
-    public void onBackPressed() {
-        if (System.currentTimeMillis() - mTimeStamp > 2000) {
-            ToastUtil.showToastDefault(this, getString(R.string.exit_app_tip));
-        } else {
-            finish();
-        }
-        mTimeStamp = System.currentTimeMillis();
     }
 
 }

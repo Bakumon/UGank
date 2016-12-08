@@ -11,10 +11,8 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
+ * HomePresenter
  * Created by bakumon on 2016/12/6 11:07.
- *
- * @author bakumon
- * @version 1.0.0
  */
 public class HomePresenter implements HomeContract.Presenter {
 

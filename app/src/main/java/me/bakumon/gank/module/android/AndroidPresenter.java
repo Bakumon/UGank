@@ -11,12 +11,8 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by mafei on 2016/12/8 16:42.
- *
- * @author mafei
- * @version 1.0.0
- * @class AndroidPresenter
- * @describe
+ * AndroidPresenter
+ * Created by bakumon on 2016/12/8 16:42.
  */
 public class AndroidPresenter implements AndroidContract.Presenter {
 

@@ -3,12 +3,8 @@ package me.bakumon.gank.entity;
 import java.util.List;
 
 /**
- * Created by mafei on 2016/12/8 16:35.
- *
- * @author mafei
- * @version 1.0.0
- * @class MeiziResult
- * @describe
+ * MeiziResult
+ * Created by bakumon on 2016/12/8.
  */
 public class MeiziResult {
 

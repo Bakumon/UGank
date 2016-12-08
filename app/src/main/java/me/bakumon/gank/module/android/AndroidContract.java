@@ -5,12 +5,8 @@ import me.bakumon.gank.base.BaseView;
 import me.bakumon.gank.entity.AndroidResult;
 
 /**
- * Created by mafei on 2016/12/8 16:37.
- *
- * @author mafei
- * @version 1.0.0
- * @class AndroidContract
- * @describe
+ * AndroidContract
+ * Created by bakumon on 2016/12/8.
  */
 public interface AndroidContract {
 

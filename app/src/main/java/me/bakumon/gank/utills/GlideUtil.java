@@ -11,12 +11,8 @@ import com.bumptech.glide.request.target.Target;
 import me.bakumon.gank.R;
 
 /**
+ * Glide 图片加载工具类
  * Created by bakumon on 2016/12/8 15:51.
- *
- * @author bakumon
- * @version 1.0.0
- * @class GlideUtil
- * @describe Glide 图片加载工具类
  */
 public class GlideUtil {
     /**

@@ -3,6 +3,10 @@ package me.bakumon.gank.utills;
 import android.content.Context;
 import android.widget.Toast;
 
+/**
+ * Toast 工具类
+ * Created by bakumon on 2016/12/8 15:51.
+ */
 public class ToastUtil {
 
     private static Toast mToast;

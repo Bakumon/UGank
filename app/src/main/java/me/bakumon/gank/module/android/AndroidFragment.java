@@ -15,7 +15,10 @@ import butterknife.ButterKnife;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.AndroidResult;
 import me.bakumon.gank.widget.RecycleViewDivider;
-
+/**
+ * AndroidFragment
+ * Created by bakumon on 2016/12/8.
+ */
 public class AndroidFragment extends Fragment implements AndroidContract.View {
 
     @BindView(R.id.rv_android)

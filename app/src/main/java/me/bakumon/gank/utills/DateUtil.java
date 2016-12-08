@@ -5,12 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by mafei on 2016/12/8 17:18.
- *
- * @author mafei
- * @version 1.0.0
- * @class DateUtil
- * @describe 日期工具类
+ * 日期工具类
+ * Created by bakumon on 2016/12/8 17:18.
  */
 public class DateUtil {
     public static String dateFormat(String timestamp) {
@@ -18,7 +14,7 @@ public class DateUtil {
             return "unknown";
         }
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date date = inputFormat.parse(timestamp);

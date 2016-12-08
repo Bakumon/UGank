@@ -11,7 +11,7 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * launcher
+ * LauncherPresenter
  * Created by bakumon on 16-12-6.
  */
 
