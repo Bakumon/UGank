@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.gank.R;
 import me.bakumon.gank.adapter.MyListAdapter;
+import me.bakumon.gank.widget.RecycleViewDivider;
 
 public class AndroidFragment extends Fragment {
 
@@ -37,6 +38,7 @@ public class AndroidFragment extends Fragment {
         mMyListAdapter = new MyListAdapter(getActivity());
 
         mRvAndroid.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvAndroid.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
         mRvAndroid.setAdapter(mMyListAdapter);
 
         List<Object> list = new ArrayList<>();

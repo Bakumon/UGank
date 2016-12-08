@@ -2,6 +2,9 @@ package me.bakumon.gank.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import me.bakumon.gank.R;
 
@@ -18,6 +21,8 @@ public class MyListAdapter extends CommonAdapter4RecyclerView implements Listene
 
     @Override
     public void convert(CommonHolder4RecyclerView holder, Object sellCompanyVo) {
+        ImageView imageView = holder.getView(R.id.image);
+        Glide.with(mContext).load("http://img.gank.io/0995f5f4-9b1e-485a-ade2-fd734afad66b").into(imageView);
 
 
     }
