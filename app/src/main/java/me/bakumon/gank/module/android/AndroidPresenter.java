@@ -2,6 +2,7 @@ package me.bakumon.gank.module.android;
 
 import android.support.annotation.NonNull;
 
+import me.bakumon.gank.GlobalConfig;
 import me.bakumon.gank.entity.AndroidResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
@@ -29,7 +30,7 @@ public class AndroidPresenter implements AndroidContract.Presenter {
     @Override
     public void subscribe() {
 
-        getAndroidItems(20, 1, true);
+        getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, 1, true);
     }
 
     @Override

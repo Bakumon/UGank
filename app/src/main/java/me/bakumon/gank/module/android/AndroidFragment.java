@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.bakumon.gank.GlobalConfig;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.AndroidResult;
 import me.bakumon.gank.widget.LoadMore;
@@ -59,13 +60,13 @@ public class AndroidFragment extends Fragment implements AndroidContract.View, S
     @Override
     public void onRefresh() {
         mPage = 1;
-        mPresenter.getAndroidItems(20, mPage, true);
+        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, true);
     }
 
     @Override
     public void onLoadMore() {
         mPage += 1;
-        mPresenter.getAndroidItems(20, mPage, false);
+        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, false);
     }
 
     @Override
