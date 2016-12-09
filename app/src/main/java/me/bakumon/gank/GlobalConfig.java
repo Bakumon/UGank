@@ -5,5 +5,5 @@ package me.bakumon.gank;
  * Created by bakumon on 2016/12/9 14:57.
  */
 public class GlobalConfig {
-    public final static int PAGE_SIZE_ANDROID = 20;
+    public final static int PAGE_SIZE_ANDROID = 10;
 }
