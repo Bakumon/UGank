@@ -6,4 +6,5 @@ package me.bakumon.gank;
  */
 public class GlobalConfig {
     public final static int PAGE_SIZE_ANDROID = 10;
+    public final static int PAGE_SIZE_IOS = 10;
 }

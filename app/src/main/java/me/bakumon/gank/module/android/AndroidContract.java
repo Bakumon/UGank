@@ -20,6 +20,7 @@ public interface AndroidContract {
     }
 
     interface Presenter extends BasePresenter {
+
         void getAndroidItems(int number, int page, boolean isRefresh);
     }
 }

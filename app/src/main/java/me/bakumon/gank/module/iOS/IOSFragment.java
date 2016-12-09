@@ -1,4 +1,4 @@
-package me.bakumon.gank.module.android;
+package me.bakumon.gank.module.iOS;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,23 +15,23 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.gank.GlobalConfig;
 import me.bakumon.gank.R;
-import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.entity.IOSResult;
 import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
 
 /**
- * AndroidFragment
+ * IOSFragment
  * Created by bakumon on 2016/12/8.
  */
-public class AndroidFragment extends Fragment implements AndroidContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMore.OnLoadMoreListener {
+public class IOSFragment extends Fragment implements IOSContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMore.OnLoadMoreListener {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private AndroidListAdapter mAndroidListAdapter;
-    private AndroidContract.Presenter mPresenter = new AndroidPresenter(this);
+    private IOSListAdapter mIOSListAdapter;
+    private IOSContract.Presenter mPresenter = new IOSPresenter(this);
 
     private int mPage;
 
@@ -48,29 +48,29 @@ public class AndroidFragment extends Fragment implements AndroidContract.View, S
         LoadMore loadMore = new LoadMore(mRecyclerView);
         loadMore.setOnLoadMoreListener(this);
 
-        mAndroidListAdapter = new AndroidListAdapter(getContext());
+        mIOSListAdapter = new IOSListAdapter(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
-        mRecyclerView.setAdapter(mAndroidListAdapter);
-        mAndroidListAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mIOSListAdapter);
+        mIOSListAdapter.notifyDataSetChanged();
         return view;
     }
 
     @Override
     public void onRefresh() {
         mPage = 1;
-        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, true);
+        mPresenter.getIOSItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, true);
     }
 
     @Override
     public void onLoadMore() {
         mPage += 1;
-        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, false);
+        mPresenter.getIOSItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, false);
     }
 
     @Override
-    public void getAndroidItemsFail(String failMessage) {
+    public void getIOSItemsFail(String failMessage) {
         mSwipeRefreshLayout.setRefreshing(false);
         Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).show();
     }
@@ -88,16 +88,16 @@ public class AndroidFragment extends Fragment implements AndroidContract.View, S
     }
 
     @Override
-    public void setAndroidItems(AndroidResult androidResult) {
-        mAndroidListAdapter.mData = androidResult.results;
-        mAndroidListAdapter.notifyDataSetChanged();
+    public void setIOSItems(IOSResult iosResult) {
+        mIOSListAdapter.mData = iosResult.results;
+        mIOSListAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
-    public void addAndroidItems(AndroidResult androidResult) {
-        mAndroidListAdapter.mData.addAll(androidResult.results);
-        mAndroidListAdapter.notifyDataSetChanged();
+    public void addIOSItems(IOSResult iosResult) {
+        mIOSListAdapter.mData.addAll(iosResult.results);
+        mIOSListAdapter.notifyDataSetChanged();
     }
 
 }
