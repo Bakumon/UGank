@@ -2,6 +2,8 @@ package me.bakumon.gank.module.home;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -17,8 +19,9 @@ import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.android.AndroidFragment;
-import me.bakumon.gank.module.iOS.IOSFragment;
+import me.bakumon.gank.module.ios.IOSFragment;
 import me.bakumon.gank.module.other.OtherFragment;
+import me.bakumon.gank.utills.ToastUtil;
 
 /**
  * HomeActivity
@@ -26,6 +29,10 @@ import me.bakumon.gank.module.other.OtherFragment;
  */
 public class HomeActivity extends AppCompatActivity implements HomeContract.View {
 
+    @BindView(R.id.fab_home_add)
+    FloatingActionButton mFloatingActionButton;
+    @BindView(R.id.appbar)
+    AppBarLayout mAppBarLayout;
     @BindView(R.id.iv_home_banner)
     ImageView mIvHomeBanner;
     @BindView(R.id.tl_home_category)
@@ -58,7 +65,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     private void initView() {
 
-        String[] titles = {"每日", "Android", "iOS", "福利", "前端", "瞎推荐"};
+        setFabShowOrHide();
+
+        String[] titles = {"今日", "Android", "iOS", "福利", "前端", "瞎推荐"};
 
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
@@ -68,7 +77,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         IOSFragment iosFragment = new IOSFragment();
 
         OtherFragment otherFragment1 = new OtherFragment();
-        OtherFragment otherFragment2 = new OtherFragment();
         OtherFragment otherFragment3 = new OtherFragment();
         OtherFragment otherFragment4 = new OtherFragment();
         OtherFragment otherFragment5 = new OtherFragment();
@@ -86,6 +94,48 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mTlHomeCategory.setTabGravity(TabLayout.GRAVITY_FILL);
 
         mVpCategory.setCurrentItem(1);
+    }
+
+    private CollapsingToolbarLayoutState state;
+
+    private enum CollapsingToolbarLayoutState {
+        EXPANDED,
+        COLLAPSED,
+        INTERNEDIATE
+    }
+
+    /**
+     * 根据 CollapsingToolbarLayout 的折叠状态，设置 FloatingActionButton 的隐藏和显示
+     */
+    private void setFabShowOrHide() {
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                if (verticalOffset == 0) {
+                    if (state != CollapsingToolbarLayoutState.EXPANDED) {
+                        state = CollapsingToolbarLayoutState.EXPANDED; // 修改状态标记为展开
+                    }
+                } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
+                    if (state != CollapsingToolbarLayoutState.COLLAPSED) {
+                        mFloatingActionButton.hide();
+                        state = CollapsingToolbarLayoutState.COLLAPSED; // 修改状态标记为折叠
+                    }
+                } else {
+                    if (state != CollapsingToolbarLayoutState.INTERNEDIATE) {
+                        if (state == CollapsingToolbarLayoutState.COLLAPSED) {
+                            mFloatingActionButton.show();
+                        }
+                        state = CollapsingToolbarLayoutState.INTERNEDIATE; // 修改状态标记为中间
+                    }
+                }
+            }
+        });
+    }
+
+    @OnClick(R.id.ll_home_search)
+    public void search() {
+        ToastUtil.showToastDefault(this, "搜索");
     }
 
     @Override

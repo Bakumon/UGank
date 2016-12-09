@@ -34,7 +34,7 @@
                 app:layout_collapseParallaxMultiplier="0.4" />
 
             <LinearLayout
-                android:id="@+id/iv_content1"
+                android:id="@+id/ll_home_search"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom|center_horizontal"
