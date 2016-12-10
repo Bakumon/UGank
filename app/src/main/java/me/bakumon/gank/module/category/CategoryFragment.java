@@ -37,14 +37,6 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     private String mCategoryName;
 
-    public void setCategoryName(String categoryName) {
-        this.mCategoryName = categoryName;
-    }
-
-    @Override
-    public String getCategoryName() {
-        return this.mCategoryName;
-    }
 
     @Nullable
     @Override
@@ -69,6 +61,27 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.subscribe();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.unsubscribe();
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.mCategoryName = categoryName;
+    }
+
+    @Override
+    public String getCategoryName() {
+        return this.mCategoryName;
+    }
+
+    @Override
     public void onRefresh() {
         mPage = 1;
         mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, true);
@@ -83,19 +96,9 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     @Override
     public void getAndroidItemsFail(String failMessage) {
         mSwipeRefreshLayout.setRefreshing(false);
-        Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.subscribe();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mPresenter.unsubscribe();
+        if (getUserVisibleHint()) {
+            Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override

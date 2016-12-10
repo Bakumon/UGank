@@ -48,11 +48,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         mHomePresenter.subscribe();
     }
 

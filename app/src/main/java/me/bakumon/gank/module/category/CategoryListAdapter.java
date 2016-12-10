@@ -1,6 +1,7 @@
 package me.bakumon.gank.module.category;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,9 +12,9 @@ import me.bakumon.gank.base.adapter.CommonAdapter4RecyclerView;
 import me.bakumon.gank.base.adapter.CommonHolder4RecyclerView;
 import me.bakumon.gank.base.adapter.ListenerWithPosition;
 import me.bakumon.gank.entity.CategoryResult;
+import me.bakumon.gank.module.webview.WebViewActivity;
 import me.bakumon.gank.utills.DateUtil;
 import me.bakumon.gank.utills.GlideUtil;
-import me.bakumon.gank.utills.ToastUtil;
 
 /**
  * CategoryListAdapter
@@ -44,6 +45,6 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
 
     @Override
     public void onClick(View v, int position, CommonHolder4RecyclerView holder) {
-        ToastUtil.showToastDefault(mContext, "URL:" + mData.get(position).url);
+        mContext.startActivity(new Intent(mContext, WebViewActivity.class));
     }
 }
