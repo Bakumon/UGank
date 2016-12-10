@@ -16,13 +16,13 @@ import me.bakumon.gank.utills.GlideUtil;
 import me.bakumon.gank.utills.ToastUtil;
 
 /**
- * AndroidListAdapter
+ * CategoryListAdapter
  * Created by bakumon on 2016/10/13.
  */
 
-public class AndroidListAdapter extends CommonAdapter4RecyclerView<AndroidResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener<CommonHolder4RecyclerView> {
+public class CategoryListAdapter extends CommonAdapter4RecyclerView<AndroidResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener<CommonHolder4RecyclerView> {
 
-    public AndroidListAdapter(Context context) {
+    public CategoryListAdapter(Context context) {
         super(context, null, R.layout.item);
     }
 

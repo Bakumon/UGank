@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
-import me.bakumon.gank.module.android.AndroidFragment;
+import me.bakumon.gank.module.android.CategoryFragment;
 import me.bakumon.gank.module.ios.IOSFragment;
 import me.bakumon.gank.module.other.OtherFragment;
 import me.bakumon.gank.utills.ToastUtil;
@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
         // Android
-        AndroidFragment androidFragment = new AndroidFragment();
+        CategoryFragment androidFragment = new CategoryFragment();
         // iOS
         IOSFragment iosFragment = new IOSFragment();
 

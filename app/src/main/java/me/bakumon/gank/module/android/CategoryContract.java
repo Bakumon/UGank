@@ -5,10 +5,10 @@ import me.bakumon.gank.base.BaseView;
 import me.bakumon.gank.entity.AndroidResult;
 
 /**
- * AndroidContract
+ * CategoryContract
  * Created by bakumon on 2016/12/8.
  */
-public interface AndroidContract {
+public interface CategoryContract {
 
     interface View extends BaseView {
 

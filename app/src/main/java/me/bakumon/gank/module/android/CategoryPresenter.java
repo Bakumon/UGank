@@ -12,17 +12,17 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * AndroidPresenter
+ * CategoryPresenter
  * Created by bakumon on 2016/12/8 16:42.
  */
-public class AndroidPresenter implements AndroidContract.Presenter {
+public class CategoryPresenter implements CategoryContract.Presenter {
 
-    private AndroidContract.View mAndroidView;
+    private CategoryContract.View mAndroidView;
 
     @NonNull
     private CompositeSubscription mSubscriptions;
 
-    public AndroidPresenter(AndroidContract.View androidView) {
+    public CategoryPresenter(CategoryContract.View androidView) {
         mAndroidView = androidView;
         mSubscriptions = new CompositeSubscription();
     }

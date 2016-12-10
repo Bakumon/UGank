@@ -20,18 +20,18 @@ import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
 
 /**
- * AndroidFragment
+ * CategoryFragment
  * Created by bakumon on 2016/12/8.
  */
-public class AndroidFragment extends Fragment implements AndroidContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMore.OnLoadMoreListener {
+public class CategoryFragment extends Fragment implements CategoryContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMore.OnLoadMoreListener {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private AndroidListAdapter mAndroidListAdapter;
-    private AndroidContract.Presenter mPresenter = new AndroidPresenter(this);
+    private CategoryListAdapter mAndroidListAdapter;
+    private CategoryContract.Presenter mPresenter = new CategoryPresenter(this);
 
     private int mPage;
 
@@ -48,7 +48,7 @@ public class AndroidFragment extends Fragment implements AndroidContract.View, S
         LoadMore loadMore = new LoadMore(mRecyclerView);
         loadMore.setOnLoadMoreListener(this);
 
-        mAndroidListAdapter = new AndroidListAdapter(getContext());
+        mAndroidListAdapter = new CategoryListAdapter(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
