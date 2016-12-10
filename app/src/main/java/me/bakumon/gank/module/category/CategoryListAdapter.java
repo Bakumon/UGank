@@ -10,7 +10,7 @@ import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonAdapter4RecyclerView;
 import me.bakumon.gank.base.adapter.CommonHolder4RecyclerView;
 import me.bakumon.gank.base.adapter.ListenerWithPosition;
-import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.entity.CategoryResult;
 import me.bakumon.gank.utills.DateUtil;
 import me.bakumon.gank.utills.GlideUtil;
 import me.bakumon.gank.utills.ToastUtil;
@@ -20,14 +20,14 @@ import me.bakumon.gank.utills.ToastUtil;
  * Created by bakumon on 2016/10/13.
  */
 
-public class CategoryListAdapter extends CommonAdapter4RecyclerView<AndroidResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener<CommonHolder4RecyclerView> {
+public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener<CommonHolder4RecyclerView> {
 
     public CategoryListAdapter(Context context) {
         super(context, null, R.layout.item);
     }
 
     @Override
-    public void convert(CommonHolder4RecyclerView holder, AndroidResult.ResultsBean androidResult) {
+    public void convert(CommonHolder4RecyclerView holder, CategoryResult.ResultsBean androidResult) {
         if (androidResult != null) {
             ImageView imageView = holder.getView(R.id.iv_item_img);
             if (androidResult.images != null && androidResult.images.size() > 0) {

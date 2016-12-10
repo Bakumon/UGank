@@ -1,6 +1,6 @@
 package me.bakumon.gank.network.api;
 
-import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.entity.CategoryResult;
 import me.bakumon.gank.entity.IOSResult;
 import me.bakumon.gank.entity.MeiziResult;
 import retrofit2.http.GET;
@@ -14,11 +14,14 @@ import rx.Observable;
 
 public interface GankApi {
 
+    @GET("data/{category}/{number}/{page}")
+    Observable<CategoryResult> getCategoryDate(@Path("category") String category, @Path("number") int number, @Path("page") int page);
+
     @GET("data/福利/{number}/{page}")
     Observable<MeiziResult> getBeauties(@Path("number") int number, @Path("page") int page);
 
     @GET("data/Android/{number}/{page}")
-    Observable<AndroidResult> getAndroid(@Path("number") int number, @Path("page") int page);
+    Observable<CategoryResult> getAndroid(@Path("number") int number, @Path("page") int page);
 
     @GET("data/iOS/{number}/{page}")
     Observable<IOSResult> getiOS(@Path("number") int number, @Path("page") int page);

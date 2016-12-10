@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.gank.GlobalConfig;
 import me.bakumon.gank.R;
-import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.entity.CategoryResult;
 import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
 
@@ -34,6 +34,17 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     private CategoryContract.Presenter mPresenter = new CategoryPresenter(this);
 
     private int mPage;
+
+    private String mCategoryName;
+
+    public void setCategoryName(String categoryName) {
+        this.mCategoryName = categoryName;
+    }
+
+    @Override
+    public String getCategoryName() {
+        return this.mCategoryName;
+    }
 
     @Nullable
     @Override
@@ -88,15 +99,15 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void setAndroidItems(AndroidResult androidResult) {
-        mAndroidListAdapter.mData = androidResult.results;
+    public void setAndroidItems(CategoryResult categoryResult) {
+        mAndroidListAdapter.mData = categoryResult.results;
         mAndroidListAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
-    public void addAndroidItems(AndroidResult androidResult) {
-        mAndroidListAdapter.mData.addAll(androidResult.results);
+    public void addAndroidItems(CategoryResult categoryResult) {
+        mAndroidListAdapter.mData.addAll(categoryResult.results);
         mAndroidListAdapter.notifyDataSetChanged();
     }
 

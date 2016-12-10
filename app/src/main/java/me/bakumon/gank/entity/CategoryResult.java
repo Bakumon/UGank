@@ -3,10 +3,10 @@ package me.bakumon.gank.entity;
 import java.util.List;
 
 /**
- * AndroidResult
+ * CategoryResult
  * Created by bakumon on 2016/12/8.
  */
-public class AndroidResult {
+public class CategoryResult {
 
     /**
      * error : false

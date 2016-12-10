@@ -3,7 +3,7 @@ package me.bakumon.gank.module.category;
 import android.support.annotation.NonNull;
 
 import me.bakumon.gank.GlobalConfig;
-import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.entity.CategoryResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
 import rx.Subscription;
@@ -17,13 +17,13 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class CategoryPresenter implements CategoryContract.Presenter {
 
-    private CategoryContract.View mAndroidView;
+    private CategoryContract.View mCategoryView;
 
     @NonNull
     private CompositeSubscription mSubscriptions;
 
     public CategoryPresenter(CategoryContract.View androidView) {
-        mAndroidView = androidView;
+        mCategoryView = androidView;
         mSubscriptions = new CompositeSubscription();
     }
 
@@ -41,25 +41,25 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     @Override
     public void getAndroidItems(int number, int page, final boolean isRefresh) {
         Subscription subscription = NetWork.getGankApi()
-                .getAndroid(number, page)
+                .getCategoryDate(mCategoryView.getCategoryName(), number, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<AndroidResult>() {
+                .subscribe(new Observer<CategoryResult>() {
                     @Override
                     public void onCompleted() {
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mAndroidView.getAndroidItemsFail("Android 列表数据获取失败，请重试。201");
+                        mCategoryView.getAndroidItemsFail(mCategoryView.getCategoryName() + " 列表数据获取失败，请重试。201");
                     }
 
                     @Override
-                    public void onNext(AndroidResult androidResult) {
+                    public void onNext(CategoryResult androidResult) {
                         if (isRefresh) {
-                            mAndroidView.setAndroidItems(androidResult);
+                            mCategoryView.setAndroidItems(androidResult);
                         } else {
-                            mAndroidView.addAndroidItems(androidResult);
+                            mCategoryView.addAndroidItems(androidResult);
                         }
 
                     }

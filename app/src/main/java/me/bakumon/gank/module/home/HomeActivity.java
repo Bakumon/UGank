@@ -73,6 +73,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         // Android
         CategoryFragment androidFragment = new CategoryFragment();
+        androidFragment.setCategoryName("瞎推荐");
         // iOS
         IOSFragment iosFragment = new IOSFragment();
 

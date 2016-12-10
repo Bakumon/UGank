@@ -2,7 +2,7 @@ package me.bakumon.gank.module.category;
 
 import me.bakumon.gank.base.BasePresenter;
 import me.bakumon.gank.base.BaseView;
-import me.bakumon.gank.entity.AndroidResult;
+import me.bakumon.gank.entity.CategoryResult;
 
 /**
  * CategoryContract
@@ -12,11 +12,13 @@ public interface CategoryContract {
 
     interface View extends BaseView {
 
-        void setAndroidItems(AndroidResult androidResult);
+        void setAndroidItems(CategoryResult categoryResult);
 
-        void addAndroidItems(AndroidResult androidResult);
+        void addAndroidItems(CategoryResult categoryResult);
 
         void getAndroidItemsFail(String failMessage);
+
+        String getCategoryName();
     }
 
     interface Presenter extends BasePresenter {
