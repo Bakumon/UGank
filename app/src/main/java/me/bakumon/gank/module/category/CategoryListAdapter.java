@@ -37,7 +37,7 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<AndroidResul
             }
             holder.setTextViewText(R.id.tv_item_title, androidResult.desc == null ? "unknown" : androidResult.desc);
             holder.setTextViewText(R.id.tv_item_publisher, androidResult.who == null ? "unknown" : androidResult.who);
-            holder.setTextViewText(R.id.tv_item_time, DateUtil.dateFormat(androidResult.createdAt));
+            holder.setTextViewText(R.id.tv_item_time, DateUtil.dateFormat(androidResult.publishedAt));
             holder.setOnClickListener(this, R.id.ll_item);
         }
     }
