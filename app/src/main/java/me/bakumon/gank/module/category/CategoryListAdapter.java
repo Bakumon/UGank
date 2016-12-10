@@ -1,4 +1,4 @@
-package me.bakumon.gank.module.android;
+package me.bakumon.gank.module.category;
 
 import android.content.Context;
 import android.view.View;
