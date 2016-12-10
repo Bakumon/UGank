@@ -8,14 +8,22 @@
     tools:context="me.bakumon.gank.module.webview.WebViewActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar_2"
-        android:fitsSystemWindows="true"
+        android:id="@+id/tb_webview"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
         app:navigationIcon="@drawable/ic_webview_finish"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="这是不同爱人案发发生的"
-        app:titleTextColor="#FFFFFF" />
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="这是不同"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
 </RelativeLayout>
