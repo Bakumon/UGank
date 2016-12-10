@@ -20,12 +20,6 @@ public interface GankApi {
     @GET("data/福利/{number}/{page}")
     Observable<MeiziResult> getBeauties(@Path("number") int number, @Path("page") int page);
 
-    @GET("data/Android/{number}/{page}")
-    Observable<CategoryResult> getAndroid(@Path("number") int number, @Path("page") int page);
-
-    @GET("data/iOS/{number}/{page}")
-    Observable<IOSResult> getiOS(@Path("number") int number, @Path("page") int page);
-
     @GET("random/data/福利/{number}")
     Observable<MeiziResult> getRandomBeauties(@Path("number") int number);
 

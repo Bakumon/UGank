@@ -30,7 +30,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     @Override
     public void subscribe() {
 
-        getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, 1, true);
+        getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, 1, true);
     }
 
     @Override

@@ -71,13 +71,13 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     @Override
     public void onRefresh() {
         mPage = 1;
-        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, true);
+        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, true);
     }
 
     @Override
     public void onLoadMore() {
         mPage += 1;
-        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_ANDROID, mPage, false);
+        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, false);
     }
 
     @Override
