@@ -2,7 +2,7 @@ package me.bakumon.gank.module.home;
 
 import android.support.annotation.NonNull;
 
-import me.bakumon.gank.entity.MeiziResult;
+import me.bakumon.gank.entity.CategoryResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
 import rx.Subscription;
@@ -43,7 +43,7 @@ public class HomePresenter implements HomeContract.Presenter {
                 .getRandomBeauties(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MeiziResult>() {
+                .subscribe(new Observer<CategoryResult>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -54,7 +54,7 @@ public class HomePresenter implements HomeContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(MeiziResult meiziResult) {
+                    public void onNext(CategoryResult meiziResult) {
                         if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
@@ -68,10 +68,10 @@ public class HomePresenter implements HomeContract.Presenter {
 
     private void getBanner(int page) {
         Subscription subscription = NetWork.getGankApi()
-                .getBeauties(1, page)
+                .getCategoryDate("福利", 1, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MeiziResult>() {
+                .subscribe(new Observer<CategoryResult>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -82,7 +82,7 @@ public class HomePresenter implements HomeContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(MeiziResult meiziResult) {
+                    public void onNext(CategoryResult meiziResult) {
                         if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
