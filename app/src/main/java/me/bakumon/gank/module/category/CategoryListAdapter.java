@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.thefinestartist.finestwebview.FinestWebView;
 
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonAdapter4RecyclerView;
@@ -44,6 +45,16 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
 
     @Override
     public void onClick(View v, int position, CommonHolder4RecyclerView holder) {
-        ToastUtil.showToastDefault(mContext, mData.get(position).url);
+        new FinestWebView.Builder(mContext)
+                .toolbarScrollFlags(0)
+                .showUrl(false)
+                .showIconForward(false)
+                .disableIconForward(true)
+                .showIconBack(false)
+                .disableIconBack(true)
+                .titleDefault(mData.get(position).desc)
+                .updateTitleFromHtml(false)
+                .showSwipeRefreshLayout(false)
+                .show(mData.get(position).url);
     }
 }
