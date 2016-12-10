@@ -19,7 +19,6 @@ import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
-import me.bakumon.gank.module.ios.IOSFragment;
 import me.bakumon.gank.module.other.OtherFragment;
 import me.bakumon.gank.utills.ToastUtil;
 
@@ -67,27 +66,44 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         setFabShowOrHide();
 
-        String[] titles = {"今日", "Android", "iOS", "福利", "前端", "瞎推荐"};
+        String[] titles = {"今日", "Android", "iOS", "福利", "App", "前端", "瞎推荐"};
 
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
+        // 今日
+        OtherFragment todayFragment = new OtherFragment();
+
         // Android
         CategoryFragment androidFragment = new CategoryFragment();
-        androidFragment.setCategoryName("瞎推荐");
+        androidFragment.setCategoryName("Android");
+
         // iOS
-        IOSFragment iosFragment = new IOSFragment();
+        CategoryFragment iOSFragment = new CategoryFragment();
+        iOSFragment.setCategoryName("iOS");
 
-        OtherFragment otherFragment1 = new OtherFragment();
-        OtherFragment otherFragment3 = new OtherFragment();
-        OtherFragment otherFragment4 = new OtherFragment();
-        OtherFragment otherFragment5 = new OtherFragment();
+        // 福利
+        OtherFragment meiziFragment = new OtherFragment();
 
-        infoPagerAdapter.addFragment(otherFragment1);
+        // App
+        CategoryFragment appFragment = new CategoryFragment();
+        appFragment.setCategoryName("App");
+
+        // 前端
+        CategoryFragment frontFragment = new CategoryFragment();
+        frontFragment.setCategoryName("前端");
+
+        // 瞎推荐
+        CategoryFragment referenceFragment = new CategoryFragment();
+        referenceFragment.setCategoryName("瞎推荐");
+
+
+        infoPagerAdapter.addFragment(todayFragment);
         infoPagerAdapter.addFragment(androidFragment);
-        infoPagerAdapter.addFragment(iosFragment);
-        infoPagerAdapter.addFragment(otherFragment3);
-        infoPagerAdapter.addFragment(otherFragment4);
-        infoPagerAdapter.addFragment(otherFragment5);
+        infoPagerAdapter.addFragment(iOSFragment);
+        infoPagerAdapter.addFragment(meiziFragment);
+        infoPagerAdapter.addFragment(appFragment);
+        infoPagerAdapter.addFragment(frontFragment);
+        infoPagerAdapter.addFragment(referenceFragment);
 
 
         mVpCategory.setAdapter(infoPagerAdapter);

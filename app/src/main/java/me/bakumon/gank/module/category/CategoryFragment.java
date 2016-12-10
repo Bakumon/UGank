@@ -33,7 +33,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     private CategoryListAdapter mAndroidListAdapter;
     private CategoryContract.Presenter mPresenter = new CategoryPresenter(this);
 
-    private int mPage;
+    private int mPage = 1;
 
     private String mCategoryName;
 
