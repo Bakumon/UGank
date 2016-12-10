@@ -45,12 +45,4 @@
         <item name="android:activityCloseEnterAnimation">@anim/anim_entry_fade_in</item>
         <item name="android:activityCloseExitAnimation">@anim/anim_entry_scale_out</item>
     </style>
-    <style name="AppTheme.NoActionBar.WebView" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/finestWhite</item>
-        <item name="android:textColorPrimary">@color/finestWhite</item>
-        <item name="android:textColorSecondary">@color/finestWhite</item>
-        <item name="windowActionModeOverlay">true</item>
-    </style>
 </resources>
