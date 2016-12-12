@@ -45,6 +45,9 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
 
     @Override
     public void onClick(View v, int position, CommonHolder4RecyclerView holder) {
-        mContext.startActivity(new Intent(mContext, WebViewActivity.class));
+        Intent intent = new Intent(mContext, WebViewActivity.class);
+        intent.putExtra(WebViewActivity.GANK_TITLE, mData.get(position).desc);
+        intent.putExtra(WebViewActivity.GANK_URL, mData.get(position).url);
+        mContext.startActivity(intent);
     }
 }

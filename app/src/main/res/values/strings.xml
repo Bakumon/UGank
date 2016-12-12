@@ -5,7 +5,6 @@
     <string name="data_source_disk">磁盘</string>
     <string name="data_source_network">网络</string>
     <string name="exit_app_tip">再按一次退出程序</string>
-    <string name="menu_refresh">刷新</string>
     <string name="menu_share">分享</string>
     <string name="menu_copy_link">复制链接</string>
     <string name="menu_open_with">用浏览器打开</string>

@@ -1,5 +1,7 @@
 package me.bakumon.gank.module.webview;
 
+import android.app.Activity;
+
 import me.bakumon.gank.base.BasePresenter;
 import me.bakumon.gank.base.BaseView;
 
@@ -9,13 +11,20 @@ import me.bakumon.gank.base.BaseView;
  */
 
 public interface WebViewContract {
+
     interface View extends BaseView {
 
-        void showLoadFail(String failMessage);
+        Activity getWebViewContext();
+
+        void setGankTitle(String title);
+
+        void loadGankURL(String url);
+
+        void initWebView();
 
     }
 
     interface Presenter extends BasePresenter {
-
+        String getGankUrl();
     }
 }
