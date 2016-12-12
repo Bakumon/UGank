@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -79,6 +80,11 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     @Override
     public String getCategoryName() {
         return this.mCategoryName;
+    }
+
+    @Override
+    public void showSwipLoading() {
+        mSwipeRefreshLayout.setRefreshing(true);
     }
 
     @Override

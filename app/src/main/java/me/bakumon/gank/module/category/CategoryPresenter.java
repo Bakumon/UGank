@@ -29,7 +29,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
     @Override
     public void subscribe() {
-
+        mCategoryView.showSwipLoading();
         getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, 1, true);
     }
 

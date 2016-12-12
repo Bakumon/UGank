@@ -19,6 +19,8 @@ public interface CategoryContract {
         void getAndroidItemsFail(String failMessage);
 
         String getCategoryName();
+
+        void showSwipLoading();
     }
 
     interface Presenter extends BasePresenter {
