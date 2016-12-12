@@ -1,8 +1,8 @@
 package me.bakumon.gank.module.webview;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,6 +12,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -31,13 +32,14 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
     @BindView(R.id.web_view)
     WebView mWebView;
     @BindView(R.id.progressbar)
-    ContentLoadingProgressBar mProgressbar;
+    ProgressBar mProgressbar;
 
     private WebViewContract.Presenter mHomePresenter = new WebViewPresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_web_view);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
@@ -62,14 +64,15 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
-        mWebView.setWebViewClient(new MyWebClient());
+
         mWebView.setWebChromeClient(new MyWebChrome());
+        mWebView.setWebViewClient(new MyWebClient());
     }
 
     class MyWebChrome extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            mProgressbar.show();
+            mProgressbar.setVisibility(View.VISIBLE);
             mProgressbar.setProgress(newProgress);
         }
     }
