@@ -47,6 +47,11 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initView();
         mHomePresenter.subscribe();
     }
