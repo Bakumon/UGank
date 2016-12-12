@@ -31,7 +31,7 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
     TextView mTvTitle;
     @BindView(R.id.web_view)
     WebView mWebView;
-    @BindView(R.id.progressbar)
+    @BindView(R.id.progressbar_webview)
     ProgressBar mProgressbar;
 
     private WebViewContract.Presenter mHomePresenter = new WebViewPresenter(this);
