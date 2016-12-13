@@ -16,12 +16,12 @@ public class LoadMore extends RecyclerView.OnScrollListener {
     private boolean isGrid;
 
     public LoadMore(RecyclerView recyclerView) {
-        recyclerView.setOnScrollListener(this);
+        recyclerView.addOnScrollListener(this);
     }
 
     public LoadMore(RecyclerView recyclerView, boolean isGrid) {
         this.isGrid = isGrid;
-        recyclerView.setOnScrollListener(this);
+        recyclerView.addOnScrollListener(this);
     }
 
     @Override
