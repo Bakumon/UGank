@@ -39,6 +39,8 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void getRandomBanner() {
+        mHomeView.startBannerLoadingAnim();
+        mHomeView.disEnableFabButton();
         Subscription subscription = NetWork.getGankApi()
                 .getRandomBeauties(1)
                 .subscribeOn(Schedulers.io())
@@ -51,6 +53,8 @@ public class HomePresenter implements HomeContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         mHomeView.showBannerFail("Banner 图加载失败，请重试。103");
+                        mHomeView.enableFabButton();
+                        mHomeView.stopBannerLoadingAnim();
                     }
 
                     @Override
@@ -60,13 +64,14 @@ public class HomePresenter implements HomeContract.Presenter {
                         } else {
                             mHomeView.showBannerFail("Banner 图加载失败，请重试。104");
                         }
-
                     }
                 });
         mSubscriptions.add(subscription);
     }
 
     private void getBanner(int page) {
+        mHomeView.startBannerLoadingAnim();
+        mHomeView.disEnableFabButton();
         Subscription subscription = NetWork.getGankApi()
                 .getCategoryDate("福利", 1, page)
                 .subscribeOn(Schedulers.io())
@@ -79,6 +84,8 @@ public class HomePresenter implements HomeContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         mHomeView.showBannerFail("Banner 图加载失败，请重试。101");
+                        mHomeView.enableFabButton();
+                        mHomeView.stopBannerLoadingAnim();
                     }
 
                     @Override

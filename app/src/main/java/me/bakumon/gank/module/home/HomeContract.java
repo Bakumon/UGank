@@ -13,6 +13,14 @@ public interface HomeContract {
         void showBannerFail(String failMessage);
 
         void setBanner(String imgUrl);
+
+        void startBannerLoadingAnim();
+
+        void stopBannerLoadingAnim();
+
+        void enableFabButton();
+
+        void disEnableFabButton();
     }
 
     interface Presenter extends BasePresenter {

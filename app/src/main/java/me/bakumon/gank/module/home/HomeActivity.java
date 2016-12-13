@@ -1,5 +1,7 @@
 package me.bakumon.gank.module.home;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -9,9 +11,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,38 +65,30 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     private void initView() {
 
-        setFabShowOrHide();
+        setFabDynamicState();
 
         String[] titles = {"今日", "Android", "iOS", "福利", "App", "前端", "瞎推荐"};
-
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
         // 今日
         OtherFragment todayFragment = new OtherFragment();
-
         // Android
         CategoryFragment androidFragment = new CategoryFragment();
         androidFragment.setCategoryName("Android");
-
         // iOS
         CategoryFragment iOSFragment = new CategoryFragment();
         iOSFragment.setCategoryName("iOS");
-
         // 福利
         OtherFragment meiziFragment = new OtherFragment();
-
         // App
         CategoryFragment appFragment = new CategoryFragment();
         appFragment.setCategoryName("App");
-
         // 前端
         CategoryFragment frontFragment = new CategoryFragment();
         frontFragment.setCategoryName("前端");
-
         // 瞎推荐
         CategoryFragment referenceFragment = new CategoryFragment();
         referenceFragment.setCategoryName("瞎推荐");
-
 
         infoPagerAdapter.addFragment(todayFragment);
         infoPagerAdapter.addFragment(androidFragment);
@@ -100,11 +98,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         infoPagerAdapter.addFragment(frontFragment);
         infoPagerAdapter.addFragment(referenceFragment);
 
-
         mVpCategory.setAdapter(infoPagerAdapter);
         mTlHomeCategory.setupWithViewPager(mVpCategory);
         mTlHomeCategory.setTabGravity(TabLayout.GRAVITY_FILL);
-
         mVpCategory.setCurrentItem(1);
     }
 
@@ -119,7 +115,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     /**
      * 根据 CollapsingToolbarLayout 的折叠状态，设置 FloatingActionButton 的隐藏和显示
      */
-    private void setFabShowOrHide() {
+    private void setFabDynamicState() {
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -157,7 +153,49 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void setBanner(String imgUrl) {
-        Glide.with(this).load(imgUrl).into(mIvHomeBanner);
+        Glide.with(this)
+                .load(imgUrl)
+                .crossFade()
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    //这个用于监听图片是否加载完成
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        enableFabButton();
+                        stopBannerLoadingAnim();
+                        return false;
+                    }
+                })
+                .into(mIvHomeBanner);
+    }
+
+    private ObjectAnimator mAnimator;
+
+    @Override
+    public void startBannerLoadingAnim() {
+        mAnimator = ObjectAnimator.ofFloat(mFloatingActionButton, "rotation", 0, 360);
+        mAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mAnimator.setInterpolator(new LinearInterpolator());
+        mAnimator.start();
+    }
+
+    @Override
+    public void stopBannerLoadingAnim() {
+        mAnimator.cancel();
+    }
+
+    @Override
+    public void enableFabButton() {
+        mFloatingActionButton.setEnabled(true);
+    }
+
+    @Override
+    public void disEnableFabButton() {
+        mFloatingActionButton.setEnabled(false);
     }
 
     @OnClick(R.id.fab_home_add)
