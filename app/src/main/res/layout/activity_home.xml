@@ -42,7 +42,7 @@
                 android:paddingLeft="7dp"
                 android:paddingRight="7dp"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0">
+                app:layout_collapseParallaxMultiplier="-0.5">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="24dp"
