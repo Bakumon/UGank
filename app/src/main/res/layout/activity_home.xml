@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".module.home.HomeActivity">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:id="@+id/root"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 tools:context=".module.home.HomeActivity">
 
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:fitsSystemWindows="true">
+        android:layout_height="240dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="false"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
@@ -28,10 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
-                android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.4" />
+                app:layout_collapseParallaxMultiplier="0.4"/>
 
             <LinearLayout
                 android:id="@+id/ll_home_search"
@@ -40,12 +36,11 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="60dp"
                 android:layout_marginLeft="25dp"
-                android:paddingLeft="7dp"
-                android:paddingRight="7dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/shape_corners_white"
-                android:fitsSystemWindows="true"
                 android:orientation="horizontal"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0">
 
@@ -54,32 +49,33 @@
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ic_search_gank" />
+                    app:srcCompat="@drawable/ic_search_gank"/>
 
                 <TextView
                     android:id="@+id/tv_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/home_search" />
+                    android:text="@string/home_search"/>
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 style="@style/MyToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="80dp"
                 android:layout_gravity="bottom"
+                android:gravity="bottom"
                 app:layout_collapseMode="pin">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tl_home_category"
                     style="@style/MyCustomTabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:tabMode="scrollable" />
+                    android:layout_height="?attr/actionBarSize"
+                    app:tabMode="scrollable"/>
 
             </android.support.v7.widget.Toolbar>
 
@@ -90,7 +86,7 @@
         android:id="@+id/vp_home_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_home_add"
@@ -98,5 +94,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_random_meizu" />
+        app:srcCompat="@drawable/ic_random_meizu"/>
 </android.support.design.widget.CoordinatorLayout>

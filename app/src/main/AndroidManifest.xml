@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <!-- 主页 -->
         <activity android:name=".module.home.HomeActivity"
-            android:theme="@style/HomeTheme"/>
+            />
         <!-- 启动页 -->
         <activity
             android:name=".module.launcher.LauncherActivity"
