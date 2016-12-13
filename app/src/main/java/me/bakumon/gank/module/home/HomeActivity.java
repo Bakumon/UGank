@@ -34,7 +34,7 @@ import me.bakumon.gank.utills.ToastUtil;
  */
 public class HomeActivity extends AppCompatActivity implements HomeContract.View {
 
-    @BindView(R.id.fab_home_add)
+    @BindView(R.id.fab_home_random)
     FloatingActionButton mFloatingActionButton;
     @BindView(R.id.appbar)
     AppBarLayout mAppBarLayout;
@@ -142,7 +142,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @OnClick(R.id.ll_home_search)
-    public void search() {
+    public void search(View view) {
         ToastUtil.showToastDefault(this, "搜索");
     }
 
@@ -198,8 +198,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mFloatingActionButton.setEnabled(false);
     }
 
-    @OnClick(R.id.fab_home_add)
-    public void add(View view) {
+    @OnClick(R.id.fab_home_random)
+    public void random(View view) {
         mHomePresenter.getRandomBanner();
     }
 
