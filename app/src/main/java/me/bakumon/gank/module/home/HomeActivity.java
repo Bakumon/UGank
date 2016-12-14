@@ -106,12 +106,12 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mVpCategory.setCurrentItem(1);
     }
 
-    private CollapsingToolbarLayoutState state;
+    private CollapsingToolbarLayoutState state; // CollapsingToolbarLayout 折叠状态
 
     private enum CollapsingToolbarLayoutState {
-        EXPANDED,
-        COLLAPSED,
-        INTERNEDIATE
+        EXPANDED, // 完全展开
+        COLLAPSED, // 折叠
+        INTERNEDIATE // 中间状态
     }
 
     /**
@@ -213,8 +213,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mHomePresenter.getRandomBanner();
     }
 
-    private boolean isBannerBig;
-    private boolean isBannerAniming;
+    private boolean isBannerBig; // banner 是否是大图
+    private boolean isBannerAniming; // banner 放大缩小的动画是否正在执行
 
     @OnClick(R.id.iv_home_banner)
     public void wantBig(View view) {
@@ -261,4 +261,12 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         isBannerAniming = true;
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isBannerBig) {
+            startBannerAnim();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
