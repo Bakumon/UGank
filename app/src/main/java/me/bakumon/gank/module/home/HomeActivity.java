@@ -1,10 +1,13 @@
 package me.bakumon.gank.module.home;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -22,10 +25,12 @@ import com.bumptech.glide.request.target.Target;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
 import me.bakumon.gank.module.other.OtherFragment;
+import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.ToastUtil;
 
 /**
@@ -125,6 +130,10 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                     if (state != CollapsingToolbarLayoutState.COLLAPSED) {
                         mFloatingActionButton.hide();
                         state = CollapsingToolbarLayoutState.COLLAPSED; // 修改状态标记为折叠
+                        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
+                        layoutParams.height = DisplayUtils.dp2px(240, HomeActivity.this);
+                        mAppBarLayout.setLayoutParams(layoutParams);
+                        isBannerBig = false;
                     }
                 } else {
                     if (state != CollapsingToolbarLayoutState.INTERNEDIATE) {
@@ -202,6 +211,54 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @OnClick(R.id.fab_home_random)
     public void random(View view) {
         mHomePresenter.getRandomBanner();
+    }
+
+    private boolean isBannerBig;
+    private boolean isBannerAniming;
+
+    @OnClick(R.id.iv_home_banner)
+    public void wantBig(View view) {
+        if (isBannerAniming) {
+            return;
+        }
+        startBannerAnim();
+    }
+
+    @OnLongClick(R.id.iv_home_banner)
+    public boolean bannerLongClick(View view) {
+        if (!isBannerBig) {
+            return false;
+        }
+        ToastUtil.showToastDefault(this, "bannerLongClick");
+        return true;
+    }
+
+    private void startBannerAnim() {
+        final CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
+        ValueAnimator animator;
+        if (isBannerBig) {
+            animator = ValueAnimator.ofInt(DisplayUtils.getScreenHeight(this), DisplayUtils.dp2px(240, this));
+        } else {
+            animator = ValueAnimator.ofInt(DisplayUtils.dp2px(240, this), DisplayUtils.getScreenHeight(this));
+        }
+        animator.setDuration(1000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                layoutParams.height = (int) valueAnimator.getAnimatedValue();
+                mAppBarLayout.setLayoutParams(layoutParams);
+            }
+        });
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                isBannerBig = !isBannerBig;
+                isBannerAniming = false;
+            }
+        });
+        animator.start();
+        isBannerAniming = true;
     }
 
 }
