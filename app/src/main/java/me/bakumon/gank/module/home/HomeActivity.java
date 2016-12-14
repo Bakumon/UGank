@@ -72,33 +72,34 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         setFabDynamicState();
 
-        String[] titles = {"今日", "Android", "iOS", "App", "前端", "瞎推荐"};
+        String[] titles = {"App", "Android", "iOS", "前端", "瞎推荐", "拓展资源"};
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
-        // 今日
-        OtherFragment todayFragment = new OtherFragment();
+        // App
+        CategoryFragment appFragment = new CategoryFragment();
+        appFragment.setCategoryName("App");
         // Android
         CategoryFragment androidFragment = new CategoryFragment();
         androidFragment.setCategoryName("Android");
         // iOS
         CategoryFragment iOSFragment = new CategoryFragment();
         iOSFragment.setCategoryName("iOS");
-        // App
-        CategoryFragment appFragment = new CategoryFragment();
-        appFragment.setCategoryName("App");
         // 前端
         CategoryFragment frontFragment = new CategoryFragment();
         frontFragment.setCategoryName("前端");
         // 瞎推荐
         CategoryFragment referenceFragment = new CategoryFragment();
         referenceFragment.setCategoryName("瞎推荐");
+        // 拓展资源s
+        CategoryFragment resFragment = new CategoryFragment();
+        resFragment.setCategoryName("拓展资源");
 
-        infoPagerAdapter.addFragment(todayFragment);
+        infoPagerAdapter.addFragment(appFragment);
         infoPagerAdapter.addFragment(androidFragment);
         infoPagerAdapter.addFragment(iOSFragment);
-        infoPagerAdapter.addFragment(appFragment);
         infoPagerAdapter.addFragment(frontFragment);
         infoPagerAdapter.addFragment(referenceFragment);
+        infoPagerAdapter.addFragment(resFragment);
 
         mVpCategory.setAdapter(infoPagerAdapter);
         mTlHomeCategory.setupWithViewPager(mVpCategory);
