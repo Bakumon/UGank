@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         setFabDynamicState();
 
-        String[] titles = {"今日", "Android", "iOS", "福利", "App", "前端", "瞎推荐"};
+        String[] titles = {"今日", "Android", "iOS", "App", "前端", "瞎推荐"};
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
         // 今日
@@ -78,8 +78,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         // iOS
         CategoryFragment iOSFragment = new CategoryFragment();
         iOSFragment.setCategoryName("iOS");
-        // 福利
-        OtherFragment meiziFragment = new OtherFragment();
         // App
         CategoryFragment appFragment = new CategoryFragment();
         appFragment.setCategoryName("App");
@@ -93,7 +91,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         infoPagerAdapter.addFragment(todayFragment);
         infoPagerAdapter.addFragment(androidFragment);
         infoPagerAdapter.addFragment(iOSFragment);
-        infoPagerAdapter.addFragment(meiziFragment);
         infoPagerAdapter.addFragment(appFragment);
         infoPagerAdapter.addFragment(frontFragment);
         infoPagerAdapter.addFragment(referenceFragment);
