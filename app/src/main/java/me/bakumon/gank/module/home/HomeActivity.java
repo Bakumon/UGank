@@ -29,7 +29,6 @@ import butterknife.OnLongClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
-import me.bakumon.gank.module.other.OtherFragment;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.ToastUtil;
 
@@ -269,5 +268,10 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         } else {
             super.onBackPressed();
         }
+    }
+
+    @OnClick(R.id.iv_home_setting)
+    public void goSetting() {
+        ToastUtil.showToastDefault(this, "设置");
     }
 }
