@@ -5,27 +5,31 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.github.florent37.glidepalette.BitmapPalette;
+import com.github.florent37.glidepalette.GlidePalette;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
+import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
@@ -48,6 +52,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     TabLayout mTlHomeCategory;
     @BindView(R.id.vp_home_category)
     ViewPager mVpCategory;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbar;
 
     private HomeContract.Presenter mHomePresenter = new HomePresenter(this);
 
@@ -159,24 +165,38 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void setBanner(String imgUrl) {
-        Glide.with(this)
-                .load(imgUrl)
-                .crossFade()
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                        return false;
-                    }
-
-                    //这个用于监听图片是否加载完成
-                    @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        enableFabButton();
-                        stopBannerLoadingAnim();
-                        return false;
-                    }
-                })
+        Glide.with(this).load(imgUrl)
+                .listener(GlidePalette.with(imgUrl)
+                        .intoCallBack(new BitmapPalette.CallBack() {
+                            @Override
+                            public void onPaletteLoaded(@Nullable Palette palette) {
+                                if (palette != null) {
+                                    mCollapsingToolbar.setContentScrimColor(palette.getDarkVibrantColor(getResources().getColor(R.color.colorPrimary)));
+                                    mAppBarLayout.setBackgroundColor(palette.getDarkVibrantColor(getResources().getColor(R.color.colorPrimary)));
+                                    mFloatingActionButton.setBackgroundTintList(createColorStateList(palette.getLightVibrantColor(getResources().getColor(R.color.colorAccent))));
+                                    App.getInstance().setColorPrimary(palette.getDarkVibrantColor(getResources().getColor(R.color.colorPrimary)));
+                                    App.getInstance().setColorAccent(palette.getLightVibrantColor(getResources().getColor(R.color.colorAccent)));
+                                    enableFabButton();
+                                    stopBannerLoadingAnim();
+                                }
+                            }
+                        }))
                 .into(mIvHomeBanner);
+    }
+
+    /**
+     * 对TextView设置不同状态时其文字颜色。
+     */
+    private ColorStateList createColorStateList(int color) {
+        int[] colors = new int[]{color, color, color, color, color, color};
+        int[][] states = new int[6][];
+        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
+        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
+        states[2] = new int[]{android.R.attr.state_enabled};
+        states[3] = new int[]{android.R.attr.state_focused};
+        states[4] = new int[]{android.R.attr.state_window_focused};
+        states[5] = new int[]{};
+        return new ColorStateList(states, colors);
     }
 
     private ObjectAnimator mAnimator;

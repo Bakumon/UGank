@@ -3,6 +3,8 @@ package me.bakumon.gank.module.webview;
 import android.app.Activity;
 import android.content.Intent;
 
+import me.bakumon.gank.App;
+
 /**
  * WebViewPresenter
  * Created by bakumon on 16-12-10.
@@ -23,6 +25,7 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     @Override
     public void subscribe() {
         mContext = mWebViewView.getWebViewContext();
+        mWebViewView.setToolbarBackgroundColor(App.getInstance().getColorPrimary());
         loadDate();
     }
 

@@ -22,6 +22,10 @@ public interface WebViewContract {
 
         void initWebView();
 
+        void setToolbarBackgroundColor(int color);
+
+        void setViewColorAccent(int color);
+
     }
 
     interface Presenter extends BasePresenter {

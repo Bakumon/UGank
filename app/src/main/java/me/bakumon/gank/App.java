@@ -9,6 +9,10 @@ import android.app.Application;
 public class App extends Application {
     private static App INSTANCE;
 
+
+    private int colorPrimary;
+    private int colorAccent;
+
     public static App getInstance() {
         return INSTANCE;
     }
@@ -17,5 +21,23 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        colorPrimary = getResources().getColor(R.color.colorPrimary);
+        colorAccent = getResources().getColor(R.color.colorAccent);
+    }
+
+    public int getColorPrimary() {
+        return colorPrimary;
+    }
+
+    public void setColorPrimary(int colorPrimary) {
+        this.colorPrimary = colorPrimary;
+    }
+
+    public int getColorAccent() {
+        return colorAccent;
+    }
+
+    public void setColorAccent(int colorAccent) {
+        this.colorAccent = colorAccent;
     }
 }

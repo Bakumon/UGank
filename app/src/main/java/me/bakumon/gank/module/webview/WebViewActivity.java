@@ -3,6 +3,7 @@ package me.bakumon.gank.module.webview;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -33,8 +34,10 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
     WebView mWebView;
     @BindView(R.id.progressbar_webview)
     ProgressBar mProgressbar;
+    @BindView(R.id.appbar)
+    AppBarLayout mAppbar;
 
-    private WebViewContract.Presenter mHomePresenter = new WebViewPresenter(this);
+    private WebViewContract.Presenter mWebViewPresenter = new WebViewPresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
             }
         });
 
-        mHomePresenter.subscribe();
+        mWebViewPresenter.subscribe();
     }
 
     @Override
@@ -67,6 +70,16 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
 
         mWebView.setWebChromeClient(new MyWebChrome());
         mWebView.setWebViewClient(new MyWebClient());
+    }
+
+    @Override
+    public void setToolbarBackgroundColor(int color) {
+        mAppbar.setBackgroundColor(color);
+    }
+
+    @Override
+    public void setViewColorAccent(int color) {
+
     }
 
     class MyWebChrome extends WebChromeClient {
@@ -118,13 +131,13 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_share:
-                AndroidUtil.share(this, mHomePresenter.getGankUrl());
+                AndroidUtil.share(this, mWebViewPresenter.getGankUrl());
                 break;
             case R.id.menu_copy_link:
-                AndroidUtil.copyText(this, mHomePresenter.getGankUrl());
+                AndroidUtil.copyText(this, mWebViewPresenter.getGankUrl());
                 break;
             case R.id.menu_open_with:
-                AndroidUtil.openWithBrowser(this, mHomePresenter.getGankUrl());
+                AndroidUtil.openWithBrowser(this, mWebViewPresenter.getGankUrl());
                 break;
         }
         return super.onOptionsItemSelected(item);

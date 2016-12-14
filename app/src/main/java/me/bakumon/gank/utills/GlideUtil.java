@@ -23,22 +23,22 @@ public class GlideUtil {
      * @param imageView ImageView
      */
     public static void showImgIfGIf(final Context context, final String imgUrl, final ImageView imageView) {
-        Glide.with(context)
-                .load(imgUrl)
-                .asGif()
-                .placeholder(R.mipmap.image_default)
-                .listener(new RequestListener<String, GifDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String model, Target<GifDrawable> target, boolean isFirstResource) {
-                        Glide.with(context).load(imgUrl).placeholder(R.mipmap.image_default).into(imageView);
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(GifDrawable resource, String model, Target<GifDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        return false;
-                    }
-                })
-                .into(imageView);
+//        Glide.with(context)
+//                .load(imgUrl)
+//                .asGif()
+//                .placeholder(R.mipmap.image_default)
+//                .listener(new RequestListener<String, GifDrawable>() {
+//                    @Override
+//                    public boolean onException(Exception e, String model, Target<GifDrawable> target, boolean isFirstResource) {
+//                        Glide.with(context).load(imgUrl).placeholder(R.mipmap.image_default).into(imageView);
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public boolean onResourceReady(GifDrawable resource, String model, Target<GifDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+//                        return false;
+//                    }
+//                })
+//                .into(imageView);
     }
 }
