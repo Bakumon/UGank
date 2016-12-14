@@ -177,15 +177,19 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void startBannerLoadingAnim() {
+        mFloatingActionButton.setImageResource(R.drawable.ic_loading);
         mAnimator = ObjectAnimator.ofFloat(mFloatingActionButton, "rotation", 0, 360);
         mAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mAnimator.setDuration(800);
         mAnimator.setInterpolator(new LinearInterpolator());
         mAnimator.start();
     }
 
     @Override
     public void stopBannerLoadingAnim() {
+        mFloatingActionButton.setImageResource(R.drawable.ic_beauty);
         mAnimator.cancel();
+        mFloatingActionButton.setRotation(0);
     }
 
     @Override
