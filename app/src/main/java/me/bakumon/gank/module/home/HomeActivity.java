@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
+import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
@@ -232,11 +234,18 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @OnLongClick(R.id.iv_home_banner)
-    public boolean bannerLongClick(View view) {
+    public boolean bannerLongClick() {
         if (!isBannerBig) {
             return false;
         }
-        ToastUtil.showToastDefault(this, "bannerLongClick");
+        ToastUtil.showToastDefault(this, "列表显示缩略图");
+        // TODO: 2016/12/15 移动到设置界面
+        SharedPreferences sharedPreferences = getSharedPreferences("app_config", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isListShowImg", true);
+        editor.commit();
+        App.isListShowImg = true;
+
         return true;
     }
 
