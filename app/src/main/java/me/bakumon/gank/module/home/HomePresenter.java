@@ -54,12 +54,12 @@ public class HomePresenter implements HomeContract.Presenter {
             int colorPrimary = App.getInstance().getResources().getColor(R.color.colorPrimary);
             int colorAccent = App.getInstance().getResources().getColor(R.color.colorAccent);
             // 把从调色板上获取的主题色保存在内存中
-            App.getInstance().setColorPrimary(palette.getDarkVibrantColor(colorPrimary));
-            App.getInstance().setColorAccent(palette.getLightVibrantColor(colorAccent));
+            App.colorPrimary = palette.getDarkVibrantColor(colorPrimary);
+            App.colorAccent = palette.getLightVibrantColor(colorAccent);
             // 设置 AppBarLayout 的背景色
-            mHomeView.setAppBarLayoutColor(App.getInstance().getColorPrimary());
+            mHomeView.setAppBarLayoutColor(App.colorPrimary);
             // 设置 FabButton 的背景色
-            mHomeView.setFabButtonColor(createColorStateList(App.getInstance().getColorAccent()));
+            mHomeView.setFabButtonColor(createColorStateList(App.colorAccent));
             // 停止 FabButton 加载中动画
             mHomeView.enableFabButton();
             mHomeView.stopBannerLoadingAnim();

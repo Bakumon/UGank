@@ -25,7 +25,7 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     @Override
     public void subscribe() {
         mContext = mWebViewView.getWebViewContext();
-        mWebViewView.setToolbarBackgroundColor(App.getInstance().getColorPrimary());
+        mWebViewView.setToolbarBackgroundColor(App.colorPrimary);
         loadDate();
     }
 

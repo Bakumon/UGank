@@ -1,6 +1,7 @@
 package me.bakumon.gank;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 /**
  * App
@@ -9,9 +10,10 @@ import android.app.Application;
 public class App extends Application {
     private static App INSTANCE;
 
+    public static int colorPrimary;
+    public static int colorAccent;
 
-    private int colorPrimary;
-    private int colorAccent;
+    public static boolean isListShowImg;
 
     public static App getInstance() {
         return INSTANCE;
@@ -21,23 +23,20 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
+        // 初始化主题色
         colorPrimary = getResources().getColor(R.color.colorPrimary);
         colorAccent = getResources().getColor(R.color.colorAccent);
+
+        initConfig();
     }
 
-    public int getColorPrimary() {
-        return colorPrimary;
+    /**
+     * 初始化配置信息
+     */
+    private void initConfig() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("app_config", MODE_PRIVATE);
+        // 列表是否显示图片
+        isListShowImg = sharedPreferences.getBoolean("isListShowImg", false);
     }
 
-    public void setColorPrimary(int colorPrimary) {
-        this.colorPrimary = colorPrimary;
-    }
-
-    public int getColorAccent() {
-        return colorAccent;
-    }
-
-    public void setColorAccent(int colorAccent) {
-        this.colorAccent = colorAccent;
-    }
 }
