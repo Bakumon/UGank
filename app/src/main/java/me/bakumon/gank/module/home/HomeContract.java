@@ -1,5 +1,9 @@
 package me.bakumon.gank.module.home;
 
+import android.content.res.ColorStateList;
+import android.support.annotation.Nullable;
+import android.support.v7.graphics.Palette;
+
 import me.bakumon.gank.base.BasePresenter;
 import me.bakumon.gank.base.BaseView;
 
@@ -21,9 +25,15 @@ public interface HomeContract {
         void enableFabButton();
 
         void disEnableFabButton();
+
+        void setAppBarLayoutColor(int appBarLayoutColor);
+
+        void setFabButtonColor(ColorStateList colorStateList);
     }
 
     interface Presenter extends BasePresenter {
         void getRandomBanner();
+
+        void setThemeColor(@Nullable Palette palette);
     }
 }

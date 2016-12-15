@@ -29,7 +29,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
@@ -170,33 +169,21 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                         .intoCallBack(new BitmapPalette.CallBack() {
                             @Override
                             public void onPaletteLoaded(@Nullable Palette palette) {
-                                if (palette != null) {
-                                    mCollapsingToolbar.setContentScrimColor(palette.getDarkVibrantColor(getResources().getColor(R.color.colorPrimary)));
-                                    mAppBarLayout.setBackgroundColor(palette.getDarkVibrantColor(getResources().getColor(R.color.colorPrimary)));
-                                    mFloatingActionButton.setBackgroundTintList(createColorStateList(palette.getLightVibrantColor(getResources().getColor(R.color.colorAccent))));
-                                    App.getInstance().setColorPrimary(palette.getDarkVibrantColor(getResources().getColor(R.color.colorPrimary)));
-                                    App.getInstance().setColorAccent(palette.getLightVibrantColor(getResources().getColor(R.color.colorAccent)));
-                                    enableFabButton();
-                                    stopBannerLoadingAnim();
-                                }
+                                mHomePresenter.setThemeColor(palette);
                             }
                         }))
                 .into(mIvHomeBanner);
     }
 
-    /**
-     * 对TextView设置不同状态时其文字颜色。
-     */
-    private ColorStateList createColorStateList(int color) {
-        int[] colors = new int[]{color, color, color, color, color, color};
-        int[][] states = new int[6][];
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
-        return new ColorStateList(states, colors);
+    @Override
+    public void setAppBarLayoutColor(int appBarLayoutColor) {
+        mCollapsingToolbar.setContentScrimColor(appBarLayoutColor);
+        mAppBarLayout.setBackgroundColor(appBarLayoutColor);
+    }
+
+    @Override
+    public void setFabButtonColor(ColorStateList colorStateList) {
+        mFloatingActionButton.setBackgroundTintList(colorStateList);
     }
 
     private ObjectAnimator mAnimator;
