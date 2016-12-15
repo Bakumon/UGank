@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
@@ -34,6 +35,7 @@ import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
+import me.bakumon.gank.module.setting.SettingActivity;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.ToastUtil;
 
@@ -238,14 +240,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         if (!isBannerBig) {
             return false;
         }
-        ToastUtil.showToastDefault(this, "列表显示缩略图");
-        // TODO: 2016/12/15 移动到设置界面
-        SharedPreferences sharedPreferences = getSharedPreferences("app_config", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isListShowImg", true);
-        editor.commit();
-        App.isListShowImg = true;
-
+        ToastUtil.showToastDefault(this, "long click");
         return true;
     }
 
@@ -288,6 +283,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @OnClick(R.id.iv_home_setting)
     public void goSetting() {
-        ToastUtil.showToastDefault(this, "设置");
+        startActivity(new Intent(HomeActivity.this, SettingActivity.class));
     }
 }
