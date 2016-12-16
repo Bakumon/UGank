@@ -1,5 +1,6 @@
 package me.bakumon.gank.module.setting;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbarSetting);
