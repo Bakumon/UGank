@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +37,13 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     private String mCategoryName;
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        mCategoryName = bundle.getString("mCategoryName");
+    }
 
     @Nullable
     @Override
@@ -73,8 +79,14 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
         mPresenter.unsubscribe();
     }
 
-    public void setCategoryName(String categoryName) {
-        this.mCategoryName = categoryName;
+    public static CategoryFragment newInstance(String mCategoryName) {
+        CategoryFragment categoryFragment = new CategoryFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("mCategoryName", mCategoryName);
+
+        categoryFragment.setArguments(bundle);
+        return categoryFragment;
     }
 
     @Override

@@ -84,23 +84,17 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
         // App
-        CategoryFragment appFragment = new CategoryFragment();
-        appFragment.setCategoryName("App");
+        CategoryFragment appFragment = CategoryFragment.newInstance("App");
         // Android
-        CategoryFragment androidFragment = new CategoryFragment();
-        androidFragment.setCategoryName("Android");
+        CategoryFragment androidFragment = CategoryFragment.newInstance("Android");
         // iOS
-        CategoryFragment iOSFragment = new CategoryFragment();
-        iOSFragment.setCategoryName("iOS");
+        CategoryFragment iOSFragment = CategoryFragment.newInstance("iOS");
         // 前端
-        CategoryFragment frontFragment = new CategoryFragment();
-        frontFragment.setCategoryName("前端");
+        CategoryFragment frontFragment = CategoryFragment.newInstance("前端");
         // 瞎推荐
-        CategoryFragment referenceFragment = new CategoryFragment();
-        referenceFragment.setCategoryName("瞎推荐");
+        CategoryFragment referenceFragment = CategoryFragment.newInstance("瞎推荐");
         // 拓展资源s
-        CategoryFragment resFragment = new CategoryFragment();
-        resFragment.setCategoryName("拓展资源");
+        CategoryFragment resFragment = CategoryFragment.newInstance("拓展资源");
 
         infoPagerAdapter.addFragment(appFragment);
         infoPagerAdapter.addFragment(androidFragment);
