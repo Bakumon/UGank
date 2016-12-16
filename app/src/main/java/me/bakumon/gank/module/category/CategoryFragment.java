@@ -45,6 +45,13 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
         mCategoryName = bundle.getString("mCategoryName");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 用于设置项改变后，刷新列表显示
+        mAndroidListAdapter.notifyDataSetChanged();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
