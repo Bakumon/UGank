@@ -35,6 +35,7 @@ import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
+import me.bakumon.gank.module.search.SearchActivity;
 import me.bakumon.gank.module.setting.SettingActivity;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.ToastUtil;
@@ -152,7 +153,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @OnClick(R.id.ll_home_search)
     public void search(View view) {
-        ToastUtil.showToastDefault(this, "搜索");
+        startActivity(new Intent(HomeActivity.this, SearchActivity.class));
     }
 
     @Override
