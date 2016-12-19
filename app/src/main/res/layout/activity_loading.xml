@@ -16,6 +16,6 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="35dp"
         android:contentDescription="@null"
-        android:src="@mipmap/ic_launcher_logo"
+        android:src="@mipmap/ic_launcher"
         android:visibility="invisible"/>
 </FrameLayout>
