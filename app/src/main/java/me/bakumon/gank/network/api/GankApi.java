@@ -1,6 +1,7 @@
 package me.bakumon.gank.network.api;
 
 import me.bakumon.gank.entity.CategoryResult;
+import me.bakumon.gank.entity.SearchResult;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -17,5 +18,8 @@ public interface GankApi {
 
     @GET("random/data/福利/{number}")
     Observable<CategoryResult> getRandomBeauties(@Path("number") int number);
+
+    @GET("search/query/{key}/category/all/count/{count}/page/{page}")
+    Observable<SearchResult> getSearchResult(@Path("key") String key, @Path("count") int count, @Path("page") int page);
 
 }
