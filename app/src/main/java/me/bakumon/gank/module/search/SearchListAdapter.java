@@ -9,6 +9,7 @@ import me.bakumon.gank.base.adapter.CommonAdapter4RecyclerView;
 import me.bakumon.gank.base.adapter.CommonHolder4RecyclerView;
 import me.bakumon.gank.base.adapter.ListenerWithPosition;
 import me.bakumon.gank.entity.SearchResult;
+import me.bakumon.gank.module.img.BigimgActivity;
 import me.bakumon.gank.module.webview.WebViewActivity;
 import me.bakumon.gank.utills.DateUtil;
 
@@ -36,9 +37,19 @@ public class SearchListAdapter extends CommonAdapter4RecyclerView<SearchResult.R
 
     @Override
     public void onClick(View v, int position, CommonHolder4RecyclerView holder) {
-        Intent intent = new Intent(mContext, WebViewActivity.class);
-        intent.putExtra(WebViewActivity.GANK_TITLE, mData.get(position).desc);
-        intent.putExtra(WebViewActivity.GANK_URL, mData.get(position).url);
+        if (mData.get(position) == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        if ("福利".equals(mData.get(position).type)) {
+            intent.setClass(mContext, BigimgActivity.class);
+            intent.putExtra(BigimgActivity.MEIZI_TITLE, mData.get(position).desc);
+            intent.putExtra(BigimgActivity.MEIZI_URL, mData.get(position).url);
+        } else {
+            intent.setClass(mContext, WebViewActivity.class);
+            intent.putExtra(WebViewActivity.GANK_TITLE, mData.get(position).desc);
+            intent.putExtra(WebViewActivity.GANK_URL, mData.get(position).url);
+        }
         mContext.startActivity(intent);
     }
 }
