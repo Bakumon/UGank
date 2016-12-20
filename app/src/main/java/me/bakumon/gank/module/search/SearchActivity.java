@@ -6,6 +6,8 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,7 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
+import me.bakumon.gank.entity.SearchResult;
 import me.bakumon.gank.utills.ToastUtil;
+import me.bakumon.gank.widget.RecycleViewDivider;
 
 public class SearchActivity extends AppCompatActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener {
 
@@ -32,8 +36,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     AppCompatImageView mIvSearch;
     @BindView(R.id.appbar_search)
     AppBarLayout mAppbarSearch;
+    @BindView(R.id.recycler_view_search)
+    RecyclerView mRecyclerViewSearch;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
+
+    private SearchListAdapter mSearchListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
+        initView();
+        mSearchPresenter.subscribe();
+    }
+
+    private void initView() {
         setSupportActionBar(mToolbarSearch);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -53,7 +66,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         });
         mEdSearch.addTextChangedListener(this);
         mEdSearch.setOnEditorActionListener(this);
-        mSearchPresenter.subscribe();
+
+        mSearchListAdapter = new SearchListAdapter(this);
+        mRecyclerViewSearch.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerViewSearch.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
+        mRecyclerViewSearch.setAdapter(mSearchListAdapter);
+
     }
 
     @Override
@@ -80,6 +98,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void showSearchFail(String failMsg) {
         ToastUtil.showToastDefault(this, failMsg);
+    }
+
+    @Override
+    public void setSearchItems(SearchResult searchResult) {
+        mSearchListAdapter.mData = searchResult.results;
+        mSearchListAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.iv_edit_clear)

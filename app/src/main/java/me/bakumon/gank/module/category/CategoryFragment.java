@@ -70,7 +70,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
         mRecyclerView.setAdapter(mAndroidListAdapter);
-        mAndroidListAdapter.notifyDataSetChanged();
+
         return view;
     }
 

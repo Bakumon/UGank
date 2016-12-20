@@ -2,6 +2,7 @@ package me.bakumon.gank.module.search;
 
 import me.bakumon.gank.base.BasePresenter;
 import me.bakumon.gank.base.BaseView;
+import me.bakumon.gank.entity.SearchResult;
 
 /**
  * SearchContract
@@ -17,6 +18,8 @@ public interface SearchContract {
         void hideEditClear();
 
         void showSearchFail(String failMsg);
+
+        void setSearchItems(SearchResult searchResult);
     }
 
     interface Presenter extends BasePresenter {

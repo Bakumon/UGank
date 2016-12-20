@@ -62,8 +62,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
                     @Override
                     public void onNext(SearchResult searchResult) {
-
-                        mView.showSearchFail("搜索成功" + searchResult.count);
+                        mView.setSearchItems(searchResult);
                     }
 
 
