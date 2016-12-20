@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
@@ -25,9 +26,10 @@ import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.SearchResult;
 import me.bakumon.gank.utills.ToastUtil;
+import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
 
-public class SearchActivity extends AppCompatActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener {
+public class SearchActivity extends AppCompatActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, LoadMore.OnLoadMoreListener {
 
     @BindView(R.id.toolbar_search)
     Toolbar mToolbarSearch;
@@ -45,7 +47,9 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     SwipeRefreshLayout mSwipeRefreshLayoutSearch;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
+    private LoadMore mLoadMore;
 
+    private int mPage = 1;
     private SearchListAdapter mSearchListAdapter;
 
     @Override
@@ -69,6 +73,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
                 finish();
             }
         });
+
+        mLoadMore = new LoadMore(mRecyclerViewSearch);
+        mLoadMore.setOnLoadMoreListener(this);
+        mLoadMore.setIsLastPage(true);
+
         mEdSearch.addTextChangedListener(this);
         mEdSearch.setOnEditorActionListener(this);
 
@@ -116,8 +125,30 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
+    public void addSearchItems(SearchResult searchResult) {
+        mSearchListAdapter.mData.addAll(searchResult.results);
+        mSearchListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void showSwipLoading() {
         mSwipeRefreshLayoutSearch.setRefreshing(true);
+    }
+
+    @Override
+    public void showTipLastPage() {
+        Snackbar.make(mRecyclerViewSearch, "已经到最后一页了", Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setLoadMoreIsLastPage(boolean isLastPage) {
+        mLoadMore.setIsLastPage(isLastPage);
+    }
+
+    @Override
+    public void onLoadMore() {
+        mPage += 1;
+        mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, true);
     }
 
     @OnClick(R.id.iv_edit_clear)
@@ -129,7 +160,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     public void search() {
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mEdSearch.getWindowToken(), 0);
-        mSearchPresenter.search(mEdSearch.getText().toString().trim());
+        mPage = 1;
+        mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
     }
 
     @Override
@@ -154,7 +186,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-            mSearchPresenter.search(mEdSearch.getText().toString().trim());
+            mPage = 1;
+            mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
         }
         return false;
     }

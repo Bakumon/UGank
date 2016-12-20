@@ -21,11 +21,17 @@ public interface SearchContract {
 
         void setSearchItems(SearchResult searchResult);
 
+        void addSearchItems(SearchResult searchResult);
+
         void showSwipLoading();
+
+        void showTipLastPage();
+
+        void setLoadMoreIsLastPage(boolean isLastPage);
     }
 
     interface Presenter extends BasePresenter {
 
-        void search(String searchText);
+        void search(String searchText, int page, boolean isLoadMore);
     }
 }

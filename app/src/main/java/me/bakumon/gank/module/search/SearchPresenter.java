@@ -41,14 +41,16 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     @Override
-    public void search(String searchText) {
+    public void search(String searchText, final int page, final boolean isLoadMore) {
         if (TextUtils.isEmpty(searchText)) {
             mView.showSearchFail("搜索内容不能为空");
             return;
         }
-        mView.showSwipLoading();
+        if (!isLoadMore) {
+            mView.showSwipLoading();
+        }
         Subscription subscription = NetWork.getGankApi()
-                .getSearchResult(searchText, GlobalConfig.PAGE_SIZE_CATEGORY, 1)
+                .getSearchResult(searchText, GlobalConfig.PAGE_SIZE_CATEGORY, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<SearchResult>() {
@@ -63,7 +65,18 @@ public class SearchPresenter implements SearchContract.Presenter {
 
                     @Override
                     public void onNext(SearchResult searchResult) {
-                        mView.setSearchItems(searchResult);
+                        if (!isLoadMore) {
+                            mView.setLoadMoreIsLastPage(false);
+                            mView.setSearchItems(searchResult);
+                        } else {
+                            boolean isLastPage = searchResult.count < GlobalConfig.PAGE_SIZE_CATEGORY;
+                            mView.setLoadMoreIsLastPage(isLastPage);
+                            if (isLastPage) {
+                                mView.showTipLastPage();
+                            }
+                            mView.addSearchItems(searchResult);
+                        }
+
                     }
 
 
