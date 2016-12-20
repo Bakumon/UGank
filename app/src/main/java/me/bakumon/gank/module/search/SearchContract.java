@@ -25,7 +25,9 @@ public interface SearchContract {
 
         void showSwipLoading();
 
-        void showTipLastPage();
+        void hideSwipLoading();
+
+        void showTip(String msg);
 
         void setLoadMoreIsLastPage(boolean isLastPage);
     }

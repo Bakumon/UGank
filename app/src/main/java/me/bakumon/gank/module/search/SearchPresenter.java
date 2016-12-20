@@ -66,14 +66,19 @@ public class SearchPresenter implements SearchContract.Presenter {
                     @Override
                     public void onNext(SearchResult searchResult) {
                         if (!isLoadMore) {
+                            if (searchResult == null || searchResult.count == 0) {
+                                mView.showTip("没有搜索到结果");
+                                mView.hideSwipLoading();
+                                return;
+                            }
                             mView.setLoadMoreIsLastPage(false);
                             mView.setSearchItems(searchResult);
                         } else {
                             boolean isLastPage = searchResult.count < GlobalConfig.PAGE_SIZE_CATEGORY;
-                            mView.setLoadMoreIsLastPage(isLastPage);
                             if (isLastPage) {
-                                mView.showTipLastPage();
+                                mView.showTip("已经是最后一页了");
                             }
+                            mView.setLoadMoreIsLastPage(isLastPage);
                             mView.addSearchItems(searchResult);
                         }
 

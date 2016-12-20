@@ -136,8 +136,13 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void showTipLastPage() {
-        Snackbar.make(mRecyclerViewSearch, "已经到最后一页了", Snackbar.LENGTH_SHORT).show();
+    public void hideSwipLoading() {
+        mSwipeRefreshLayoutSearch.setRefreshing(false);
+    }
+
+    @Override
+    public void showTip(String msg) {
+        Snackbar.make(mRecyclerViewSearch, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -181,6 +186,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         } else {
             hideEditClear();
         }
+        mSearchListAdapter.mData = null;
+        mSearchListAdapter.notifyDataSetChanged();
     }
 
     @Override
