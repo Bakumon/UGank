@@ -1,6 +1,5 @@
 package me.bakumon.gank.module.search;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -17,7 +16,6 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -25,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.SearchResult;
+import me.bakumon.gank.utills.KeyboardUtils;
 import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
@@ -159,12 +158,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @OnClick(R.id.iv_edit_clear)
     public void editClear() {
         mEdSearch.setText("");
+        KeyboardUtils.showSoftInput(this, mEdSearch);
     }
 
     @OnClick(R.id.iv_search)
     public void search() {
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(mEdSearch.getWindowToken(), 0);
+        KeyboardUtils.hideSoftInput(this);
         mPage = 1;
         mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
     }
@@ -195,6 +194,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             mPage = 1;
             mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
+            KeyboardUtils.hideSoftInput(this);
         }
         return false;
     }
