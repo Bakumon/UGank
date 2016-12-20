@@ -13,7 +13,7 @@ public class DateUtil {
         if (timestamp == null) {
             return "unknown";
         }
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
