@@ -1,5 +1,6 @@
 package me.bakumon.gank.module.search;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -14,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -113,6 +115,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     @OnClick(R.id.iv_search)
     public void search() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEdSearch.getWindowToken(), 0);
         mSearchPresenter.search(mEdSearch.getText().toString().trim());
     }
 
