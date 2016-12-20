@@ -20,6 +20,8 @@ public interface SearchContract {
         void showSearchFail(String failMsg);
 
         void setSearchItems(SearchResult searchResult);
+
+        void showSwipLoading();
     }
 
     interface Presenter extends BasePresenter {

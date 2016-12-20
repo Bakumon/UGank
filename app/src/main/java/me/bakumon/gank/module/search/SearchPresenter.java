@@ -46,6 +46,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             mView.showSearchFail("搜索内容不能为空");
             return;
         }
+        mView.showSwipLoading();
         Subscription subscription = NetWork.getGankApi()
                 .getSearchResult(searchText, GlobalConfig.PAGE_SIZE_CATEGORY, 1)
                 .subscribeOn(Schedulers.io())

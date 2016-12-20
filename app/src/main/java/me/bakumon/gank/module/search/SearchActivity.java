@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
@@ -40,6 +41,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     AppBarLayout mAppbarSearch;
     @BindView(R.id.recycler_view_search)
     RecyclerView mRecyclerViewSearch;
+    @BindView(R.id.swipe_refresh_layout_search)
+    SwipeRefreshLayout mSwipeRefreshLayoutSearch;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
 
@@ -68,6 +71,9 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         });
         mEdSearch.addTextChangedListener(this);
         mEdSearch.setOnEditorActionListener(this);
+
+        mSwipeRefreshLayoutSearch.setRefreshing(false);
+        mSwipeRefreshLayoutSearch.setEnabled(false);
 
         mSearchListAdapter = new SearchListAdapter(this);
         mRecyclerViewSearch.setLayoutManager(new LinearLayoutManager(this));
@@ -106,6 +112,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     public void setSearchItems(SearchResult searchResult) {
         mSearchListAdapter.mData = searchResult.results;
         mSearchListAdapter.notifyDataSetChanged();
+        mSwipeRefreshLayoutSearch.setRefreshing(false);
+    }
+
+    @Override
+    public void showSwipLoading() {
+        mSwipeRefreshLayoutSearch.setRefreshing(true);
     }
 
     @OnClick(R.id.iv_edit_clear)
