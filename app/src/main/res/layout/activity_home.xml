@@ -86,6 +86,7 @@
                     android:layout_gravity="center_vertical"
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp"
+                    android:singleLine="true"
                     android:text="@string/home_search"/>
             </LinearLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
