@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="@string/home_search"
+                    android:hint="@string/search_tip"
                     android:imeOptions="actionSearch"
                     android:singleLine="true"
                     android:textSize="16sp"/>
