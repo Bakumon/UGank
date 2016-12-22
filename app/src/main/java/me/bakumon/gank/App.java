@@ -1,7 +1,6 @@
 package me.bakumon.gank;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 
 /**
  * App
@@ -9,8 +8,6 @@ import android.content.SharedPreferences;
  */
 public class App extends Application {
     private static App INSTANCE;
-
-    public static boolean isListShowImg;
 
     public static App getInstance() {
         return INSTANCE;
@@ -22,16 +19,8 @@ public class App extends Application {
         INSTANCE = this;
         // 初始化主题色
         ThemeManage.INSTANCE.initColorPrimary(getResources().getColor(R.color.colorPrimary));
-        initConfig();
+        ConfigManage.INSTANCE.initConfig(this);
     }
 
-    /**
-     * 初始化配置信息
-     */
-    private void initConfig() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences("app_config", MODE_PRIVATE);
-        // 列表是否显示图片
-        isListShowImg = sharedPreferences.getBoolean("isListShowImg", false);
-    }
 
 }
