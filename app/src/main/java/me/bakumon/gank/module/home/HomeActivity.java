@@ -5,9 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -31,13 +29,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.gank.module.category.CategoryFragment;
 import me.bakumon.gank.module.search.SearchActivity;
 import me.bakumon.gank.module.setting.SettingActivity;
 import me.bakumon.gank.utills.DisplayUtils;
+import me.bakumon.gank.utills.MDTintUtil;
 import me.bakumon.gank.utills.ToastUtil;
 
 /**
@@ -181,8 +179,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @Override
-    public void setFabButtonColor(ColorStateList colorStateList) {
-        mFloatingActionButton.setBackgroundTintList(colorStateList);
+    public void setFabButtonColor(int color) {
+        MDTintUtil.setTint(mFloatingActionButton, color);
     }
 
     private ObjectAnimator mAnimator;

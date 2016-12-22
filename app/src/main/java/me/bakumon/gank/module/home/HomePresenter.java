@@ -58,26 +58,11 @@ public class HomePresenter implements HomeContract.Presenter {
             // 设置 AppBarLayout 的背景色
             mHomeView.setAppBarLayoutColor(ThemeManage.INSTANCE.getColorPrimary());
             // 设置 FabButton 的背景色
-            mHomeView.setFabButtonColor(createColorStateList(ThemeManage.INSTANCE.getColorPrimary()));
+            mHomeView.setFabButtonColor(ThemeManage.INSTANCE.getColorPrimary());
             // 停止 FabButton 加载中动画
             mHomeView.enableFabButton();
             mHomeView.stopBannerLoadingAnim();
         }
-    }
-
-    /**
-     * 用于创建 FabButton 的背景
-     */
-    private ColorStateList createColorStateList(int color) {
-        int[] colors = new int[]{color, color, color, color, color, color};
-        int[][] states = new int[6][];
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
-        return new ColorStateList(states, colors);
     }
 
     /**

@@ -28,7 +28,7 @@ public interface HomeContract {
 
         void setAppBarLayoutColor(int appBarLayoutColor);
 
-        void setFabButtonColor(ColorStateList colorStateList);
+        void setFabButtonColor(int color);
     }
 
     interface Presenter extends BasePresenter {

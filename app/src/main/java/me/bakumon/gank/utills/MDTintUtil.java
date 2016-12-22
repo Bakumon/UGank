@@ -1,9 +1,11 @@
 package me.bakumon.gank.utills;
 
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +39,18 @@ public class MDTintUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setTint(@NonNull FloatingActionButton floatingActionButton, @ColorInt int color) {
+        int[] colors = new int[]{color, color, color, color, color, color};
+        int[][] states = new int[6][];
+        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
+        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
+        states[2] = new int[]{android.R.attr.state_enabled};
+        states[3] = new int[]{android.R.attr.state_focused};
+        states[4] = new int[]{android.R.attr.state_window_focused};
+        states[5] = new int[]{};
+        floatingActionButton.setBackgroundTintList(new ColorStateList(states, colors));
     }
 
 }
