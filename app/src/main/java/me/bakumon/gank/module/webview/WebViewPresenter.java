@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import me.bakumon.gank.App;
+import me.bakumon.gank.ThemeManage;
 
 /**
  * WebViewPresenter
@@ -25,7 +26,7 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     @Override
     public void subscribe() {
         mContext = mWebViewView.getWebViewContext();
-        mWebViewView.setToolbarBackgroundColor(App.colorPrimary);
+        mWebViewView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         loadDate();
     }
 

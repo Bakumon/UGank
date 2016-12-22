@@ -21,9 +21,11 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.SearchResult;
 import me.bakumon.gank.utills.KeyboardUtils;
+import me.bakumon.gank.utills.MDTintUtil;
 import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
@@ -99,6 +101,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void setToolbarBackgroundColor(int color) {
         mAppbarSearch.setBackgroundColor(color);
+    }
+
+    @Override
+    public void setEditTextCursorColor(int cursorColor) {
+        MDTintUtil.setCursorTint(mEdSearch, cursorColor);
     }
 
     @Override

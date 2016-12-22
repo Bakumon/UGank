@@ -10,9 +10,6 @@ import android.content.SharedPreferences;
 public class App extends Application {
     private static App INSTANCE;
 
-    public static int colorPrimary;
-    public static int colorAccent;
-
     public static boolean isListShowImg;
 
     public static App getInstance() {
@@ -24,9 +21,7 @@ public class App extends Application {
         super.onCreate();
         INSTANCE = this;
         // 初始化主题色
-        colorPrimary = getResources().getColor(R.color.colorPrimary);
-        colorAccent = getResources().getColor(R.color.colorAccent);
-
+        ThemeManage.INSTANCE.initColorPrimary(getResources().getColor(R.color.colorPrimary));
         initConfig();
     }
 

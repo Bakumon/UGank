@@ -1,10 +1,11 @@
 package me.bakumon.gank.module.search;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import me.bakumon.gank.App;
 import me.bakumon.gank.GlobalConfig;
+import me.bakumon.gank.ThemeManage;
 import me.bakumon.gank.entity.SearchResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observer;
@@ -31,7 +32,8 @@ public class SearchPresenter implements SearchContract.Presenter {
     @Override
     public void subscribe() {
         mSubscriptions = new CompositeSubscription();
-        mView.setToolbarBackgroundColor(App.colorPrimary);
+        mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
+        mView.setEditTextCursorColor(Color.WHITE);
         mView.hideEditClear();
     }
 

@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 
 public class SettingActivity extends AppCompatActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {

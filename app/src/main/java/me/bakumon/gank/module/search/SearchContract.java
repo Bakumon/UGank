@@ -13,6 +13,8 @@ public interface SearchContract {
 
         void setToolbarBackgroundColor(int color);
 
+        void setEditTextCursorColor(int cursorColor);
+
         void showEditClear();
 
         void hideEditClear();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import me.bakumon.gank.App;
+import me.bakumon.gank.ThemeManage;
 
 /**
  * SettingPresenter
@@ -19,7 +20,7 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void subscribe() {
-        mView.setToolbarBackgroundColor(App.colorPrimary);
+        mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         // 初始化开关显示状态
         mView.changeSwitchState(App.isListShowImg);
     }
@@ -36,7 +37,6 @@ public class SettingPresenter implements SettingContract.Presenter {
         editor.putBoolean("isListShowImg", isListShowImg);
         if (editor.commit()) {
             App.isListShowImg = isListShowImg;
-//            mView.changeSwitchState(App.isListShowImg);
         }
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 
 import me.bakumon.gank.App;
+import me.bakumon.gank.ThemeManage;
 
 /**
  * BigimgPresenter
@@ -24,7 +25,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     @Override
     public void subscribe() {
         mContext = mBigimgView.getBigimgContext();
-        mBigimgView.setToolbarBackgroundColor(App.colorPrimary);
+        mBigimgView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         loadDate();
     }
 

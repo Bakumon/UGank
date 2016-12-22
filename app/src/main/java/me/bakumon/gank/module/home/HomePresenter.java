@@ -7,6 +7,7 @@ import android.support.v7.graphics.Palette;
 
 import me.bakumon.gank.App;
 import me.bakumon.gank.R;
+import me.bakumon.gank.ThemeManage;
 import me.bakumon.gank.entity.CategoryResult;
 import me.bakumon.gank.network.NetWork;
 import rx.Observable;
@@ -52,14 +53,12 @@ public class HomePresenter implements HomeContract.Presenter {
     public void setThemeColor(@Nullable Palette palette) {
         if (palette != null) {
             int colorPrimary = App.getInstance().getResources().getColor(R.color.colorPrimary);
-            int colorAccent = App.getInstance().getResources().getColor(R.color.colorAccent);
             // 把从调色板上获取的主题色保存在内存中
-            App.colorPrimary = palette.getDarkVibrantColor(colorPrimary);
-            App.colorAccent = palette.getLightVibrantColor(colorAccent);
+            ThemeManage.INSTANCE.setColorPrimary(palette.getDarkVibrantColor(colorPrimary));
             // 设置 AppBarLayout 的背景色
-            mHomeView.setAppBarLayoutColor(App.colorPrimary);
+            mHomeView.setAppBarLayoutColor(ThemeManage.INSTANCE.getColorPrimary());
             // 设置 FabButton 的背景色
-            mHomeView.setFabButtonColor(createColorStateList(App.colorAccent));
+            mHomeView.setFabButtonColor(createColorStateList(ThemeManage.INSTANCE.getColorPrimary()));
             // 停止 FabButton 加载中动画
             mHomeView.enableFabButton();
             mHomeView.stopBannerLoadingAnim();
