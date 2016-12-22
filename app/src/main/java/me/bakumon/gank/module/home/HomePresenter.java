@@ -1,6 +1,5 @@
 package me.bakumon.gank.module.home;
 
-import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
