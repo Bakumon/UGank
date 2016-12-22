@@ -1,6 +1,7 @@
 package me.bakumon.gank.module.setting;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,8 @@ import android.widget.CompoundButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.bakumon.gank.App;
 import me.bakumon.gank.R;
+import me.bakumon.gank.utills.DisplayUtils;
 
 public class SettingActivity extends AppCompatActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
 
@@ -32,6 +33,13 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mAppbarSetting.setPadding(
+                    mAppbarSetting.getPaddingLeft(),
+                    mAppbarSetting.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
+                    mAppbarSetting.getPaddingRight(),
+                    mAppbarSetting.getPaddingBottom());
+        }
         setSupportActionBar(mToolbarSetting);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

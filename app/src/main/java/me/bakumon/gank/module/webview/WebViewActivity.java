@@ -2,6 +2,7 @@ package me.bakumon.gank.module.webview;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.gank.R;
 import me.bakumon.gank.utills.AndroidUtil;
+import me.bakumon.gank.utills.DisplayUtils;
 
 public class WebViewActivity extends AppCompatActivity implements WebViewContract.View {
 
@@ -45,6 +47,13 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_web_view);
         ButterKnife.bind(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mAppbar.setPadding(
+                    mAppbar.getPaddingLeft(),
+                    mAppbar.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
+                    mAppbar.getPaddingRight(),
+                    mAppbar.getPaddingBottom());
+        }
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);

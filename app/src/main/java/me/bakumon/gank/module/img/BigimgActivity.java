@@ -2,6 +2,7 @@ package me.bakumon.gank.module.img;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
+import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.PinchImageView;
 
@@ -40,6 +42,13 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_bigimg);
         ButterKnife.bind(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            appbarBigImg.setPadding(
+                    appbarBigImg.getPaddingLeft(),
+                    appbarBigImg.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
+                    appbarBigImg.getPaddingRight(),
+                    appbarBigImg.getPaddingBottom());
+        }
         setSupportActionBar(toolbarBigImg);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);

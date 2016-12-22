@@ -1,6 +1,7 @@
 package me.bakumon.gank.module.search;
 
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
@@ -24,6 +25,7 @@ import butterknife.OnClick;
 import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.SearchResult;
+import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.KeyboardUtils;
 import me.bakumon.gank.utills.MDTintUtil;
 import me.bakumon.gank.utills.ToastUtil;
@@ -64,6 +66,15 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     private void initView() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mAppbarSearch.setPadding(
+                    mAppbarSearch.getPaddingLeft(),
+                    mAppbarSearch.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
+                    mAppbarSearch.getPaddingRight(),
+                    mAppbarSearch.getPaddingBottom());
+        }
+
         setSupportActionBar(mToolbarSearch);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
