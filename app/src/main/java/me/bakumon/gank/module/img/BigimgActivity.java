@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.utills.DisplayUtils;
+import me.bakumon.gank.utills.MDTintUtil;
 import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.PinchImageView;
 
@@ -33,6 +35,8 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
     AppBarLayout appbarBigImg;
     @BindView(R.id.img_big)
     PinchImageView imgBig;
+    @BindView(R.id.fab_meizi_save)
+    FloatingActionButton mFabMeiziSave;
 
     private BigimgContract.Presenter mBigimgPresenter = new BigimgPresenter(this);
 
@@ -95,7 +99,7 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
 
     @Override
     public void setViewColorAccent(int color) {
-
+        MDTintUtil.setTint(mFabMeiziSave, color);
     }
 
 }

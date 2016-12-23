@@ -26,6 +26,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     public void subscribe() {
         mContext = mBigimgView.getBigimgContext();
         mBigimgView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
+        mBigimgView.setViewColorAccent(ThemeManage.INSTANCE.getColorPrimary());
         loadDate();
     }
 
