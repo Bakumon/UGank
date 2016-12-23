@@ -26,6 +26,11 @@ public enum ConfigManage {
     }
 
     public void setListShowImg(boolean listShowImg) {
-        isListShowImg = listShowImg;
+        SharedPreferences sharedPreferences = App.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key_isListShowImg, isListShowImg);
+        if (editor.commit()) {
+            isListShowImg = listShowImg;
+        }
     }
 }

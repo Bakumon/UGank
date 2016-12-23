@@ -34,11 +34,6 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void saveIsListShowImg(boolean isListShowImg) {
-        SharedPreferences sharedPreferences = App.getInstance().getSharedPreferences("app_config", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isListShowImg", isListShowImg);
-        if (editor.commit()) {
-            ConfigManage.INSTANCE.setListShowImg(isListShowImg);
-        }
+        ConfigManage.INSTANCE.setListShowImg(isListShowImg);
     }
 }
