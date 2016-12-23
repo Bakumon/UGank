@@ -24,6 +24,8 @@ public interface BigimgContract {
 
         void setViewColorAccent(int color);
 
+        void showSaveFab();
+
     }
 
     interface Presenter extends BasePresenter {

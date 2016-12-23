@@ -89,7 +89,10 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
 
     @Override
     public void loadMeizuImg(String url) {
-        Glide.with(this).load(url).into(imgBig);
+        Glide.with(this)
+                .load(url)
+                .listener(((BigimgPresenter)mBigimgPresenter).new BigimgLoadCompleteistener())
+                .into(imgBig);
     }
 
     @Override
@@ -100,6 +103,11 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
     @Override
     public void setViewColorAccent(int color) {
         MDTintUtil.setTint(mFabMeiziSave, color);
+    }
+
+    @Override
+    public void showSaveFab() {
+        mFabMeiziSave.show();
     }
 
 }
