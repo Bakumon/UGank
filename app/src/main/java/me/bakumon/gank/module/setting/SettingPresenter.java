@@ -21,6 +21,7 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void subscribe() {
+        mView.setSwitchCompatsColor(ThemeManage.INSTANCE.getColorPrimary());
         mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         // 初始化开关显示状态
         mView.changeSwitchState(ConfigManage.INSTANCE.isListShowImg());

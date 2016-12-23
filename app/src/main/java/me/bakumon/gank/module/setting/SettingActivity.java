@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.utills.DisplayUtils;
+import me.bakumon.gank.utills.MDTintUtil;
 
 public class SettingActivity extends AppCompatActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
 
@@ -78,6 +79,11 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     @Override
     public void changeSwitchState(boolean isChecked) {
         mSwitchSetting.setChecked(isChecked);
+    }
+
+    @Override
+    public void setSwitchCompatsColor(int color) {
+        MDTintUtil.setTint(mSwitchSetting, color);
     }
 }
 

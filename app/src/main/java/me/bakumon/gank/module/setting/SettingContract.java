@@ -14,6 +14,8 @@ public interface SettingContract {
         void setToolbarBackgroundColor(int color);
 
         void changeSwitchState(boolean isChecked);
+
+        void setSwitchCompatsColor(int color);
     }
 
     interface Presenter extends BasePresenter {
