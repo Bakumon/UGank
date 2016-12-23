@@ -7,4 +7,11 @@
     <color name="colorTabTextUnSelected">#D3D3D2</color>
     <color name="colorTabTextSelected">#FDFDFD</color>
     <color name="colorTabIndicator">#FDFDFD</color>
+
+    <color name="colorSwipeRefresh1">#212121</color>
+    <color name="colorSwipeRefresh2">#FEC006</color>
+    <color name="colorSwipeRefresh3">#3E50B4</color>
+    <color name="colorSwipeRefresh4">#FE5621</color>
+    <color name="colorSwipeRefresh5">#9B26AF</color>
+    <color name="colorSwipeRefresh6">#02A8F3</color>
 </resources>

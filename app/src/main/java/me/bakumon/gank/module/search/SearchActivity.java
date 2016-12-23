@@ -93,6 +93,13 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         mEdSearch.addTextChangedListener(this);
         mEdSearch.setOnEditorActionListener(this);
 
+        mSwipeRefreshLayoutSearch.setColorSchemeResources(
+                R.color.colorSwipeRefresh1,
+                R.color.colorSwipeRefresh2,
+                R.color.colorSwipeRefresh3,
+                R.color.colorSwipeRefresh4,
+                R.color.colorSwipeRefresh5,
+                R.color.colorSwipeRefresh6);
         mSwipeRefreshLayoutSearch.setRefreshing(false);
         mSwipeRefreshLayoutSearch.setEnabled(false);
 

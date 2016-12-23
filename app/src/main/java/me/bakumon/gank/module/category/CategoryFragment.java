@@ -59,7 +59,13 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
         View view = inflater.inflate(R.layout.fragment, container, false);
         ButterKnife.bind(this, view);
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.setColorSchemeResources(
+                R.color.colorSwipeRefresh1,
+                R.color.colorSwipeRefresh2,
+                R.color.colorSwipeRefresh3,
+                R.color.colorSwipeRefresh4,
+                R.color.colorSwipeRefresh5,
+                R.color.colorSwipeRefresh6);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
         LoadMore loadMore = new LoadMore(mRecyclerView);
