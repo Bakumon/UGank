@@ -1,10 +1,9 @@
-package me.bakumon.gank.module.img;
+package me.bakumon.gank.module.bigimg;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import me.bakumon.gank.App;
 import me.bakumon.gank.ThemeManage;
 
 /**

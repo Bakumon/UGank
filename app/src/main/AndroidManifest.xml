@@ -33,7 +33,7 @@
             android:name=".module.search.SearchActivity"
             android:windowSoftInputMode="stateVisible" />
         <!-- 查看妹子 -->
-        <activity android:name=".module.img.BigimgActivity" />
+        <activity android:name=".module.bigimg.BigimgActivity" />
     </application>
 
 </manifest>

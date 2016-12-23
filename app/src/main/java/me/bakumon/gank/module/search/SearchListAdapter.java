@@ -9,7 +9,7 @@ import me.bakumon.gank.base.adapter.CommonAdapter4RecyclerView;
 import me.bakumon.gank.base.adapter.CommonHolder4RecyclerView;
 import me.bakumon.gank.base.adapter.ListenerWithPosition;
 import me.bakumon.gank.entity.SearchResult;
-import me.bakumon.gank.module.img.BigimgActivity;
+import me.bakumon.gank.module.bigimg.BigimgActivity;
 import me.bakumon.gank.module.webview.WebViewActivity;
 import me.bakumon.gank.utills.DateUtil;
 

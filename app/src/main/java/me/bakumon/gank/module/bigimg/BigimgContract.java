@@ -1,4 +1,4 @@
-package me.bakumon.gank.module.img;
+package me.bakumon.gank.module.bigimg;
 
 import android.app.Activity;
 
