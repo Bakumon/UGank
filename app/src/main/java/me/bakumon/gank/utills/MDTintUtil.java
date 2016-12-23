@@ -56,7 +56,7 @@ public class MDTintUtil {
     }
 
     public static void setTint(@NonNull SwitchCompat switchCompat, @ColorInt int color) {
-        int[] colors = new int[]{color, Color.GRAY, Color.GRAY, Color.GRAY, Color.GRAY, Color.GRAY, };
+        int[] colors = new int[]{color, Color.rgb(236, 236, 236), Color.rgb(236, 236, 236), Color.rgb(236, 236, 236), Color.rgb(236, 236, 236), Color.rgb(236, 236, 236)};
         int[][] states = new int[6][];
         states[0] = new int[]{android.R.attr.state_checked, android.R.attr.state_enabled};
         states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
