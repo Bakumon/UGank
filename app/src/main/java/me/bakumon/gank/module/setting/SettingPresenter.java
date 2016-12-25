@@ -1,9 +1,5 @@
 package me.bakumon.gank.module.setting;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import me.bakumon.gank.App;
 import me.bakumon.gank.ConfigManage;
 import me.bakumon.gank.ThemeManage;
 
