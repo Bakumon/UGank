@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
@@ -14,10 +15,15 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
+import java.util.Observable;
+
 import me.bakumon.gank.ThemeManage;
 import me.bakumon.gank.utills.ImageUtil;
 import me.bakumon.gank.utills.ToastUtil;
+import rx.Subscription;
 import rx.functions.Action1;
+import rx.observers.Observers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * BigimgPresenter
@@ -30,6 +36,9 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     private Activity mContext;
     private String meiziUrl;
     private Bitmap mBitmap;
+
+    @NonNull
+    private CompositeSubscription mSubscriptions;
 
     public BigimgPresenter(BigimgContract.View bigimgView) {
         mBigimgView = bigimgView;
@@ -56,26 +65,38 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     @Override
     public void unsubscribe() {
         mContext = null;
+        mSubscriptions.clear();
     }
 
     @Override
     public void requestPermissionForSaveImg() {
         RxPermissions rxPermissions = new RxPermissions(mContext);
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        Subscription requestPermissionSubscription = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new Action1<Boolean>() {
                     @Override
                     public void call(Boolean aBoolean) {
                         if (aBoolean) {
-                            ToastUtil.showToastDefault(mContext, "同意");
-                            if (mBitmap != null) {
-                                ImageUtil.saveImageToGallery(mContext, mBitmap);
-                            }
+                            saveImageToGallery();
 
                         } else {
                             ToastUtil.showToastDefault(mContext, "拒绝");
                         }
                     }
                 });
+        mSubscriptions.add(requestPermissionSubscription);
+    }
+
+    private void saveImageToGallery() {
+        if (mBitmap != null) {
+            ImageUtil.saveImageToGallery(mContext, mBitmap);
+        }
+
+//        Observers.create(new Action1<Object>() {
+//            @Override
+//            public void call(Object o) {
+//
+//            }
+//        }).onNext();
     }
 
 
