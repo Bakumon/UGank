@@ -29,6 +29,6 @@ public interface BigimgContract {
     }
 
     interface Presenter extends BasePresenter {
-
+        void requestPermissionForSaveImg();
     }
 }

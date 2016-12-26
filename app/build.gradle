@@ -36,4 +36,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.github.bumptech.glide:glide:4.0.0-SNAPSHOT'
     compile 'com.github.florent37:glidepalette:2.0.0'
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
 }
