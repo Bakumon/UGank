@@ -22,7 +22,7 @@ import static android.R.attr.path;
  * Created by bakumon on 2016/12/26 15:59.
  */
 public class ImageUtil {
-    public static void saveImageToGallery(Context context, Bitmap bmp) {
+    public static boolean saveImageToGallery(Context context, Bitmap bmp) {
         // 首先保存图片
         File appDir = new File(Environment.getExternalStorageDirectory(), "meizi");
         if (!appDir.exists()) {
@@ -37,6 +37,7 @@ public class ImageUtil {
             fos.close();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
         // 其次把文件插入到系统图库
@@ -45,9 +46,11 @@ public class ImageUtil {
                     file.getAbsolutePath(), fileName, null);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
         // 最后通知图库更新
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
+        return true;
     }
 
     public static Bitmap drawableToBitmap(Drawable drawable) {

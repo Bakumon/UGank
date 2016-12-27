@@ -15,14 +15,16 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
-import java.util.Observable;
-
 import me.bakumon.gank.ThemeManage;
 import me.bakumon.gank.utills.ImageUtil;
 import me.bakumon.gank.utills.ToastUtil;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.observers.Observers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -47,6 +49,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
 
     @Override
     public void subscribe() {
+        mSubscriptions = new CompositeSubscription();
         mContext = mBigimgView.getBigimgContext();
         mBigimgView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         mBigimgView.setViewColorAccent(ThemeManage.INSTANCE.getColorPrimary());
@@ -77,9 +80,8 @@ public class BigimgPresenter implements BigimgContract.Presenter {
                     public void call(Boolean aBoolean) {
                         if (aBoolean) {
                             saveImageToGallery();
-
                         } else {
-                            ToastUtil.showToastDefault(mContext, "拒绝");
+                            ToastUtil.showToastDefault(mContext, "需要权限才能保存妹子");
                         }
                     }
                 });
@@ -87,16 +89,34 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     }
 
     private void saveImageToGallery() {
-        if (mBitmap != null) {
-            ImageUtil.saveImageToGallery(mContext, mBitmap);
-        }
+        Subscription subscription = Observable.create(new Observable.OnSubscribe<Boolean>() {
+            @Override
+            public void call(Subscriber<? super Boolean> subscriber) {
+                boolean isSaveSuccess = ImageUtil.saveImageToGallery(mContext, mBitmap);
+                subscriber.onNext(isSaveSuccess);
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onCompleted() {
+                    }
 
-//        Observers.create(new Action1<Object>() {
-//            @Override
-//            public void call(Object o) {
-//
-//            }
-//        }).onNext();
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean isSaveSuccess) {
+                        if (isSaveSuccess) {
+                            mBigimgView.showMsgSaveSuccess("图片保存成功");
+                        } else {
+                            mBigimgView.showMsgSaveFail("图片保存失败");
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
     }
 
 
@@ -109,7 +129,9 @@ public class BigimgPresenter implements BigimgContract.Presenter {
         @Override
         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
             mBitmap = ImageUtil.drawableToBitmap(resource);
-            mBigimgView.showSaveFab();
+            if (mBitmap != null) {
+                mBigimgView.showSaveFab();
+            }
             return false;
         }
     }

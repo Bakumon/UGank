@@ -26,6 +26,10 @@ public interface BigimgContract {
 
         void showSaveFab();
 
+        void showMsgSaveSuccess(String msg);
+
+        void showMsgSaveFail(String msg);
+
     }
 
     interface Presenter extends BasePresenter {

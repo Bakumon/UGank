@@ -19,6 +19,7 @@ import butterknife.OnClick;
 import me.bakumon.gank.R;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.MDTintUtil;
+import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.PinchImageView;
 
 public class BigimgActivity extends AppCompatActivity implements BigimgContract.View {
@@ -107,6 +108,16 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
     @Override
     public void showSaveFab() {
         mFabMeiziSave.show();
+    }
+
+    @Override
+    public void showMsgSaveSuccess(String msg) {
+        ToastUtil.showToastDefault(this, msg);
+    }
+
+    @Override
+    public void showMsgSaveFail(String msg) {
+        ToastUtil.showToastDefault(this, msg);
     }
 
 }
