@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -143,7 +144,9 @@ public class WebViewActivity extends AppCompatActivity implements WebViewContrac
                 AndroidUtil.share(this, mWebViewPresenter.getGankUrl());
                 break;
             case R.id.menu_copy_link:
-                AndroidUtil.copyText(this, mWebViewPresenter.getGankUrl());
+                if (AndroidUtil.copyText(this, mWebViewPresenter.getGankUrl())) {
+                    Snackbar.make(mWebView, "链接复制成功", Snackbar.LENGTH_LONG).show();
+                }
                 break;
             case R.id.menu_open_with:
                 AndroidUtil.openWithBrowser(this, mWebViewPresenter.getGankUrl());

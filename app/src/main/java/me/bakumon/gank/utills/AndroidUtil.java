@@ -42,10 +42,10 @@ public class AndroidUtil {
      * @param context 上下文
      * @param copyText 要复制的文本
      */
-    public static void copyText(Context context, String copyText) {
+    public static boolean copyText(Context context, String copyText) {
         ClipboardManager cmb = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData data = ClipData.newRawUri("gankUrl", Uri.parse(copyText));
         cmb.setPrimaryClip(data);
-        ToastUtil.showToastDefault(context, "复制链接成功");
+        return true;
     }
 }
