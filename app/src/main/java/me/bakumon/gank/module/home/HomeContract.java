@@ -13,7 +13,7 @@ import me.bakumon.gank.base.BaseView;
 public interface HomeContract {
     interface View extends BaseView {
 
-        void showBannerFail(String failMessage);
+        void showBannerFail(String failMessage, boolean isRandom);
 
         void setBanner(String imgUrl);
 
@@ -31,8 +31,11 @@ public interface HomeContract {
     }
 
     interface Presenter extends BasePresenter {
+
         void getRandomBanner();
 
         void setThemeColor(@Nullable Palette palette);
+
+        void getBanner(final boolean isRandom);
     }
 }

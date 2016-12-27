@@ -69,7 +69,8 @@ public class HomePresenter implements HomeContract.Presenter {
      *
      * @param isRandom true：随机  false：获取最新
      */
-    private void getBanner(boolean isRandom) {
+    @Override
+    public void getBanner(final boolean isRandom) {
         mHomeView.startBannerLoadingAnim();
         mHomeView.disEnableFabButton();
         Observable<CategoryResult> observable;
@@ -88,7 +89,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mHomeView.showBannerFail("Banner 图加载失败，请重试。101");
+                        mHomeView.showBannerFail("Banner 图加载失败，请重试。101", isRandom);
                         mHomeView.enableFabButton();
                         mHomeView.stopBannerLoadingAnim();
                     }
@@ -98,7 +99,7 @@ public class HomePresenter implements HomeContract.Presenter {
                         if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
-                            mHomeView.showBannerFail("Banner 图加载失败，请重试。102");
+                            mHomeView.showBannerFail("Banner 图加载失败，请重试。102", isRandom);
                         }
                     }
                 });

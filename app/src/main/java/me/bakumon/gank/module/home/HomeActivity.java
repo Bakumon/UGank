@@ -155,8 +155,13 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @Override
-    public void showBannerFail(String failMessage) {
-        Snackbar.make(mVpCategory, failMessage, Snackbar.LENGTH_LONG).show();
+    public void showBannerFail(String failMessage, final boolean isRandom) {
+        Snackbar.make(mVpCategory, failMessage, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mHomePresenter.getBanner(isRandom);
+            }
+        }).show();
     }
 
     @Override
