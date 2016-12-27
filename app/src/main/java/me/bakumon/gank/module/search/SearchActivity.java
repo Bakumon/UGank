@@ -22,13 +22,11 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.bakumon.gank.App;
 import me.bakumon.gank.R;
 import me.bakumon.gank.entity.SearchResult;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.KeyboardUtils;
 import me.bakumon.gank.utills.MDTintUtil;
-import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.LoadMore;
 import me.bakumon.gank.widget.RecycleViewDivider;
 
@@ -137,8 +135,13 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void showSearchFail(String failMsg) {
-        ToastUtil.showToastDefault(this, failMsg);
+    public void showSearchFail(String failMsg, final String searchText, final int page, final boolean isLoadMore) {
+        Snackbar.make(mSwipeRefreshLayoutSearch, failMsg, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSearchPresenter.search(searchText, page, isLoadMore);
+            }
+        }).show();
     }
 
     @Override

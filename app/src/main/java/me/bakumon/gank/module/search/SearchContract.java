@@ -19,7 +19,7 @@ public interface SearchContract {
 
         void hideEditClear();
 
-        void showSearchFail(String failMsg);
+        void showSearchFail(String failMsg, String searchText, int page, boolean isLoadMore);
 
         void setSearchItems(SearchResult searchResult);
 

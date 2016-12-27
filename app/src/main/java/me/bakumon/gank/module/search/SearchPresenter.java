@@ -43,9 +43,9 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     @Override
-    public void search(String searchText, final int page, final boolean isLoadMore) {
+    public void search(final String searchText, final int page, final boolean isLoadMore) {
         if (TextUtils.isEmpty(searchText)) {
-            mView.showSearchFail("搜索内容不能为空");
+            mView.showTip("搜索内容不能为空");
             return;
         }
         if (!isLoadMore) {
@@ -62,7 +62,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.showSearchFail("搜索出错了，请重试" + e.getMessage());
+                        mView.showSearchFail("搜索出错了，请重试", searchText, page, isLoadMore);
                     }
 
                     @Override
