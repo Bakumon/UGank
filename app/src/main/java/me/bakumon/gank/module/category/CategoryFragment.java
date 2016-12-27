@@ -125,10 +125,15 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void getAndroidItemsFail(String failMessage) {
+    public void getAndroidItemsFail(String failMessage, final int number, final int page, final boolean isRefresh) {
         mSwipeRefreshLayout.setRefreshing(false);
         if (getUserVisibleHint()) {
-            Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mPresenter.getAndroidItems(number, page, isRefresh);
+                }
+            }).show();
         }
     }
 

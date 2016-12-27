@@ -39,7 +39,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     }
 
     @Override
-    public void getAndroidItems(int number, int page, final boolean isRefresh) {
+    public void getAndroidItems(final int number, final int page, final boolean isRefresh) {
         Subscription subscription = NetWork.getGankApi()
                 .getCategoryDate(mCategoryView.getCategoryName(), number, page)
                 .subscribeOn(Schedulers.io())
@@ -51,7 +51,8 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mCategoryView.getAndroidItemsFail(mCategoryView.getCategoryName() + " 列表数据获取失败，请重试。201");
+                        mCategoryView.getAndroidItemsFail(mCategoryView.getCategoryName() + " 列表数据获取失败，请重试。201"
+                        , number, page, isRefresh);
                     }
 
                     @Override

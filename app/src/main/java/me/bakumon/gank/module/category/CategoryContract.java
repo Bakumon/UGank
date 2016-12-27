@@ -16,7 +16,7 @@ public interface CategoryContract {
 
         void addAndroidItems(CategoryResult categoryResult);
 
-        void getAndroidItemsFail(String failMessage);
+        void getAndroidItemsFail(String failMessage, final int number, final int page, final boolean isRefresh);
 
         String getCategoryName();
 
