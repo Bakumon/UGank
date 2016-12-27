@@ -30,9 +30,16 @@ public interface BigimgContract {
 
         void showMsgSaveFail(String msg);
 
+        void showPermissionsTip(String msg);
+
+        void startFabSavingAnim();
+
+        void stopFabSavingAnim();
+
+        void setFabEnable(boolean isEnable);
     }
 
     interface Presenter extends BasePresenter {
-        void requestPermissionForSaveImg();
+        void saveImg();
     }
 }

@@ -17,7 +17,6 @@ import com.tbruyelle.rxpermissions.RxPermissions;
 
 import me.bakumon.gank.ThemeManage;
 import me.bakumon.gank.utills.ImageUtil;
-import me.bakumon.gank.utills.ToastUtil;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -72,7 +71,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     }
 
     @Override
-    public void requestPermissionForSaveImg() {
+    public void saveImg() {
         RxPermissions rxPermissions = new RxPermissions(mContext);
         Subscription requestPermissionSubscription = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new Action1<Boolean>() {
@@ -81,7 +80,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
                         if (aBoolean) {
                             saveImageToGallery();
                         } else {
-                            ToastUtil.showToastDefault(mContext, "需要权限才能保存妹子");
+                            mBigimgView.showPermissionsTip("需要权限才能保存妹子");
                         }
                     }
                 });
@@ -89,6 +88,8 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     }
 
     private void saveImageToGallery() {
+        mBigimgView.setFabEnable(false);
+        mBigimgView.startFabSavingAnim();
         Subscription subscription = Observable.create(new Observable.OnSubscribe<Boolean>() {
             @Override
             public void call(Subscriber<? super Boolean> subscriber) {
@@ -114,6 +115,8 @@ public class BigimgPresenter implements BigimgContract.Presenter {
                         } else {
                             mBigimgView.showMsgSaveFail("图片保存失败");
                         }
+                        mBigimgView.setFabEnable(true);
+                        mBigimgView.stopFabSavingAnim();
                     }
                 });
         mSubscriptions.add(subscription);
