@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="me.bakumon.gank.module.webview.WebViewActivity">
+              tools:context="me.bakumon.ugank.module.webview.WebViewActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

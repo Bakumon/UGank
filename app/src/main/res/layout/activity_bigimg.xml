@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="me.bakumon.gank.module.bigimg.BigimgActivity">
+    tools:context="me.bakumon.ugank.module.bigimg.BigimgActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar_big_img"
@@ -37,7 +37,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <me.bakumon.gank.widget.PinchImageView
+    <me.bakumon.ugank.widget.PinchImageView
         android:id="@+id/img_big"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
