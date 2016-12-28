@@ -36,7 +36,6 @@ import me.bakumon.gank.module.search.SearchActivity;
 import me.bakumon.gank.module.setting.SettingActivity;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.MDTintUtil;
-import me.bakumon.gank.utills.ToastUtil;
 import me.bakumon.gank.widget.SaveImgDialog;
 
 /**
