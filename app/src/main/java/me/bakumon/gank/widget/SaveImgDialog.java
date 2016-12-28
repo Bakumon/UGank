@@ -41,7 +41,7 @@ public class SaveImgDialog extends BaseDialog implements View.OnClickListener {
         void onItemClick();
     }
 
-    public void setOnUploadPicItemClick(OnItemClick onItemClick) {
+    public void setItemClick(OnItemClick onItemClick) {
         mOnItemClick = onItemClick;
     }
 

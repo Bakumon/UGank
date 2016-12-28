@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -188,6 +189,37 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         MDTintUtil.setTint(mFloatingActionButton, color);
     }
 
+    @Override
+    public Activity getBigimgContext() {
+        return this;
+    }
+
+    @Override
+    public void showPermissionsTip(String msg) {
+        Snackbar.make(mVpCategory, msg, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMsgSaveSuccess(String msg) {
+        Snackbar.make(mVpCategory, msg, Snackbar.LENGTH_LONG).setAction("查看", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivity(i);
+            }
+        }).show();
+    }
+
+    @Override
+    public void showMsgSaveFail(String msg) {
+        Snackbar.make(mVpCategory, msg, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mHomePresenter.saveImg(mIvHomeBanner.getDrawable());
+            }
+        }).show();
+    }
+
     private ObjectAnimator mAnimator;
 
     @Override
@@ -244,6 +276,12 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     private void showSaveMeiziDialog() {
         SaveImgDialog saveImgDialog = new SaveImgDialog(this);
+        saveImgDialog.setItemClick(new SaveImgDialog.OnItemClick() {
+            @Override
+            public void onItemClick() {
+                mHomePresenter.saveImg(mIvHomeBanner.getDrawable());
+            }
+        });
         saveImgDialog.show();
     }
 

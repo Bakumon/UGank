@@ -1,5 +1,7 @@
 package me.bakumon.gank.module.home;
 
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
 
@@ -28,6 +30,15 @@ public interface HomeContract {
         void setAppBarLayoutColor(int appBarLayoutColor);
 
         void setFabButtonColor(int color);
+
+        Activity getBigimgContext();
+
+        void showPermissionsTip(String msg);
+
+        void showMsgSaveSuccess(String msg);
+
+        void showMsgSaveFail(String msg);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -37,5 +48,7 @@ public interface HomeContract {
         void setThemeColor(@Nullable Palette palette);
 
         void getBanner(final boolean isRandom);
+
+        void saveImg(Drawable drawable);
     }
 }
