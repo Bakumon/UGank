@@ -37,6 +37,7 @@ import me.bakumon.gank.module.setting.SettingActivity;
 import me.bakumon.gank.utills.DisplayUtils;
 import me.bakumon.gank.utills.MDTintUtil;
 import me.bakumon.gank.utills.ToastUtil;
+import me.bakumon.gank.widget.SaveImgDialog;
 
 /**
  * HomeActivity
@@ -238,8 +239,13 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         if (!isBannerBig) {
             return false;
         }
-        ToastUtil.showToastDefault(this, "long click");
+        showSaveMeiziDialog();
         return true;
+    }
+
+    private void showSaveMeiziDialog() {
+        SaveImgDialog saveImgDialog = new SaveImgDialog(this);
+        saveImgDialog.show();
     }
 
     private void startBannerAnim() {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:background="@drawable/select_press_white_gray_corner"
+                android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_save_img"
+        android:layout_width="match_parent"
+        android:background="@drawable/select_press_white_gray_corner"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/colorTextBlack"
+        android:text="保存图片"/>
+
+</RelativeLayout>

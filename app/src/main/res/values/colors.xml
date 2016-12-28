@@ -14,4 +14,6 @@
     <color name="colorSwipeRefresh4">#FE5621</color>
     <color name="colorSwipeRefresh5">#9B26AF</color>
     <color name="colorSwipeRefresh6">#02A8F3</color>
+
+    <color name="colorTextBlack">#4B4B4B</color>
 </resources>
