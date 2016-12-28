@@ -315,6 +315,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void onBackPressed() {
+        if (isBannerAniming) {
+            return;
+        }
         if (isBannerBig) {
             startBannerAnim();
         } else {
