@@ -1,9 +1,12 @@
 package me.bakumon.ugank.module.setting;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -84,6 +87,28 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     @Override
     public void setSwitchCompatsColor(int color) {
         MDTintUtil.setTint(mSwitchSetting, color);
+    }
+
+    @OnClick(R.id.ll_setting_cache)
+    public void deleteCache() {
+        Snackbar.make(mToolbarSetting, "TODO:清理缓存", Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.ll_setting_about)
+    public void about() {
+        Snackbar.make(mToolbarSetting, "TODO:关于 Dialog", Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.ll_setting_thanks)
+    public void thanks() {
+        Snackbar.make(mToolbarSetting, "TODO:致谢 Dialog", Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.ll_setting_issues)
+    public void issues() {
+        Uri uri = Uri.parse("https://github.com/Bakumon/UGank/issues");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }
 

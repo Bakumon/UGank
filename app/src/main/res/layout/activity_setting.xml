@@ -67,7 +67,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="是否显示缩略图"
+                    android:text="显示缩略图"
                     android:textColor="#323232"
                     android:textSize="16sp" />
 
@@ -83,6 +83,7 @@
                 android:background="#EEEEEE" />
 
             <LinearLayout
+                android:id="@+id/ll_setting_cache"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -132,6 +133,7 @@
                 android:background="#EEEEEE" />
 
             <LinearLayout
+                android:id="@+id/ll_setting_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -175,6 +177,7 @@
                 android:background="#EEEEEE" />
 
             <LinearLayout
+                android:id="@+id/ll_setting_thanks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -210,6 +213,7 @@
                 android:background="#EEEEEE" />
 
             <LinearLayout
+                android:id="@+id/ll_setting_issues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
