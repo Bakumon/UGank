@@ -39,7 +39,9 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
     @Override
     public void getAndroidItems(final int number, final int page, final boolean isRefresh) {
-        mCategoryView.showSwipLoading();
+        if (isRefresh) {
+            mCategoryView.showSwipLoading();
+        }
         Subscription subscription = NetWork.getGankApi()
                 .getCategoryDate(mCategoryView.getCategoryName(), number, page)
                 .subscribeOn(Schedulers.io())
@@ -60,10 +62,10 @@ public class CategoryPresenter implements CategoryContract.Presenter {
                     public void onNext(CategoryResult androidResult) {
                         if (isRefresh) {
                             mCategoryView.setAndroidItems(androidResult);
+                            mCategoryView.hideSwipLoading();
                         } else {
                             mCategoryView.addAndroidItems(androidResult);
                         }
-                        mCategoryView.hideSwipLoading();
                     }
                 });
         mSubscriptions.add(subscription);
