@@ -10,16 +10,14 @@ import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.BaseDialog;
 
 /**
- * 上传图片对话框
- * Created by bakumon on 2016/10/12.
+ * SaveImgDialog
+ * Created by bakumon on 2016/12/29.
  */
 
 public class SaveImgDialog extends BaseDialog implements View.OnClickListener {
 
     @BindView(R.id.tv_save_img)
     TextView mTvSaveImg;
-
-    private Activity mContext;
 
     private OnItemClick mOnItemClick;
 
@@ -29,7 +27,6 @@ public class SaveImgDialog extends BaseDialog implements View.OnClickListener {
 
     public SaveImgDialog(Activity context) {
         super(context, R.layout.dialog_save_img, R.style.MyDialog);
-        this.mContext = context;
         initView();
     }
 

@@ -21,6 +21,7 @@ import me.bakumon.ugank.R;
 import me.bakumon.ugank.utills.AlipayZeroSdk;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
+import me.bakumon.ugank.widget.AboutDialog;
 
 public class SettingActivity extends AppCompatActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
 
@@ -128,7 +129,7 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
 
     @OnClick(R.id.ll_setting_about)
     public void about() {
-        Snackbar.make(mToolbarSetting, "TODO:关于 Dialog", Snackbar.LENGTH_LONG).show();
+        new AboutDialog(this, mSettingPresenter.getColorPrimary()).show();
     }
 
 //    @OnClick(R.id.ll_setting_thanks)

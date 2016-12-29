@@ -89,4 +89,9 @@ public class SettingPresenter implements SettingContract.Presenter {
         mSubscriptions.add(subscription);
 
     }
+
+    @Override
+    public int getColorPrimary() {
+        return ThemeManage.INSTANCE.getColorPrimary();
+    }
 }

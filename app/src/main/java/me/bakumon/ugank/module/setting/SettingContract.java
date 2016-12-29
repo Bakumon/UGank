@@ -32,5 +32,6 @@ public interface SettingContract {
 
         void deleteImgCache();
 
+        int getColorPrimary();
     }
 }
