@@ -86,6 +86,11 @@ public class AboutDialog extends BaseDialog {
         viewIntent("https://github.com/Bakumon/UGank");
     }
 
+    @OnClick(R.id.tv_gankio)
+    public void gankio() {
+        viewIntent("http://gank.io/");
+    }
+
     @OnClick(R.id.tv_author_github)
     public void github() {
         viewIntent("https://github.com/Bakumon/");
