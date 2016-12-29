@@ -1,7 +1,10 @@
 package me.bakumon.ugank.module.setting;
 
+import me.bakumon.ugank.App;
 import me.bakumon.ugank.ConfigManage;
 import me.bakumon.ugank.ThemeManage;
+import me.bakumon.ugank.utills.GlideCacheUtil;
+import me.bakumon.ugank.utills.PackageUtil;
 
 /**
  * SettingPresenter
@@ -21,11 +24,20 @@ public class SettingPresenter implements SettingContract.Presenter {
         mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         // 初始化开关显示状态
         mView.changeSwitchState(ConfigManage.INSTANCE.isListShowImg());
+        mView.setCacheSizeInTv(cachedSize());
+        mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
     }
 
     @Override
     public void unsubscribe() {
 
+    }
+
+    /**
+     * 获取 Glide 已经缓存的大小
+     */
+    private String cachedSize() {
+        return GlideCacheUtil.getInstance().getCacheSize(App.getInstance());
     }
 
     @Override

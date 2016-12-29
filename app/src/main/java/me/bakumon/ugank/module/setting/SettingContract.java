@@ -16,6 +16,10 @@ public interface SettingContract {
         void changeSwitchState(boolean isChecked);
 
         void setSwitchCompatsColor(int color);
+
+        void setCacheSizeInTv(String size);
+
+        void setAppVersionNameInTv(String versionName);
     }
 
     interface Presenter extends BasePresenter {

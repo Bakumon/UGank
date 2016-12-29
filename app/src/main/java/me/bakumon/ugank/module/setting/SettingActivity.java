@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -28,6 +29,10 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     SwitchCompat mSwitchSetting;
     @BindView(R.id.appbar_setting)
     AppBarLayout mAppbarSetting;
+    @BindView(R.id.tv_setting_cache_size)
+    AppCompatTextView mTvSettingCacheSize;
+    @BindView(R.id.tv_setting_version_name)
+    AppCompatTextView mTvSettingVersionName;
 
     private SettingPresenter mSettingPresenter = new SettingPresenter(this);
 
@@ -87,6 +92,16 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     @Override
     public void setSwitchCompatsColor(int color) {
         MDTintUtil.setTint(mSwitchSetting, color);
+    }
+
+    @Override
+    public void setCacheSizeInTv(String size) {
+        mTvSettingCacheSize.setText("图片等缓存文件 " + size);
+    }
+
+    @Override
+    public void setAppVersionNameInTv(String versionName) {
+        mTvSettingVersionName.setText("版本: " + versionName);
     }
 
     @OnClick(R.id.ll_setting_cache)
