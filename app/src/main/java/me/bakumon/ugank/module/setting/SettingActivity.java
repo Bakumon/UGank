@@ -145,6 +145,8 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
 
     @OnClick(R.id.ll_setting_pay)
     public void pay() {
+        // https://fama.alipay.com/qrcode/qrcodelist.htm?qrCodeType=P  二维码地址
+        // http://cli.im/deqr/ 解析二维码
         // aex01251c8foqaprudcp503
         if (AlipayZeroSdk.hasInstalledAlipayClient(this)) {
             AlipayZeroSdk.startAlipayClient(this, "aex01251c8foqaprudcp503");
