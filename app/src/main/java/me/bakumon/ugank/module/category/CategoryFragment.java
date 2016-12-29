@@ -113,6 +113,11 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
+    public void hideSwipLoading() {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
     public void onRefresh() {
         mPage = 1;
         mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, true);
@@ -126,7 +131,6 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     @Override
     public void getAndroidItemsFail(String failMessage, final int number, final int page, final boolean isRefresh) {
-        mSwipeRefreshLayout.setRefreshing(false);
         if (getUserVisibleHint()) {
             Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
                 @Override
@@ -141,7 +145,6 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     public void setAndroidItems(CategoryResult categoryResult) {
         mAndroidListAdapter.mData = categoryResult.results;
         mAndroidListAdapter.notifyDataSetChanged();
-        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

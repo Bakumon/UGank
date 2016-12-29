@@ -21,6 +21,8 @@ public interface CategoryContract {
         String getCategoryName();
 
         void showSwipLoading();
+
+        void hideSwipLoading();
     }
 
     interface Presenter extends BasePresenter {
