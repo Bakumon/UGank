@@ -133,7 +133,7 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
 
 //    @OnClick(R.id.ll_setting_thanks)
 //    public void thanks() {
-//        Snackbar.make(mToolbarSetting, "TODO:致谢 Dialog", Snackbar.LENGTH_LONG).show();
+//        Snackbar.make(mToolbarSetting, "致谢 Dialog", Snackbar.LENGTH_LONG).show();
 //    }
 
     @OnClick(R.id.ll_setting_issues)
