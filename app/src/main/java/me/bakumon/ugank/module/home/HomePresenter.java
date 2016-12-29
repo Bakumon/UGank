@@ -120,6 +120,10 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void saveImg(final Drawable drawable) {
+        if (drawable == null) {
+            mHomeView.showMsgSaveFail("图片为空，不能保存");
+            return;
+        }
         RxPermissions rxPermissions = new RxPermissions(mContext);
         Subscription requestPermissionSubscription = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new Action1<Boolean>() {
