@@ -104,9 +104,25 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         mTvSettingVersionName.setText("版本: " + versionName);
     }
 
+    @Override
+    public void showDeleteImgSuccess() {
+        Snackbar.make(mToolbarSetting, "清理缓存完成", Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showDeleteImgFail() {
+        Snackbar.make(mToolbarSetting, "清理缓存失败", Snackbar.LENGTH_LONG)
+                .setAction("重试", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mSettingPresenter.deleteImgCache();
+                    }
+                }).show();
+    }
+
     @OnClick(R.id.ll_setting_cache)
     public void deleteCache() {
-        Snackbar.make(mToolbarSetting, "TODO:清理缓存", Snackbar.LENGTH_LONG).show();
+        mSettingPresenter.deleteImgCache();
     }
 
     @OnClick(R.id.ll_setting_about)

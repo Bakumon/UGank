@@ -20,11 +20,17 @@ public interface SettingContract {
         void setCacheSizeInTv(String size);
 
         void setAppVersionNameInTv(String versionName);
+
+        void showDeleteImgSuccess();
+
+        void showDeleteImgFail();
     }
 
     interface Presenter extends BasePresenter {
 
         void saveIsListShowImg(boolean isListShowImg);
+
+        void deleteImgCache();
 
     }
 }
