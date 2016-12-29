@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.utills.AlipayZeroSdk;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
 
@@ -140,6 +141,16 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
         Uri uri = Uri.parse("https://github.com/Bakumon/UGank/issues");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.ll_setting_pay)
+    public void pay() {
+        // aex01251c8foqaprudcp503
+        if (AlipayZeroSdk.hasInstalledAlipayClient(this)) {
+            AlipayZeroSdk.startAlipayClient(this, "aex01251c8foqaprudcp503");
+        } else {
+            Snackbar.make(mToolbarSetting, "谢谢，您没有安装支付宝客户端", Snackbar.LENGTH_LONG).show();
+        }
     }
 }
 
