@@ -38,13 +38,10 @@ public class LauncherPresenter implements LauncherContract.Presenter {
     }
 
     private void start() {
-
-        mLauncherView.startAnim();
-
         Observable.just(null)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .delaySubscription(3200, TimeUnit.MILLISECONDS)
+                .delaySubscription(2000, TimeUnit.MILLISECONDS)
                 .subscribe(new Action1<Object>() {
                     @Override
                     public void call(Object o) {

@@ -12,8 +12,6 @@ public interface LauncherContract {
 
     interface View extends BaseView {
 
-        void startAnim();
-
         void toHome();
     }
 
