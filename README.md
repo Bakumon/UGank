@@ -17,7 +17,10 @@
 
 ## Todolist
 
--[-]搜索历史
+欢迎 [提 issues](https://github.com/Bakumon/UGank/issues/new)，提建议或 Bug:bug:
+
+- [ ] 持久化搜索历史
+- [ ] ...
 
 ## 致谢
 
