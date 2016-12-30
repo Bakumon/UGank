@@ -10,7 +10,7 @@
 
 1. 动态主题色（动态获取首页妹子图中“充满活力的黑”来设置 App 控件的主题色）
 2. 默认不显示列表缩略图（可设置），以节省流量
-3. Material Design 风格（不完全遵守）
+3. Material Design 风格（未完全遵守）
 4. 沉浸式状态栏
 
 ## 截图
@@ -23,6 +23,15 @@
 - [ ] ...
 
 ## 致谢
+- [Githu-开源大法好](https://github.com/)
+- [RxJava-异步](https://github.com/ReactiveX/RxJava)
+- [RxAndroid-RxJava bindings for Android](https://github.com/ReactiveX/RxAndroid)
+- [Retrofit-网络](https://github.com/square/retrofit)
+- [Okhttp-HTTP](https://github.com/square/okhttp)
+- [Glide-图片加载](https://github.com/bumptech/glide)
+- [GlidePalette-Glide 和 Palette 的结合](https://github.com/florent37/GlidePalette)
+- [ButterKnife-View 注入](https://github.com/JakeWharton/butterknife)
+- [RxPermissions-6.0 运行时权限](https://github.com/tbruyelle/RxPermissions)
 
 ## License
 
