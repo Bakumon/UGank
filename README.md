@@ -33,6 +33,9 @@
 - [ButterKnife-View 注入](https://github.com/JakeWharton/butterknife)
 - [RxPermissions-6.0 运行时权限](https://github.com/tbruyelle/RxPermissions)
 
+## 特别鸣谢
+ [代码家](https://github.com/daimajia)  [干货集中营](http://gank.io/) 提供 API
+
 ## License
 
 [GNU General Public License, version 3](https://github.com/Bakumon/UGank/blob/master/LICENSE)
