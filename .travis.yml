@@ -1,0 +1,17 @@
+language: android
+android:
+  components:
+    - build-tools-25.0.2
+    - android-25
+    - extra-android-m2repository
+    - extra-android-support
+script:
+  - ./gradlew assembleRelease
+deploy:
+  provider: releases
+  api_key:
+    secure: 0a9e9a9342b57afe1b30e9dd806451f202c9e7c7
+  file: app/build/outputs/apk/app-release.apk
+  skip_cleanup: true
+  on:
+    tags: true
