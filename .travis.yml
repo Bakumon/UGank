@@ -5,6 +5,7 @@ android:
     - android-25
     - extra-android-m2repository
     - extra-android-support
+    - tools
 before_install:
  - chmod +x gradlew
 script:
