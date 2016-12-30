@@ -19,8 +19,8 @@
 
 欢迎 [提 issues](https://github.com/Bakumon/UGank/issues/new)，提建议或 Bug
 
--[ ] 持久化搜索历史
--[ ] ...
+-[] 持久化搜索历史
+-[] ...
 
 ## 致谢
 
