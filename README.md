@@ -13,6 +13,14 @@
 3. Material Design 风格（不完全遵守）
 4. 沉浸式状态栏
 
+## 截图
+
+## Todolist
+
+-[-]搜索历史
+
+## 致谢
+
 ## License
 
 [GNU General Public License, version 3](https://github.com/Bakumon/UGank/blob/master/LICENSE)
