@@ -15,6 +15,9 @@
 
 ## 截图
 
+![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank1.png)
+![ugank2.png](https://github.com/Bakumon/UGank/raw/master/art/ugank2.png)
+
 ## Todolist
 
 欢迎 [提 issues](https://github.com/Bakumon/UGank/issues/new)，提建议或 Bug
