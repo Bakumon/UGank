@@ -14,7 +14,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(".ugank.jks")
+            storeFile file("ugank.jks")
             storePassword System.getenv("KEYSTORE_PASS")
             keyAlias System.getenv("ALIAS_NAME")
             keyPassword System.getenv("ALIAS_PASS")
