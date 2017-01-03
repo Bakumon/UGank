@@ -1,10 +1,9 @@
 # 「有干货」- 体验别具一格的 Gank.io 安卓客户端
 
-[![Build Status](https://travis-ci.org/Bakumon/UGank.svg?branch=master)](https://travis-ci.org/Bakumon/UGank)
 
 ![「有干货」启动图标](https://github.com/Bakumon/UGank/raw/master/art/ic_launcher.png)
 
-[点击下载 APk](https://raw.githubusercontent.com/Bakumon/UGank/master/apk/ugank_release.apk)
+[点击下载 APk](https://raw.githubusercontent.com/Bakumon/UGank/master/apk/ugank_release-1_0_0.apk)
 
 ## 介绍
 
