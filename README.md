@@ -35,7 +35,7 @@
 - [ ] ...
 
 ## 致谢
-- [Githu-开源大法好](https://github.com/)
+- [Github-开源大法好](https://github.com/)
 - [RxJava-异步](https://github.com/ReactiveX/RxJava)
 - [RxAndroid-RxJava bindings for Android](https://github.com/ReactiveX/RxAndroid)
 - [Retrofit-网络](https://github.com/square/retrofit)
