@@ -195,13 +195,13 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @Override
-    public void showPermissionsTip(String msg) {
-        Snackbar.make(mVpCategory, msg, Snackbar.LENGTH_LONG).show();
+    public void showPermissionsTip() {
+        Snackbar.make(mVpCategory, "需要权限才能保存妹子", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void showMsgSaveSuccess(String msg) {
-        Snackbar.make(mVpCategory, msg, Snackbar.LENGTH_LONG).setAction("查看", new View.OnClickListener() {
+    public void showMsgSaveSuccess() {
+        Snackbar.make(mVpCategory, "图片保存成功", Snackbar.LENGTH_LONG).setAction("查看", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_VIEW, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -211,13 +211,18 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @Override
-    public void showMsgSaveFail(String msg) {
-        Snackbar.make(mVpCategory, msg, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
+    public void showMsgSaveFail() {
+        Snackbar.make(mVpCategory, "图片保存失败", Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mHomePresenter.saveImg(mIvHomeBanner.getDrawable());
             }
         }).show();
+    }
+
+    @Override
+    public void showSavingMsgTip() {
+        Snackbar.make(mVpCategory, "正在保存图片...", Snackbar.LENGTH_LONG).show();
     }
 
     private ObjectAnimator mAnimator;

@@ -33,11 +33,13 @@ public interface HomeContract {
 
         Activity getBigimgContext();
 
-        void showPermissionsTip(String msg);
+        void showPermissionsTip();
 
-        void showMsgSaveSuccess(String msg);
+        void showMsgSaveSuccess();
 
-        void showMsgSaveFail(String msg);
+        void showMsgSaveFail();
+
+        void showSavingMsgTip();
 
     }
 

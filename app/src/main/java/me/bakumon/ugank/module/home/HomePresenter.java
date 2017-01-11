@@ -121,9 +121,10 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void saveImg(final Drawable drawable) {
         if (drawable == null) {
-            mHomeView.showMsgSaveFail("图片为空，不能保存");
+            mHomeView.showMsgSaveFail();
             return;
         }
+        mHomeView.showSavingMsgTip();
         RxPermissions rxPermissions = new RxPermissions(mContext);
         Subscription requestPermissionSubscription = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(new Action1<Boolean>() {
@@ -132,7 +133,7 @@ public class HomePresenter implements HomeContract.Presenter {
                         if (aBoolean) {
                             saveImageToGallery(ImageUtil.drawableToBitmap(drawable));
                         } else {
-                            mHomeView.showPermissionsTip("需要权限才能保存妹子");
+                            mHomeView.showPermissionsTip();
                         }
                     }
                 });
@@ -161,9 +162,9 @@ public class HomePresenter implements HomeContract.Presenter {
                     @Override
                     public void onNext(Boolean isSaveSuccess) {
                         if (isSaveSuccess) {
-                            mHomeView.showMsgSaveSuccess("图片保存成功");
+                            mHomeView.showMsgSaveSuccess();
                         } else {
-                            mHomeView.showMsgSaveFail("图片保存失败");
+                            mHomeView.showMsgSaveFail();
                         }
                     }
                 });
