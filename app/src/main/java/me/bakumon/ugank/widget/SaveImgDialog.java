@@ -3,14 +3,13 @@ package me.bakumon.ugank.widget;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.view.View;
 
 /**
  * SaveImgDialog
  * Created by bakumon on 2016/12/29.
  */
 
-public class SaveImgDialog implements View.OnClickListener, DialogInterface.OnClickListener {
+public class SaveImgDialog implements DialogInterface.OnClickListener {
 
 
     private OnItemClick mOnItemClick;
@@ -49,10 +48,4 @@ public class SaveImgDialog implements View.OnClickListener, DialogInterface.OnCl
         mOnItemClick = onItemClick;
     }
 
-    @Override
-    public void onClick(View view) {
-        if (mOnItemClick != null) {
-            mOnItemClick.onItemClick();
-        }
-    }
 }
