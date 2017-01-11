@@ -1,37 +1,44 @@
 package me.bakumon.ugank.widget;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.View;
-import android.widget.TextView;
-
-import butterknife.BindView;
-import me.bakumon.ugank.R;
-import me.bakumon.ugank.base.BaseDialog;
 
 /**
  * SaveImgDialog
  * Created by bakumon on 2016/12/29.
  */
 
-public class SaveImgDialog extends BaseDialog implements View.OnClickListener {
+public class SaveImgDialog implements View.OnClickListener, DialogInterface.OnClickListener {
 
-    @BindView(R.id.tv_save_img)
-    TextView mTvSaveImg;
 
     private OnItemClick mOnItemClick;
 
-    public SaveImgDialog(Context context, int layoutId) {
-        super(context, layoutId, R.style.MyDialog);
-    }
+    // 使用 android.app.AlertDialog ，v7包下的显示有上下内边距，并且字太大了
+    private AlertDialog mDialog;
+    private AlertDialog.Builder mBuilder;
 
     public SaveImgDialog(Activity context) {
-        super(context, R.layout.dialog_save_img, R.style.MyDialog);
-        initView();
+        mBuilder = new AlertDialog.Builder(context);
+        String[] items = {"保存图片"};
+        mBuilder.setItems(items, this);
+        mDialog = mBuilder.create();
     }
 
-    private void initView() {
-        mTvSaveImg.setOnClickListener(this);
+    public void show() {
+        mDialog.show();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        switch (which) {
+            case 0: // 第一个，保存图片 item
+                if (mOnItemClick != null) {
+                    mOnItemClick.onItemClick();
+                }
+                break;
+        }
     }
 
     public interface OnItemClick {
@@ -44,7 +51,6 @@ public class SaveImgDialog extends BaseDialog implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        dismiss();
         if (mOnItemClick != null) {
             mOnItemClick.onItemClick();
         }
