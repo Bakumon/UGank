@@ -26,6 +26,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    // 输出apk名称为ugank_release_1.0.1_2.apk
+                    def fileName = "ugank_release_${defaultConfig.versionName}_${defaultConfig.versionCode}.apk"
+                    output.outputFile = new File(outputFile.parent, fileName)
+                }
+            }
+        }
     }
 }
 apply plugin: 'com.neenbedankt.android-apt'
