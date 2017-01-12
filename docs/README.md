@@ -43,8 +43,9 @@
 - [Okhttp-HTTP](https://github.com/square/okhttp)
 - [Glide-图片加载](https://github.com/bumptech/glide)
 - [GlidePalette-Glide 和 Palette 的结合](https://github.com/florent37/GlidePalette)
-- [ButterKnife-View 注入](https://github.com/JakeWharton/butterknife)
-- [RxPermissions-6.0 运行时权限](https://github.com/tbruyelle/RxPermissions)
+- [ButterKnife-View-注入](https://github.com/JakeWharton/butterknife)
+- [RxPermissions-6.0-运行时权限](https://github.com/tbruyelle/RxPermissions)
+- [Android-RecyclerViewWithFooter-加载更多的RecyclerView ](https://github.com/android-cjj/Android-RecyclerViewWithFooter)
 
 ## 特别鸣谢
  [代码家](https://github.com/daimajia)  [干货集中营](http://gank.io/) 提供 API
