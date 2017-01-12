@@ -23,6 +23,8 @@ public interface CategoryContract {
         void showSwipLoading();
 
         void hideSwipLoading();
+
+        void setLoading();
     }
 
     interface Presenter extends BasePresenter {

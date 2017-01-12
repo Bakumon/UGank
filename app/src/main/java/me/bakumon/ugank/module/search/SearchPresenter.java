@@ -63,6 +63,7 @@ public class SearchPresenter implements SearchContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         mView.showSearchFail("搜索出错了，请重试", searchText, page, isLoadMore);
+                        mView.hideSwipLoading();
                     }
 
                     @Override
@@ -71,17 +72,17 @@ public class SearchPresenter implements SearchContract.Presenter {
                             if (searchResult == null || searchResult.count == 0) {
                                 mView.showTip("没有搜索到结果");
                                 mView.hideSwipLoading();
+                                mView.setEmpty();
                                 return;
                             }
-                            mView.setLoadMoreIsLastPage(false);
                             mView.setSearchItems(searchResult);
+                            mView.setLoading();
                         } else {
+                            mView.addSearchItems(searchResult);
                             boolean isLastPage = searchResult.count < GlobalConfig.PAGE_SIZE_CATEGORY;
                             if (isLastPage) {
-                                mView.showTip("已经是最后一页了");
+                                mView.setLoadMoreIsLastPage();
                             }
-                            mView.setLoadMoreIsLastPage(isLastPage);
-                            mView.addSearchItems(searchResult);
                         }
 
                     }

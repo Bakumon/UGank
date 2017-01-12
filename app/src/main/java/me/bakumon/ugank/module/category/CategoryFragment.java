@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +15,19 @@ import butterknife.ButterKnife;
 import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.entity.CategoryResult;
-import me.bakumon.ugank.widget.LoadMore;
 import me.bakumon.ugank.widget.RecycleViewDivider;
+import me.bakumon.ugank.widget.recyclerviewwithfooter.DefaultFootItem;
+import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
+import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 
 /**
  * CategoryFragment
  * Created by bakumon on 2016/12/8.
  */
-public class CategoryFragment extends Fragment implements CategoryContract.View, SwipeRefreshLayout.OnRefreshListener, LoadMore.OnLoadMoreListener {
+public class CategoryFragment extends Fragment implements CategoryContract.View, SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
 
     @BindView(R.id.recycler_view)
-    RecyclerView mRecyclerView;
+    RecyclerViewWithFooter mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -68,15 +69,13 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
                 R.color.colorSwipeRefresh6);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        LoadMore loadMore = new LoadMore(mRecyclerView);
-        loadMore.setOnLoadMoreListener(this);
-
         mAndroidListAdapter = new CategoryListAdapter(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
         mRecyclerView.setAdapter(mAndroidListAdapter);
-
+        mRecyclerView.setOnLoadMoreListener(this);
+        mRecyclerView.setEmpty();
         return view;
     }
 
@@ -127,6 +126,11 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     public void onLoadMore() {
         mPage += 1;
         mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, false);
+    }
+
+    @Override
+    public void setLoading() {
+        mRecyclerView.setLoading();
     }
 
     @Override

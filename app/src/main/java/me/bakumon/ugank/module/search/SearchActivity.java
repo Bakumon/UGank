@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,10 +26,11 @@ import me.bakumon.ugank.entity.SearchResult;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.KeyboardUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
-import me.bakumon.ugank.widget.LoadMore;
 import me.bakumon.ugank.widget.RecycleViewDivider;
+import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
+import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 
-public class SearchActivity extends AppCompatActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, LoadMore.OnLoadMoreListener {
+public class SearchActivity extends AppCompatActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, OnLoadMoreListener {
 
     @BindView(R.id.toolbar_search)
     Toolbar mToolbarSearch;
@@ -43,12 +43,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @BindView(R.id.appbar_search)
     AppBarLayout mAppbarSearch;
     @BindView(R.id.recycler_view_search)
-    RecyclerView mRecyclerViewSearch;
+    RecyclerViewWithFooter mRecyclerViewSearch;
     @BindView(R.id.swipe_refresh_layout_search)
     SwipeRefreshLayout mSwipeRefreshLayoutSearch;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
-    private LoadMore mLoadMore;
 
     private int mPage = 1;
     private SearchListAdapter mSearchListAdapter;
@@ -84,10 +83,6 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
             }
         });
 
-        mLoadMore = new LoadMore(mRecyclerViewSearch);
-        mLoadMore.setOnLoadMoreListener(this);
-        mLoadMore.setIsLastPage(true);
-
         mEdSearch.addTextChangedListener(this);
         mEdSearch.setOnEditorActionListener(this);
 
@@ -105,6 +100,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         mRecyclerViewSearch.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerViewSearch.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
         mRecyclerViewSearch.setAdapter(mSearchListAdapter);
+        mRecyclerViewSearch.setOnLoadMoreListener(this);
+        mRecyclerViewSearch.setEmpty();
 
     }
 
@@ -173,8 +170,18 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void setLoadMoreIsLastPage(boolean isLastPage) {
-        mLoadMore.setIsLastPage(isLastPage);
+    public void setLoadMoreIsLastPage() {
+        mRecyclerViewSearch.setEnd("没有更多数据了");
+    }
+
+    @Override
+    public void setEmpty() {
+        mRecyclerViewSearch.setEmpty();
+    }
+
+    @Override
+    public void setLoading() {
+        mRecyclerViewSearch.setLoading();
     }
 
     @Override
@@ -185,8 +192,10 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     @OnClick(R.id.iv_edit_clear)
     public void editClear() {
+        mRecyclerViewSearch.setEmpty();
         mEdSearch.setText("");
         KeyboardUtils.showSoftInput(this, mEdSearch);
+        mSearchPresenter.unsubscribe();
     }
 
     @OnClick(R.id.iv_search)
@@ -212,6 +221,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
             showEditClear();
         } else {
             hideEditClear();
+            mRecyclerViewSearch.setEmpty();
+            mSearchPresenter.unsubscribe();
         }
         mSearchListAdapter.mData = null;
         mSearchListAdapter.notifyDataSetChanged();

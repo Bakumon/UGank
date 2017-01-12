@@ -31,7 +31,11 @@ public interface SearchContract {
 
         void showTip(String msg);
 
-        void setLoadMoreIsLastPage(boolean isLastPage);
+        void setLoadMoreIsLastPage();
+
+        void setEmpty();
+
+        void setLoading();
     }
 
     interface Presenter extends BasePresenter {

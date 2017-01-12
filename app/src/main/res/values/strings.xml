@@ -5,4 +5,7 @@
     <string name="menu_share">分享</string>
     <string name="menu_copy_link">复制链接</string>
     <string name="menu_open_with">用浏览器打开</string>
+    <string name="rv_with_footer_pull_load_more">上拉或点击加载更多</string>
+    <string name="rv_with_footer_loading">加载中…</string>
+    <string name="rv_with_footer_empty">没有数据啦</string>
 </resources>
