@@ -31,7 +31,7 @@
 
 欢迎 [提 issues](https://github.com/Bakumon/UGank/issues/new)，提建议或 Bug
 
-- 上拉加载效果
+- ~~上拉加载效果~~
 - 持久化搜索历史
 - ...
 
