@@ -195,6 +195,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         mRecyclerViewSearch.setEmpty();
         mEdSearch.setText("");
         KeyboardUtils.showSoftInput(this, mEdSearch);
+        hideSwipLoading();
         mSearchPresenter.unsubscribe();
     }
 
@@ -222,6 +223,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         } else {
             hideEditClear();
             mRecyclerViewSearch.setEmpty();
+            hideSwipLoading();
             mSearchPresenter.unsubscribe();
         }
         mSearchListAdapter.mData = null;
