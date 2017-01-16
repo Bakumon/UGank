@@ -79,10 +79,10 @@ public class SearchPresenter implements SearchContract.Presenter {
                             mView.setLoading();
                         } else {
                             mView.addSearchItems(searchResult);
-                            boolean isLastPage = searchResult.count < GlobalConfig.PAGE_SIZE_CATEGORY;
-                            if (isLastPage) {
-                                mView.setLoadMoreIsLastPage();
-                            }
+                        }
+                        boolean isLastPage = searchResult.count < GlobalConfig.PAGE_SIZE_CATEGORY;
+                        if (isLastPage) {
+                            mView.setLoadMoreIsLastPage();
                         }
 
                     }
