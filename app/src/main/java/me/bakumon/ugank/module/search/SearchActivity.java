@@ -222,10 +222,10 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
             showEditClear();
         } else {
             hideEditClear();
-            mRecyclerViewSearch.setEmpty();
             hideSwipLoading();
             mSearchPresenter.unsubscribe();
         }
+        mRecyclerViewSearch.setEmpty();
         mSearchListAdapter.mData = null;
         mSearchListAdapter.notifyDataSetChanged();
     }
