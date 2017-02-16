@@ -15,8 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static android.R.attr.path;
-
 /**
  * ImageUtil
  * Created by bakumon on 2016/12/26 15:59.
@@ -24,11 +22,13 @@ import static android.R.attr.path;
 public class ImageUtil {
     public static boolean saveImageToGallery(Context context, Bitmap bmp) {
         // 首先保存图片
-        File appDir = new File(Environment.getExternalStorageDirectory(), "meizi");
+        File appDir = Environment.getExternalStorageDirectory();
         if (!appDir.exists()) {
-            appDir.mkdir();
+            if (!appDir.mkdir()) {
+                return false;
+            }
         }
-        String fileName = System.currentTimeMillis() + "";
+        String fileName = System.currentTimeMillis() + ".JPEG";
         File file = new File(appDir, fileName);
         try {
             FileOutputStream fos = new FileOutputStream(file);
@@ -41,15 +41,21 @@ public class ImageUtil {
         }
 
         // 其次把文件插入到系统图库
+        String insertImageUri;
         try {
-            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+            insertImageUri = MediaStore.Images.Media.insertImage(context.getContentResolver(),
                     file.getAbsolutePath(), fileName, null);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
         }
+
+        // 删除保存的图片（非图库中）
+        File fileDel = new File(appDir, fileName);
+        fileDel.delete();
+
         // 最后通知图库更新
-        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(insertImageUri)));
         return true;
     }
 
