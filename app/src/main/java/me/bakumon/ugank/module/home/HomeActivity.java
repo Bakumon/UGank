@@ -14,7 +14,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -25,6 +24,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.github.florent37.glidepalette.BitmapPalette;
 import com.github.florent37.glidepalette.GlidePalette;
+import com.kekstudio.dachshundtablayout.DachshundTabLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,8 +51,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     AppBarLayout mAppBarLayout;
     @BindView(R.id.iv_home_banner)
     ImageView mIvHomeBanner;
-    @BindView(R.id.tl_home_category)
-    TabLayout mTlHomeCategory;
+    @BindView(R.id.tab_home_category)
+    DachshundTabLayout mDachshundTabLayout;
     @BindView(R.id.vp_home_category)
     ViewPager mVpCategory;
     @BindView(R.id.collapsing_toolbar)
@@ -104,8 +104,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         infoPagerAdapter.addFragment(resFragment);
 
         mVpCategory.setAdapter(infoPagerAdapter);
-        mTlHomeCategory.setupWithViewPager(mVpCategory);
-        mTlHomeCategory.setTabGravity(TabLayout.GRAVITY_FILL);
+        mDachshundTabLayout.setupWithViewPager(mVpCategory);
         mVpCategory.setCurrentItem(1);
         mVpCategory.setOffscreenPageLimit(6);
     }
