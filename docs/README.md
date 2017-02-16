@@ -3,7 +3,7 @@
 
 ![「有干货」启动图标](https://github.com/Bakumon/UGank/raw/master/art/ic_launcher.png)
 
-[直接下载 APk](https://raw.githubusercontent.com/Bakumon/UGank/master/apk/ugank_release-1_0_1.apk)
+[直接下载 APk](https://raw.githubusercontent.com/Bakumon/UGank/master/apk/ugank_release_1.0.1_2.apk)
 
 **蒲公英下载**
 

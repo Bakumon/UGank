@@ -107,6 +107,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mTlHomeCategory.setupWithViewPager(mVpCategory);
         mTlHomeCategory.setTabGravity(TabLayout.GRAVITY_FILL);
         mVpCategory.setCurrentItem(1);
+        mVpCategory.setOffscreenPageLimit(6);
     }
 
     private CollapsingToolbarLayoutState state; // CollapsingToolbarLayout 折叠状态

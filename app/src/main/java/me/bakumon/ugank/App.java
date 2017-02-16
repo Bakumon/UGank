@@ -2,6 +2,8 @@ package me.bakumon.ugank;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 /**
  * App
  * Created by bakumon on 2016/12/8 17:18.
@@ -16,6 +18,13 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        // 初始化 LeakCanary
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(this);
         INSTANCE = this;
         // 初始化主题色
         ThemeManage.INSTANCE.initColorPrimary(getResources().getColor(R.color.colorPrimary));
