@@ -32,21 +32,21 @@
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_home_setting"
                 android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="top|right"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="35dp"
                 android:contentDescription="@null"
+                android:paddingTop="35dp"
                 app:srcCompat="@drawable/ic_setting"/>
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/tl_home_toolbar"
                 style="@style/MyToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
                 android:gravity="bottom"
-                android:paddingBottom="0dp"
+                android:paddingBottom="1dp"
                 app:layout_collapseMode="pin">
 
                 <com.kekstudio.dachshundtablayout.DachshundTabLayout

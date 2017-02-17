@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -17,7 +18,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
@@ -57,6 +61,10 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     ViewPager mVpCategory;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbar;
+    @BindView(R.id.tl_home_toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.iv_home_setting)
+    AppCompatImageView mIvSetting;
 
     private HomeContract.Presenter mHomePresenter = new HomePresenter(this);
 
@@ -77,6 +85,19 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     private void initView() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // 4.4 以上版本
+            // 设置 Toolbar 高度为 80dp，适配状态栏
+            ViewGroup.LayoutParams layoutParams = mToolbar.getLayoutParams();
+            layoutParams.height = DisplayUtils.dp2px(80, this);
+            mToolbar.setLayoutParams(layoutParams);
+        } else { // 4.4 一下版本
+            // 设置 设置图标距离顶部（状态栏最底）为
+            mIvSetting.setPadding(mIvSetting.getPaddingLeft(),
+                    DisplayUtils.dp2px(15, this),
+                    mIvSetting.getPaddingRight(),
+                    mIvSetting.getPaddingBottom());
+        }
 
         setFabDynamicState();
 
