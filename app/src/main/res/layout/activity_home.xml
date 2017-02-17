@@ -31,11 +31,14 @@
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_home_setting"
-                android:layout_width="24dp"
+                android:layout_width="33dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|right"
-                android:layout_marginRight="15dp"
+                android:layout_gravity="top|end"
+                android:layout_marginRight="10dp"
                 android:contentDescription="@null"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:paddingTop="35dp"
                 app:srcCompat="@drawable/ic_setting"/>
 
