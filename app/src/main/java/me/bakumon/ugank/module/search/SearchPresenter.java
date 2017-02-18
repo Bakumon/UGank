@@ -22,7 +22,6 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     private SearchContract.View mView;
 
-    @NonNull
     private CompositeSubscription mSubscriptions;
 
     public SearchPresenter(SearchContract.View view) {
@@ -48,6 +47,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             mView.showTip("搜索内容不能为空");
             return;
         }
+        mView.showSearchResult();
         if (!isLoadMore) {
             mView.showSwipLoading();
         }
@@ -72,13 +72,16 @@ public class SearchPresenter implements SearchContract.Presenter {
                             if (searchResult == null || searchResult.count == 0) {
                                 mView.showTip("没有搜索到结果");
                                 mView.hideSwipLoading();
+                                mView.showSearchHistory();
                                 mView.setEmpty();
                                 return;
                             }
                             mView.setSearchItems(searchResult);
+                            mView.showSearchResult();
                             mView.setLoading();
                         } else {
                             mView.addSearchItems(searchResult);
+                            mView.showSearchResult();
                         }
                         boolean isLastPage = searchResult.count < GlobalConfig.PAGE_SIZE_CATEGORY;
                         if (isLastPage) {

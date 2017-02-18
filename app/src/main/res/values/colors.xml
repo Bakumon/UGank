@@ -16,4 +16,8 @@
     <color name="colorSwipeRefresh6">#02A8F3</color>
 
     <color name="colorTextBlack">#4B4B4B</color>
+
+    <color name="colorDivider">#D9DDE1</color>
+
+    <color name="colorTextPress">#737373</color>
 </resources>

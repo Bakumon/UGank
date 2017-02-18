@@ -10,12 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -46,6 +48,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     RecyclerViewWithFooter mRecyclerViewSearch;
     @BindView(R.id.swipe_refresh_layout_search)
     SwipeRefreshLayout mSwipeRefreshLayoutSearch;
+    @BindView(R.id.ll_search_history)
+    LinearLayout mLlHistory;
+    @BindView(R.id.tv_search_clean)
+    TextView mTvClean;
+    @BindView(R.id.recycler_search_history)
+    RecyclerView mRvHistory;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
 
@@ -185,6 +193,18 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
+    public void showSearchResult() {
+        mLlHistory.setVisibility(View.GONE);
+        mSwipeRefreshLayoutSearch.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showSearchHistory() {
+        mLlHistory.setVisibility(View.VISIBLE);
+        mSwipeRefreshLayoutSearch.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onLoadMore() {
         mPage += 1;
         mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, true);
@@ -196,6 +216,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         mEdSearch.setText("");
         KeyboardUtils.showSoftInput(this, mEdSearch);
         hideSwipLoading();
+        showSearchHistory();
         mSearchPresenter.unsubscribe();
     }
 
@@ -226,6 +247,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
             mSearchPresenter.unsubscribe();
         }
         mRecyclerViewSearch.setEmpty();
+        showSearchHistory();
         mSearchListAdapter.mData = null;
         mSearchListAdapter.notifyDataSetChanged();
     }

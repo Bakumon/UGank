@@ -36,6 +36,10 @@ public interface SearchContract {
         void setEmpty();
 
         void setLoading();
+
+        void showSearchResult();
+
+        void showSearchHistory();
     }
 
     interface Presenter extends BasePresenter {

@@ -60,16 +60,68 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout_search"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter
-            android:id="@+id/recycler_view_search"
+        <LinearLayout
+            android:id="@+id/ll_search_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/item_search"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="@string/search_history"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_search_clean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:padding="5dp"
+                    android:text="@string/search_clean"
+                    android:textColor="@color/select_press_color_gray"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorDivider"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_search_history"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter
+                android:id="@+id/recycler_view_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_search"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </FrameLayout>
+
 </LinearLayout>
