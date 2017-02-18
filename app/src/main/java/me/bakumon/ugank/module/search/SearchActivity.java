@@ -20,10 +20,14 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.entity.History;
 import me.bakumon.ugank.entity.SearchResult;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.KeyboardUtils;
@@ -50,15 +54,14 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     SwipeRefreshLayout mSwipeRefreshLayoutSearch;
     @BindView(R.id.ll_search_history)
     LinearLayout mLlHistory;
-    @BindView(R.id.tv_search_clean)
-    TextView mTvClean;
     @BindView(R.id.recycler_search_history)
-    RecyclerView mRvHistory;
+    RecyclerView mRecyclerViewHistory;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
 
     private int mPage = 1;
     private SearchListAdapter mSearchListAdapter;
+    private HistoryListAdapter mHistoryListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,19 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         mRecyclerViewSearch.setAdapter(mSearchListAdapter);
         mRecyclerViewSearch.setOnLoadMoreListener(this);
         mRecyclerViewSearch.setEmpty();
+
+        mHistoryListAdapter = new HistoryListAdapter(this);
+        // 假数据
+        List<History> historyList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            History history = new History();
+            history.id = i;
+            history.content = "历史" + i;
+            historyList.add(history);
+        }
+        mHistoryListAdapter.mData = historyList;
+        mRecyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerViewHistory.setAdapter(mHistoryListAdapter);
 
     }
 
@@ -225,6 +241,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         KeyboardUtils.hideSoftInput(this);
         mPage = 1;
         mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
+    }
+
+    @OnClick(R.id.tv_search_clean)
+    public void cleanHistory() {
+        Snackbar.make(mRecyclerViewSearch, "clean", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
