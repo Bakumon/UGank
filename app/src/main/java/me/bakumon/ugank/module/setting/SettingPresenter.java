@@ -2,7 +2,6 @@ package me.bakumon.ugank.module.setting;
 
 import android.support.annotation.NonNull;
 
-import com.bumptech.glide.Glide;
 
 import me.bakumon.ugank.App;
 import me.bakumon.ugank.ConfigManage;
@@ -65,7 +64,8 @@ public class SettingPresenter implements SettingContract.Presenter {
         Subscription subscription = Observable.create(new Observable.OnSubscribe<Object>() {
             @Override
             public void call(Subscriber<? super Object> subscriber) {
-                Glide.get(App.getInstance()).clearDiskCache();
+                // TODO: 2017/2/22 清理缓存 
+//                Glide.get(App.getInstance()).clearDiskCache();
                 subscriber.onNext(null);
             }
         }).subscribeOn(Schedulers.io())

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import me.bakumon.ugank.ConfigManage;
 import me.bakumon.ugank.R;
@@ -34,9 +34,9 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
             if (ConfigManage.INSTANCE.isListShowImg()) { // 列表显示图片
                 imageView.setVisibility(View.VISIBLE);
                 if (androidResult.images != null && androidResult.images.size() > 0) {
-                    Glide.with(mContext).load(androidResult.images.get(0) + "?imageView2/0/w/200").into(imageView);
+                    Picasso.with(mContext).load(androidResult.images.get(0) + "?imageView2/0/w/200").into(imageView);
                 } else { // 列表不显示图片
-                    Glide.with(mContext).load(R.mipmap.image_default).into(imageView);
+                    Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);
                 }
             } else {
                 imageView.setVisibility(View.GONE);

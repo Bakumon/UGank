@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -25,10 +24,9 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.github.florent37.glidepalette.BitmapPalette;
-import com.github.florent37.glidepalette.GlidePalette;
+import com.github.florent37.picassopalette.PicassoPalette;
 import com.kekstudio.dachshundtablayout.DachshundTabLayout;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -188,15 +186,15 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void setBanner(String imgUrl) {
-        Glide.with(this).load(imgUrl)
-                .listener(GlidePalette.with(imgUrl)
-                        .intoCallBack(new BitmapPalette.CallBack() {
-                            @Override
-                            public void onPaletteLoaded(@Nullable Palette palette) {
-                                mHomePresenter.setThemeColor(palette);
-                            }
-                        }))
-                .into(mIvHomeBanner);
+        Picasso.with(this).load(imgUrl)
+                .into(mIvHomeBanner,
+                        PicassoPalette.with(imgUrl, mIvHomeBanner)
+                                .intoCallBack(new PicassoPalette.CallBack() {
+                                    @Override
+                                    public void onPaletteLoaded(Palette palette) {
+                                        mHomePresenter.setThemeColor(palette);
+                                    }
+                                }));
     }
 
     @Override

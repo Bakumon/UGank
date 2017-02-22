@@ -16,7 +16,8 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,10 +94,19 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
 
     @Override
     public void loadMeizuImg(String url) {
-        Glide.with(this)
+        Picasso.with(this)
                 .load(url)
-                .listener(((BigimgPresenter) mBigimgPresenter).new BigimgLoadCompleteistener())
-                .into(imgBig);
+                .into(imgBig, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        showSaveFab();
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
     }
 
     @Override

@@ -2,8 +2,6 @@ package me.bakumon.ugank.utills;
 
 import android.content.Context;
 
-import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
-
 import java.io.File;
 import java.math.BigDecimal;
 
@@ -28,11 +26,11 @@ public class GlideCacheUtil {
      * @return CacheSize
      */
     public String getCacheSize(Context context) {
-        try {
-            return getFormatSize(getFolderSize(new File(context.getCacheDir() + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            return getFormatSize(getFolderSize(new File(context.getCacheDir() + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return "";
     }
 
