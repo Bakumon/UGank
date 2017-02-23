@@ -1,27 +1,18 @@
 package me.bakumon.ugank.module.home;
 
-import android.Manifest;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
-
-import com.tbruyelle.rxpermissions.RxPermissions;
 
 import me.bakumon.ugank.App;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.ThemeManage;
 import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.network.NetWork;
-import me.bakumon.ugank.utills.ImageUtil;
 import rx.Observable;
 import rx.Observer;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
@@ -32,14 +23,12 @@ import rx.subscriptions.CompositeSubscription;
 public class HomePresenter implements HomeContract.Presenter {
 
     private HomeContract.View mHomeView;
-    private Activity mContext;
 
     @NonNull
     private CompositeSubscription mSubscriptions;
 
     HomePresenter(HomeContract.View homeView) {
         mHomeView = homeView;
-        mContext = mHomeView.getBigimgContext();
         mSubscriptions = new CompositeSubscription();
     }
 
@@ -51,7 +40,6 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void unsubscribe() {
         mSubscriptions.clear();
-        mContext = null;
     }
 
 
@@ -112,59 +100,6 @@ public class HomePresenter implements HomeContract.Presenter {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
                             mHomeView.showBannerFail("Banner 图加载失败，请重试。102", isRandom);
-                        }
-                    }
-                });
-        mSubscriptions.add(subscription);
-    }
-
-    @Override
-    public void saveImg(final Drawable drawable) {
-        if (drawable == null) {
-            mHomeView.showMsgSaveFail();
-            return;
-        }
-        mHomeView.showSavingMsgTip();
-        RxPermissions rxPermissions = new RxPermissions(mContext);
-        Subscription requestPermissionSubscription = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new Action1<Boolean>() {
-                    @Override
-                    public void call(Boolean aBoolean) {
-                        if (aBoolean) {
-                            saveImageToGallery(ImageUtil.drawableToBitmap(drawable));
-                        } else {
-                            mHomeView.showPermissionsTip();
-                        }
-                    }
-                });
-        mSubscriptions.add(requestPermissionSubscription);
-    }
-
-    private void saveImageToGallery(final Bitmap bitmap) {
-        Subscription subscription = Observable.create(new Observable.OnSubscribe<Boolean>() {
-            @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
-                boolean isSaveSuccess = ImageUtil.saveImageToGallery(mContext, bitmap);
-                subscriber.onNext(isSaveSuccess);
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Boolean isSaveSuccess) {
-                        if (isSaveSuccess) {
-                            mHomeView.showMsgSaveSuccess();
-                        } else {
-                            mHomeView.showMsgSaveFail();
                         }
                     }
                 });

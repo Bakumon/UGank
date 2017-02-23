@@ -1,7 +1,6 @@
 package me.bakumon.ugank.module.home;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
 
@@ -31,16 +30,6 @@ public interface HomeContract {
 
         void setFabButtonColor(int color);
 
-        Activity getBigimgContext();
-
-        void showPermissionsTip();
-
-        void showMsgSaveSuccess();
-
-        void showMsgSaveFail();
-
-        void showSavingMsgTip();
-
     }
 
     interface Presenter extends BasePresenter {
@@ -51,6 +40,5 @@ public interface HomeContract {
 
         void getBanner(final boolean isRandom);
 
-        void saveImg(Drawable drawable);
     }
 }

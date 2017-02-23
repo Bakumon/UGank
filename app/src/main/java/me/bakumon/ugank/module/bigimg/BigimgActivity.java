@@ -1,30 +1,21 @@
 package me.bakumon.ugank.module.bigimg;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.utills.DisplayUtils;
-import me.bakumon.ugank.utills.MDTintUtil;
 import me.bakumon.ugank.widget.PinchImageView;
 
 public class BigimgActivity extends AppCompatActivity implements BigimgContract.View {
@@ -40,8 +31,6 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
     AppBarLayout appbarBigImg;
     @BindView(R.id.img_big)
     PinchImageView imgBig;
-    @BindView(R.id.fab_meizi_save)
-    FloatingActionButton mFabMeiziSave;
 
     private BigimgContract.Presenter mBigimgPresenter = new BigimgPresenter(this);
 
@@ -77,11 +66,6 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
         mBigimgPresenter.unsubscribe();
     }
 
-    @OnClick(R.id.fab_meizi_save)
-    public void save() {
-        mBigimgPresenter.saveImg();
-    }
-
     @Override
     public Activity getBigimgContext() {
         return this;
@@ -96,17 +80,7 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
     public void loadMeizuImg(String url) {
         Picasso.with(this)
                 .load(url)
-                .into(imgBig, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        showSaveFab();
-                    }
-
-                    @Override
-                    public void onError() {
-
-                    }
-                });
+                .into(imgBig);
     }
 
     @Override
@@ -114,64 +88,5 @@ public class BigimgActivity extends AppCompatActivity implements BigimgContract.
         appbarBigImg.setBackgroundColor(color);
     }
 
-    @Override
-    public void setViewColorAccent(int color) {
-        MDTintUtil.setTint(mFabMeiziSave, color);
-    }
-
-    @Override
-    public void showSaveFab() {
-        mFabMeiziSave.show();
-    }
-
-    @Override
-    public void showMsgSaveSuccess(String msg) {
-        Snackbar.make(mFabMeiziSave, msg, Snackbar.LENGTH_LONG).setAction("查看", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivity(i);
-            }
-        }).show();
-    }
-
-    @Override
-    public void showMsgSaveFail(String msg) {
-        Snackbar.make(mFabMeiziSave, msg, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mBigimgPresenter.saveImg();
-            }
-        }).show();
-    }
-
-    @Override
-    public void showPermissionsTip(String msg) {
-        Snackbar.make(mFabMeiziSave, msg, Snackbar.LENGTH_LONG).show();
-    }
-
-    private ObjectAnimator mAnimator;
-
-    @Override
-    public void startFabSavingAnim() {
-        mFabMeiziSave.setImageResource(R.drawable.ic_loading);
-        mAnimator = ObjectAnimator.ofFloat(mFabMeiziSave, "rotation", 0, 360);
-        mAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        mAnimator.setDuration(800);
-        mAnimator.setInterpolator(new LinearInterpolator());
-        mAnimator.start();
-    }
-
-    @Override
-    public void stopFabSavingAnim() {
-        mFabMeiziSave.setImageResource(R.drawable.ic_meizi_save);
-        mAnimator.cancel();
-        mFabMeiziSave.setRotation(0);
-    }
-
-    @Override
-    public void setFabEnable(boolean isEnable) {
-        mFabMeiziSave.setEnabled(isEnable);
-    }
 
 }

@@ -22,24 +22,8 @@ public interface BigimgContract {
 
         void setToolbarBackgroundColor(int color);
 
-        void setViewColorAccent(int color);
-
-        void showSaveFab();
-
-        void showMsgSaveSuccess(String msg);
-
-        void showMsgSaveFail(String msg);
-
-        void showPermissionsTip(String msg);
-
-        void startFabSavingAnim();
-
-        void stopFabSavingAnim();
-
-        void setFabEnable(boolean isEnable);
     }
 
     interface Presenter extends BasePresenter {
-        void saveImg();
     }
 }

@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -31,7 +30,6 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.ugank.module.category.CategoryFragment;
@@ -39,7 +37,6 @@ import me.bakumon.ugank.module.search.SearchActivity;
 import me.bakumon.ugank.module.setting.SettingActivity;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
-import me.bakumon.ugank.widget.SaveImgDialog;
 
 /**
  * HomeActivity
@@ -208,42 +205,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         MDTintUtil.setTint(mFloatingActionButton, color);
     }
 
-    @Override
-    public Activity getBigimgContext() {
-        return this;
-    }
-
-    @Override
-    public void showPermissionsTip() {
-        Snackbar.make(mVpCategory, "需要权限才能保存妹子", Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void showMsgSaveSuccess() {
-        Snackbar.make(mVpCategory, "图片保存成功", Snackbar.LENGTH_LONG).setAction("查看", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivity(i);
-            }
-        }).show();
-    }
-
-    @Override
-    public void showMsgSaveFail() {
-        Snackbar.make(mVpCategory, "图片保存失败", Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mHomePresenter.saveImg(mIvHomeBanner.getDrawable());
-            }
-        }).show();
-    }
-
-    @Override
-    public void showSavingMsgTip() {
-        Snackbar.make(mVpCategory, "正在保存图片...", Snackbar.LENGTH_LONG).show();
-    }
-
     private ObjectAnimator mAnimator;
 
     @Override
@@ -287,26 +248,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
             return;
         }
         startBannerAnim();
-    }
-
-    @OnLongClick(R.id.iv_home_banner)
-    public boolean bannerLongClick() {
-        if (!isBannerBig) {
-            return false;
-        }
-        showSaveMeiziDialog();
-        return true;
-    }
-
-    private void showSaveMeiziDialog() {
-        SaveImgDialog saveImgDialog = new SaveImgDialog(this);
-        saveImgDialog.setItemClick(new SaveImgDialog.OnItemClick() {
-            @Override
-            public void onItemClick() {
-                mHomePresenter.saveImg(mIvHomeBanner.getDrawable());
-            }
-        });
-        saveImgDialog.show();
     }
 
     private void startBannerAnim() {

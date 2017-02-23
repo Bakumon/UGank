@@ -1,22 +1,10 @@
 package me.bakumon.ugank.module.bigimg;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.text.TextUtils;
 
-import com.tbruyelle.rxpermissions.RxPermissions;
-
 import me.bakumon.ugank.ThemeManage;
-import me.bakumon.ugank.utills.ImageUtil;
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -29,7 +17,6 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     private BigimgContract.View mBigimgView;
     private Activity mContext;
     private String meiziUrl;
-    private Bitmap mBitmap;
 
     private CompositeSubscription mSubscriptions;
 
@@ -43,7 +30,6 @@ public class BigimgPresenter implements BigimgContract.Presenter {
         mSubscriptions = new CompositeSubscription();
         mContext = mBigimgView.getBigimgContext();
         mBigimgView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
-        mBigimgView.setViewColorAccent(ThemeManage.INSTANCE.getColorPrimary());
         loadDate();
     }
 
@@ -60,59 +46,6 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     public void unsubscribe() {
         mContext = null;
         mSubscriptions.clear();
-    }
-
-    @Override
-    public void saveImg() {
-        RxPermissions rxPermissions = new RxPermissions(mContext);
-        Subscription requestPermissionSubscription = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new Action1<Boolean>() {
-                    @Override
-                    public void call(Boolean aBoolean) {
-                        if (aBoolean) {
-                            saveImageToGallery();
-                        } else {
-                            mBigimgView.showPermissionsTip("需要权限才能保存妹子");
-                        }
-                    }
-                });
-        mSubscriptions.add(requestPermissionSubscription);
-    }
-
-    private void saveImageToGallery() {
-        // TODO: 2017/2/22 下载保存图片
-        mBigimgView.setFabEnable(false);
-        mBigimgView.startFabSavingAnim();
-        Subscription subscription = Observable.create(new Observable.OnSubscribe<Boolean>() {
-            @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
-                boolean isSaveSuccess = ImageUtil.saveImageToGallery(mContext, mBitmap);
-                subscriber.onNext(isSaveSuccess);
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Boolean isSaveSuccess) {
-                        if (isSaveSuccess) {
-                            mBigimgView.showMsgSaveSuccess("图片保存成功");
-                        } else {
-                            mBigimgView.showMsgSaveFail("图片保存失败");
-                        }
-                        mBigimgView.setFabEnable(true);
-                        mBigimgView.stopFabSavingAnim();
-                    }
-                });
-        mSubscriptions.add(subscription);
     }
 
 }
