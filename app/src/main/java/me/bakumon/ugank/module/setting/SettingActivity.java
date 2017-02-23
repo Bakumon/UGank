@@ -13,6 +13,8 @@ import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,10 +33,14 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     SwitchCompat mSwitchSetting;
     @BindView(R.id.appbar_setting)
     AppBarLayout mAppbarSetting;
-    @BindView(R.id.tv_setting_cache_size)
-    AppCompatTextView mTvSettingCacheSize;
     @BindView(R.id.tv_setting_version_name)
     AppCompatTextView mTvSettingVersionName;
+    @BindView(R.id.ll_setting_image_quality)
+    LinearLayout mLlImageQuality;
+    @BindView(R.id.tv_setting_image_quality_title)
+    TextView mTvImageQualityTitle;
+    @BindView(R.id.tv_setting_image_quality_content)
+    TextView mTvImageQualityContent;
 
     private SettingPresenter mSettingPresenter = new SettingPresenter(this);
 
@@ -97,45 +103,28 @@ public class SettingActivity extends AppCompatActivity implements SettingContrac
     }
 
     @Override
-    public void setCacheSizeInTv(String size) {
-        mTvSettingCacheSize.setText("图片等缓存文件 " + size);
-    }
-
-    @Override
     public void setAppVersionNameInTv(String versionName) {
         mTvSettingVersionName.setText("版本: " + versionName);
     }
 
     @Override
-    public void showDeleteImgSuccess() {
-        Snackbar.make(mToolbarSetting, "清理缓存完成", Snackbar.LENGTH_LONG).show();
+    public void setImageQualityChooseUnEnable() {
+        mLlImageQuality.setClickable(false);
+        mTvImageQualityTitle.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
+        mTvImageQualityContent.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
     }
 
     @Override
-    public void showDeleteImgFail() {
-        Snackbar.make(mToolbarSetting, "清理缓存失败", Snackbar.LENGTH_LONG)
-                .setAction("重试", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mSettingPresenter.deleteImgCache();
-                    }
-                }).show();
-    }
-
-    @OnClick(R.id.ll_setting_cache)
-    public void deleteCache() {
-        mSettingPresenter.deleteImgCache();
+    public void setImageQualityChooseEnable() {
+        mLlImageQuality.setClickable(true);
+        mTvImageQualityTitle.setTextColor(getResources().getColor(R.color.colorTextEnable));
+        mTvImageQualityContent.setTextColor(getResources().getColor(R.color.colorTextEnableGary));
     }
 
     @OnClick(R.id.ll_setting_about)
     public void about() {
         new AboutDialog(this, mSettingPresenter.getColorPrimary()).show();
     }
-
-//    @OnClick(R.id.ll_setting_thanks)
-//    public void thanks() {
-//        Snackbar.make(mToolbarSetting, "致谢 Dialog", Snackbar.LENGTH_LONG).show();
-//    }
 
     @OnClick(R.id.ll_setting_issues)
     public void issues() {

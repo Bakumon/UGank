@@ -15,9 +15,11 @@
     <color name="colorSwipeRefresh5">#9B26AF</color>
     <color name="colorSwipeRefresh6">#02A8F3</color>
 
-    <color name="colorTextBlack">#4B4B4B</color>
-
     <color name="colorDivider">#D9DDE1</color>
 
+    <color name="colorTextBlack">#4B4B4B</color>
     <color name="colorTextPress">#737373</color>
+    <color name="colorTextUnEnable">#C1C1C1</color>
+    <color name="colorTextEnable">#323232</color>
+    <color name="colorTextEnableGary">#9F9F9F</color>
 </resources>

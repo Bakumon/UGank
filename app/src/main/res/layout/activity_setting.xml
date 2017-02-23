@@ -86,7 +86,7 @@
                 android:background="#EEEEEE"/>
 
             <LinearLayout
-                android:id="@+id/ll_setting_cache"
+                android:id="@+id/ll_setting_image_quality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -95,18 +95,19 @@
                 android:padding="15dp">
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_setting_image_quality_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="清理缓存"
+                    android:text="缩略图质量"
                     android:textColor="#323232"
                     android:textSize="15sp"/>
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_setting_cache_size"
+                    android:id="@+id/tv_setting_image_quality_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="图片等缓存文件 63 MB"
+                    android:text="原图"
                     android:textColor="#9F9F9F"
                     android:textSize="12sp"/>
 
@@ -219,42 +220,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="#EEEEEE"/>
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/ll_setting_thanks"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="?attr/selectableItemBackground"-->
-                <!--android:clickable="true"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:padding="15dp">-->
-
-                <!--<LinearLayout-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:orientation="vertical">-->
-
-                    <!--<android.support.v7.widget.AppCompatTextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="致谢"-->
-                        <!--android:textColor="#323232"-->
-                        <!--android:textSize="15sp"/>-->
-                <!--</LinearLayout>-->
-
-                <!--<android.support.v7.widget.AppCompatImageView-->
-                    <!--android:layout_width="12dp"-->
-                    <!--android:layout_height="12dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:contentDescription="@null"-->
-                    <!--app:srcCompat="@drawable/ic_right"/>-->
-            <!--</LinearLayout>-->
-
-            <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1px"-->
-                <!--android:background="#EEEEEE"/>-->
 
             <LinearLayout
                 android:id="@+id/ll_setting_issues"

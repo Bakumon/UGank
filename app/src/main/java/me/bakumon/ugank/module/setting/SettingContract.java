@@ -17,20 +17,17 @@ public interface SettingContract {
 
         void setSwitchCompatsColor(int color);
 
-        void setCacheSizeInTv(String size);
-
         void setAppVersionNameInTv(String versionName);
 
-        void showDeleteImgSuccess();
+        void setImageQualityChooseUnEnable();
 
-        void showDeleteImgFail();
+        void setImageQualityChooseEnable();
+
     }
 
     interface Presenter extends BasePresenter {
 
         void saveIsListShowImg(boolean isListShowImg);
-
-        void deleteImgCache();
 
         int getColorPrimary();
     }
