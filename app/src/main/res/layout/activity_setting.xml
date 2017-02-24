@@ -22,7 +22,7 @@
             android:background="@android:color/transparent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="设置"
+            app:title="@string/setting_title"
             app:titleTextColor="@android:color/white"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -48,15 +48,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="基本设置"
-                    android:textColor="#9F9F9F"
+                    android:text="@string/setting_basic"
+                    android:textColor="@color/colorTextEnableGary"
                     android:textSize="14sp"/>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#EEEEEE"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/colorLine"/>
 
             <LinearLayout
                 android:id="@+id/ll_is_show_list_img"
@@ -70,8 +70,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="显示缩略图"
-                    android:textColor="#323232"
+                    android:text="@string/setting_thumb_show"
+                    android:textColor="@color/colorTextEnable"
                     android:textSize="15sp"/>
 
                 <android.support.v7.widget.SwitchCompat
@@ -82,8 +82,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#EEEEEE"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/colorLine"/>
 
             <LinearLayout
                 android:id="@+id/ll_setting_image_quality"
@@ -98,8 +98,8 @@
                     android:id="@+id/tv_setting_image_quality_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="缩略图质量"
-                    android:textColor="#323232"
+                    android:text="@string/setting_thumb_quality"
+                    android:textColor="@color/colorTextEnable"
                     android:textSize="15sp"/>
 
                 <android.support.v7.widget.AppCompatTextView
@@ -107,8 +107,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="原图"
-                    android:textColor="#9F9F9F"
+                    android:text="@string/setting_quality_hige"
+                    android:textColor="@color/colorTextEnableGary"
                     android:textSize="12sp"/>
 
             </LinearLayout>
@@ -130,15 +130,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="更多"
-                    android:textColor="#9F9F9F"
+                    android:text="@string/setting_more"
+                    android:textColor="@color/colorTextEnableGary"
                     android:textSize="14sp"/>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#EEEEEE"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/colorLine"/>
 
             <LinearLayout
                 android:id="@+id/ll_setting_about"
@@ -158,8 +158,8 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="关于有干货"
-                        android:textColor="#323232"
+                        android:text="@string/setting_about_ugank"
+                        android:textColor="@color/colorTextEnable"
                         android:textSize="15sp"/>
 
                     <android.support.v7.widget.AppCompatTextView
@@ -167,8 +167,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="版本: 1.0.0"
-                        android:textColor="#9F9F9F"
+                        android:text="@string/setting_version"
+                        android:textColor="@color/colorTextEnableGary"
                         android:textSize="12sp"/>
                 </LinearLayout>
 
@@ -182,8 +182,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#EEEEEE"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/colorLine"/>
 
             <LinearLayout
                 android:id="@+id/ll_setting_pay"
@@ -203,8 +203,8 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="捐赠开发者"
-                        android:textColor="#323232"
+                        android:text="@string/setting_donate"
+                        android:textColor="@color/colorTextEnable"
                         android:textSize="15sp"/>
                 </LinearLayout>
 
@@ -218,8 +218,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#EEEEEE"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/colorLine"/>
 
             <LinearLayout
                 android:id="@+id/ll_setting_issues"
@@ -239,8 +239,8 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="反馈"
-                        android:textColor="#323232"
+                        android:text="@string/setting_feedback"
+                        android:textColor="@color/colorTextEnable"
                         android:textSize="15sp"/>
 
                     <android.support.v7.widget.AppCompatTextView
@@ -248,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="https://github.com/Bakumon/UGank/issues"
-                        android:textColor="#9F9F9F"
+                        android:textColor="@color/colorTextEnableGary"
                         android:textSize="12sp"/>
                 </LinearLayout>
 
@@ -262,8 +262,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#EEEEEE"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/colorLine"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

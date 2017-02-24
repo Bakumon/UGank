@@ -10,4 +10,14 @@
     <string name="rv_with_footer_empty">没有数据啦</string>
     <string name="search_history">搜索历史</string>
     <string name="search_clean">清除</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_basic">基本设置</string>
+    <string name="setting_thumb_show">显示缩略图</string>
+    <string name="setting_thumb_quality">缩略图质量</string>
+    <string name="setting_quality_hige">原图</string>
+    <string name="setting_more">更多</string>
+    <string name="setting_about_ugank">关于有干货</string>
+    <string name="setting_version">版本:</string>
+    <string name="setting_donate">捐赠开发者</string>
+    <string name="setting_feedback">反馈</string>
 </resources>
