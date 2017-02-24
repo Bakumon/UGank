@@ -30,6 +30,7 @@ public class SettingPresenter implements SettingContract.Presenter {
         mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         // 初始化开关显示状态
         mView.changeSwitchState(ConfigManage.INSTANCE.isListShowImg());
+        setImageQualityChooseIsEnable(ConfigManage.INSTANCE.isListShowImg());
         mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
     }
 
@@ -41,7 +42,11 @@ public class SettingPresenter implements SettingContract.Presenter {
     @Override
     public void saveIsListShowImg(boolean isListShowImg) {
         ConfigManage.INSTANCE.setListShowImg(isListShowImg);
-        if (isListShowImg) {
+        setImageQualityChooseIsEnable(isListShowImg);
+    }
+
+    private void setImageQualityChooseIsEnable(boolean isEnable) {
+        if (isEnable) {
             mView.setImageQualityChooseEnable();
         } else {
             mView.setImageQualityChooseUnEnable();
