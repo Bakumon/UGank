@@ -2,6 +2,8 @@ package me.bakumon.ugank;
 
 import android.app.Application;
 
+import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
+
 //import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -25,6 +27,7 @@ public class App extends Application {
 //            return;
 //        }
 //        LeakCanary.install(this);
+        BGASwipeBackManager.getInstance().init(this);
         INSTANCE = this;
         // 初始化主题色
         ThemeManage.INSTANCE.initColorPrimary(getResources().getColor(R.color.colorPrimary));

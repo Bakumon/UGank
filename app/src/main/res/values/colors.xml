@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#206080</color>
     <color name="colorAccent">#206080</color>
 
+    <color name="colorActivityBackground" >#FAFAFA</color>
+
     <color name="colorTabTextUnSelected">#D3D3D2</color>
     <color name="colorTabTextSelected">#FDFDFD</color>
     <color name="colorTabIndicator">#FDFDFD</color>

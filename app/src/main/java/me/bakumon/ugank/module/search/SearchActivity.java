@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.entity.History;
 import me.bakumon.ugank.entity.SearchResult;
 import me.bakumon.ugank.utills.DisplayUtils;
@@ -36,7 +36,7 @@ import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 
-public class SearchActivity extends AppCompatActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, OnLoadMoreListener {
+public class SearchActivity extends SwipeBackBaseActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, OnLoadMoreListener {
 
     @BindView(R.id.toolbar_search)
     Toolbar mToolbarSearch;

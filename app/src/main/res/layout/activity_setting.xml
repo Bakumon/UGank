@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/activity_setting"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@android:color/white"
-              android:orientation="vertical"
-              tools:context="me.bakumon.ugank.module.setting.SettingActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorActivityBackground"
+    android:orientation="vertical"
+    tools:context="me.bakumon.ugank.module.setting.SettingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar_setting"
@@ -23,7 +23,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/setting_title"
-            app:titleTextColor="@android:color/white"/>
+            app:titleTextColor="@android:color/white" />
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
@@ -50,13 +50,13 @@
                     android:layout_weight="1"
                     android:text="@string/setting_basic"
                     android:textColor="@color/colorTextEnableGary"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/colorLine"/>
+                android:background="@color/colorLine" />
 
             <LinearLayout
                 android:id="@+id/ll_is_show_list_img"
@@ -72,18 +72,18 @@
                     android:layout_weight="1"
                     android:text="@string/setting_thumb_show"
                     android:textColor="@color/colorTextEnable"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <android.support.v7.widget.SwitchCompat
                     android:id="@+id/switch_setting"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/colorLine"/>
+                android:background="@color/colorLine" />
 
             <LinearLayout
                 android:id="@+id/ll_setting_image_quality"
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/setting_thumb_quality"
                     android:textColor="@color/colorTextEnable"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_setting_image_quality_content"
@@ -109,14 +109,14 @@
                     android:layout_marginTop="3dp"
                     android:text="@string/setting_quality_hige"
                     android:textColor="@color/colorTextEnableGary"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#F5F5F5"/>
+                android:background="#F5F5F5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,13 +132,13 @@
                     android:layout_weight="1"
                     android:text="@string/setting_more"
                     android:textColor="@color/colorTextEnableGary"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/colorLine"/>
+                android:background="@color/colorLine" />
 
             <LinearLayout
                 android:id="@+id/ll_setting_about"
@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/setting_about_ugank"
                         android:textColor="@color/colorTextEnable"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tv_setting_version_name"
@@ -169,7 +169,7 @@
                         android:layout_marginTop="2dp"
                         android:text="@string/setting_version"
                         android:textColor="@color/colorTextEnableGary"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <android.support.v7.widget.AppCompatImageView
@@ -177,13 +177,13 @@
                     android:layout_height="12dp"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ic_right"/>
+                    app:srcCompat="@drawable/ic_right" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/colorLine"/>
+                android:background="@color/colorLine" />
 
             <LinearLayout
                 android:id="@+id/ll_setting_pay"
@@ -205,7 +205,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/setting_donate"
                         android:textColor="@color/colorTextEnable"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <android.support.v7.widget.AppCompatImageView
@@ -213,13 +213,13 @@
                     android:layout_height="12dp"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ic_right"/>
+                    app:srcCompat="@drawable/ic_right" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/colorLine"/>
+                android:background="@color/colorLine" />
 
             <LinearLayout
                 android:id="@+id/ll_setting_issues"
@@ -241,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/setting_feedback"
                         android:textColor="@color/colorTextEnable"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -249,7 +249,7 @@
                         android:layout_marginTop="2dp"
                         android:text="https://github.com/Bakumon/UGank/issues"
                         android:textColor="@color/colorTextEnableGary"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <android.support.v7.widget.AppCompatImageView
@@ -257,13 +257,13 @@
                     android:layout_height="12dp"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ic_right"/>
+                    app:srcCompat="@drawable/ic_right" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/line_height"
-                android:background="@color/colorLine"/>
+                android:background="@color/colorLine" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

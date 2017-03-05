@@ -3,7 +3,6 @@
     package="me.bakumon.ugank">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="me.bakumon.ugank.App"
@@ -26,15 +25,22 @@
             </intent-filter><!---->
         </activity>
         <!-- WebView -->
-        <activity android:name="me.bakumon.ugank.module.webview.WebViewActivity" />
+        <activity
+            android:name="me.bakumon.ugank.module.webview.WebViewActivity"
+            android:theme="@style/AppTheme.Transparent" />
         <!-- 设置　-->
-        <activity android:name="me.bakumon.ugank.module.setting.SettingActivity" />
+        <activity
+            android:name="me.bakumon.ugank.module.setting.SettingActivity"
+            android:theme="@style/AppTheme.Transparent" />
         <!-- 搜索　-->
         <activity
             android:name="me.bakumon.ugank.module.search.SearchActivity"
+            android:theme="@style/AppTheme.Transparent"
             android:windowSoftInputMode="stateVisible" />
         <!-- 查看妹子 -->
-        <activity android:name="me.bakumon.ugank.module.bigimg.BigimgActivity" />
+        <activity
+            android:name="me.bakumon.ugank.module.bigimg.BigimgActivity"
+            android:theme="@style/AppTheme.Transparent" />
     </application>
 
 </manifest>

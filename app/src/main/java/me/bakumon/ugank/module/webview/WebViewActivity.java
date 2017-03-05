@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,10 +20,11 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.AndroidUtil;
 import me.bakumon.ugank.utills.DisplayUtils;
 
-public class WebViewActivity extends AppCompatActivity implements WebViewContract.View {
+public class WebViewActivity extends SwipeBackBaseActivity implements WebViewContract.View {
 
     public static final String GANK_URL = "me.bakumon.gank.module.webview.WebViewActivity.gank_url";
     public static final String GANK_TITLE = "me.bakumon.gank.module.webview.WebViewActivity.gank_title";

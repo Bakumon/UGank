@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -20,12 +19,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.AlipayZeroSdk;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
 import me.bakumon.ugank.widget.AboutDialog;
 
-public class SettingActivity extends AppCompatActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
+public class SettingActivity extends SwipeBackBaseActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
 
     @BindView(R.id.toolbar_setting)
     Toolbar mToolbarSetting;

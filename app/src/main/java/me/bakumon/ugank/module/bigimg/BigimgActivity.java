@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -15,10 +14,11 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.widget.PinchImageView;
 
-public class BigimgActivity extends AppCompatActivity implements BigimgContract.View {
+public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContract.View {
 
     public static final String MEIZI_URL = "me.bakumon.gank.module.img.BigimgActivity.meizi_url";
     public static final String MEIZI_TITLE = "me.bakumon.gank.module.img.BigimgActivity.meizi_title";
