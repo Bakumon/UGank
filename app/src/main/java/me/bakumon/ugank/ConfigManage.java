@@ -22,7 +22,7 @@ public enum ConfigManage {
         // 列表是否显示图片
         isListShowImg = sharedPreferences.getBoolean(key_isListShowImg, false);
         // 缩略图质量 0：原图 1：默认 2：省流
-        thumbnailQuality = sharedPreferences.getInt(key_thumbnailQuality, 0);
+        thumbnailQuality = sharedPreferences.getInt(key_thumbnailQuality, 1);
     }
 
     public boolean isListShowImg() {
