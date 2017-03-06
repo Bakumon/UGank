@@ -23,6 +23,8 @@ public interface SettingContract {
 
         void setImageQualityChooseEnable();
 
+        void setThumbnailQualityInfo(String quality);
+
     }
 
     interface Presenter extends BasePresenter {
@@ -30,5 +32,9 @@ public interface SettingContract {
         void saveIsListShowImg(boolean isListShowImg);
 
         int getColorPrimary();
+
+        int getThumbnailQuality();
+
+        void setThumbnailQuality(int quality);
     }
 }

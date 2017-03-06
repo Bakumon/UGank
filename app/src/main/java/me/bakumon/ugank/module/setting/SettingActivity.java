@@ -15,6 +15,8 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -119,6 +121,31 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mLlImageQuality.setClickable(true);
         mTvImageQualityTitle.setTextColor(getResources().getColor(R.color.colorTextEnable));
         mTvImageQualityContent.setTextColor(getResources().getColor(R.color.colorTextEnableGary));
+    }
+
+    @Override
+    public void setThumbnailQualityInfo(String quality) {
+        mTvImageQualityContent.setText(quality);
+    }
+
+    @OnClick(R.id.ll_setting_image_quality)
+    public void chooseThumbnailQuality() {
+        new MaterialDialog.Builder(this)
+                .title("缩略图质量")
+                .items("原图", "默认", "省流")
+                .widgetColor(mSettingPresenter.getColorPrimary())
+                .alwaysCallSingleChoiceCallback()
+                .itemsCallbackSingleChoice(mSettingPresenter.getThumbnailQuality(), new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        mSettingPresenter.setThumbnailQuality(which);
+                        dialog.dismiss();
+                        return true;
+                    }
+                })
+                .positiveText("取消")
+                .positiveColor(mSettingPresenter.getColorPrimary())
+                .show();
     }
 
     @OnClick(R.id.ll_setting_about)

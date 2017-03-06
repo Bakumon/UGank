@@ -33,8 +33,20 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
             ImageView imageView = holder.getView(R.id.iv_item_img);
             if (ConfigManage.INSTANCE.isListShowImg()) { // 列表显示图片
                 imageView.setVisibility(View.VISIBLE);
+                String quality = "";
                 if (androidResult.images != null && androidResult.images.size() > 0) {
-                    Picasso.with(mContext).load(androidResult.images.get(0) + "?imageView2/0/w/200").into(imageView);
+                    switch (ConfigManage.INSTANCE.getThumbnailQuality()) {
+                        case 0: // 原图
+                            quality = "";
+                            break;
+                        case 1: //
+                            quality = "?imageView2/0/w/400";
+                            break;
+                        case 2:
+                            quality = "?imageView2/0/w/190";
+                            break;
+                    }
+                    Picasso.with(mContext).load(androidResult.images.get(0) + quality).into(imageView);
                 } else { // 列表不显示图片
                     Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);
                 }

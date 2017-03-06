@@ -32,6 +32,23 @@ public class SettingPresenter implements SettingContract.Presenter {
         mView.changeSwitchState(ConfigManage.INSTANCE.isListShowImg());
         setImageQualityChooseIsEnable(ConfigManage.INSTANCE.isListShowImg());
         mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
+        setThumbnailQuality(ConfigManage.INSTANCE.getThumbnailQuality());
+    }
+
+    private void setThumbnailQualityInfo(int quality) {
+        String thumbnailQuality = "";
+        switch (quality) {
+            case 0:
+                thumbnailQuality = "原图";
+                break;
+            case 1:
+                thumbnailQuality = "默认";
+                break;
+            case 2:
+                thumbnailQuality = "省流";
+                break;
+        }
+        mView.setThumbnailQualityInfo(thumbnailQuality);
     }
 
     @Override
@@ -56,5 +73,16 @@ public class SettingPresenter implements SettingContract.Presenter {
     @Override
     public int getColorPrimary() {
         return ThemeManage.INSTANCE.getColorPrimary();
+    }
+
+    @Override
+    public int getThumbnailQuality() {
+        return ConfigManage.INSTANCE.getThumbnailQuality();
+    }
+
+    @Override
+    public void setThumbnailQuality(int quality) {
+        ConfigManage.INSTANCE.setThumbnailQuality(quality);
+        setThumbnailQualityInfo(quality);
     }
 }
