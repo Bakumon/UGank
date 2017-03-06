@@ -1,10 +1,12 @@
 package me.bakumon.ugank.module.setting;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import me.bakumon.ugank.App;
 import me.bakumon.ugank.ConfigManage;
 import me.bakumon.ugank.ThemeManage;
+import me.bakumon.ugank.utills.DataCleanManager;
 import me.bakumon.ugank.utills.PackageUtil;
 import rx.subscriptions.CompositeSubscription;
 
@@ -33,6 +35,12 @@ public class SettingPresenter implements SettingContract.Presenter {
         setImageQualityChooseIsEnable(ConfigManage.INSTANCE.isListShowImg());
         mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
         setThumbnailQuality(ConfigManage.INSTANCE.getThumbnailQuality());
+        try {
+            mView.showCacheSize(DataCleanManager.getTotalCacheSize((Context) mView));
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 
     private void setThumbnailQualityInfo(int quality) {
@@ -84,5 +92,16 @@ public class SettingPresenter implements SettingContract.Presenter {
     public void setThumbnailQuality(int quality) {
         ConfigManage.INSTANCE.setThumbnailQuality(quality);
         setThumbnailQualityInfo(quality);
+    }
+
+    @Override
+    public void cleanCache(Context context) {
+        DataCleanManager.clearAllCache(context);
+        try {
+            mView.showCacheSize(DataCleanManager.getTotalCacheSize(context));
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 }

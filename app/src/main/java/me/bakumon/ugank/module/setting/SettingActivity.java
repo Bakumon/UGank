@@ -43,6 +43,8 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     TextView mTvImageQualityTitle;
     @BindView(R.id.tv_setting_image_quality_content)
     TextView mTvImageQualityContent;
+    @BindView(R.id.tv_setting_clean_cache)
+    TextView mTvCleanCache;
 
     private SettingPresenter mSettingPresenter = new SettingPresenter(this);
 
@@ -128,6 +130,11 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mTvImageQualityContent.setText(quality);
     }
 
+    @Override
+    public void showCacheSize(String cache) {
+        mTvCleanCache.setText(cache);
+    }
+
     @OnClick(R.id.ll_setting_image_quality)
     public void chooseThumbnailQuality() {
         new MaterialDialog.Builder(this)
@@ -151,6 +158,11 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     @OnClick(R.id.ll_setting_about)
     public void about() {
         new AboutDialog(this, mSettingPresenter.getColorPrimary()).show();
+    }
+
+    @OnClick(R.id.ll_setting_clean_cache)
+    public void cleanCache() {
+        mSettingPresenter.cleanCache(this);
     }
 
     @OnClick(R.id.ll_setting_issues)
