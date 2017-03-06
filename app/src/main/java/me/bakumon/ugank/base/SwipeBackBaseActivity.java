@@ -8,7 +8,8 @@ import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 import me.bakumon.ugank.R;
 
 /**
- * h
+ * 滑动返回 Base 类
+ * https://github.com/bingoogolapple/BGASwipeBackLayout-Android
  * Created by bakumon on 17-3-5.
  */
 
@@ -37,6 +38,9 @@ public abstract class SwipeBackBaseActivity extends AppCompatActivity implements
         // 设置是否仅仅跟踪左侧边缘的滑动返回。默认值为 true
         mSwipeBackHelper.setIsOnlyTrackingLeftEdge(true);
         // 设置是否是微信滑动返回样式。默认值为 true
+        // 选用微信滑动返回样式会有两个问题：
+        // 1.正在滑动时按下返回键 view 显示异常
+        // 2. 界面有明显的抖动
         mSwipeBackHelper.setIsWeChatStyle(false);
         // 设置阴影资源 id。默认值为 R.drawable.bga_sbl_shadow
         mSwipeBackHelper.setShadowResId(R.drawable.bga_sbl_shadow);
@@ -63,7 +67,6 @@ public abstract class SwipeBackBaseActivity extends AppCompatActivity implements
      */
     @Override
     public void onSwipeBackLayoutSlide(float slideOffset) {
-        isSwiping = true;
     }
 
     /**
@@ -71,7 +74,6 @@ public abstract class SwipeBackBaseActivity extends AppCompatActivity implements
      */
     @Override
     public void onSwipeBackLayoutCancel() {
-        isSwiping = false;
     }
 
     /**
@@ -82,12 +84,4 @@ public abstract class SwipeBackBaseActivity extends AppCompatActivity implements
         mSwipeBackHelper.swipeBackward();
     }
 
-    protected boolean isSwiping = false;
-
-    @Override
-    public void onBackPressed() {
-        if (!isSwiping) {
-            super.onBackPressed();
-        }
-    }
 }
