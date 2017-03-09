@@ -1,6 +1,5 @@
 package me.bakumon.ugank.module.home;
 
-import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
 

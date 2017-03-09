@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Home">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
     <style name="AppTheme.Transparent">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -30,11 +34,6 @@
 
     <style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item>
-    </style>
-
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/ic_launcher_bg</item>
-        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="MyDialog" parent="@android:style/Theme.Dialog">

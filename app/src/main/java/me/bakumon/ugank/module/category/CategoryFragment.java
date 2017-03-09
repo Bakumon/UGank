@@ -16,7 +16,6 @@ import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.widget.RecycleViewDivider;
-import me.bakumon.ugank.widget.recyclerviewwithfooter.DefaultFootItem;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 

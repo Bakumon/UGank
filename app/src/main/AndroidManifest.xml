@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.bakumon.ugank">
+          package="me.bakumon.ugank">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="me.bakumon.ugank.App"
@@ -13,34 +13,32 @@
         android:theme="@style/AppTheme">
 
         <!-- 主页 -->
-        <activity android:name="me.bakumon.ugank.module.home.HomeActivity" />
-        <!-- 启动页 -->
         <activity
-            android:name="me.bakumon.ugank.module.launcher.LauncherActivity"
-            android:theme="@style/SplashTheme">
+            android:name="me.bakumon.ugank.module.home.HomeActivity"
+            android:theme="@style/AppTheme.Home">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter><!---->
         </activity>
         <!-- WebView -->
         <activity
             android:name="me.bakumon.ugank.module.webview.WebViewActivity"
-            android:theme="@style/AppTheme.Transparent" />
+            android:theme="@style/AppTheme.Transparent"/>
         <!-- 设置　-->
         <activity
             android:name="me.bakumon.ugank.module.setting.SettingActivity"
-            android:theme="@style/AppTheme.Transparent" />
+            android:theme="@style/AppTheme.Transparent"/>
         <!-- 搜索　-->
         <activity
             android:name="me.bakumon.ugank.module.search.SearchActivity"
             android:theme="@style/AppTheme.Transparent"
-            android:windowSoftInputMode="stateVisible" />
+            android:windowSoftInputMode="stateVisible"/>
         <!-- 查看妹子 -->
         <activity
             android:name="me.bakumon.ugank.module.bigimg.BigimgActivity"
-            android:theme="@style/AppTheme.Transparent" />
+            android:theme="@style/AppTheme.Transparent"/>
     </application>
 
 </manifest>

@@ -9,4 +9,8 @@
         <!-- api 19 -->
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+    <style name="AppTheme.Home">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

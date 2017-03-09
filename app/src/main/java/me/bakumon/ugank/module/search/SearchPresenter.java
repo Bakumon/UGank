@@ -1,7 +1,6 @@
 package me.bakumon.ugank.module.search;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import me.bakumon.ugank.GlobalConfig;
