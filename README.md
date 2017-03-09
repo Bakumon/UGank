@@ -3,13 +3,13 @@
 
 ![「有干货」启动图标](https://github.com/Bakumon/UGank/raw/master/art/ic_launcher.png)
 
-[直接下载 APk](https://raw.githubusercontent.com/Bakumon/UGank/master/apk/ugank_release_1.0.2_3.apk)
+## 下载
 
 **蒲公英下载**
 
 ![「有干货」启动图标](https://github.com/Bakumon/UGank/raw/master/art/app-qrcode-ugank.png)
 
-[或点击去蒲公英下载](https://www.pgyer.com/ugank)
+[或点击下载](https://www.pgyer.com/ugank)
 
 ## 介绍
 
@@ -24,7 +24,14 @@
 
 ## 版本
 
-### v1.0.2 🆕
+### v1.1.0 🆕
+
+1. 去掉启动页，去除等待时间
+2. 滑动返回
+3. 缩略图质量可选
+4. 去除无用资源文件，减小 Apk 体积
+
+### v1.0.2
 
 1. 首页左右滑动更加流畅
 2. 修改bug：4.4以下版本工具栏高度问题 [#6](https://github.com/Bakumon/UGank/issues/6)
@@ -48,6 +55,8 @@
 欢迎 [提 issues](https://github.com/Bakumon/UGank/issues/new)，提建议或 Bug:bug:
 
 - [x] 上拉加载效果
+- [X] 滑动返回
+- [x] 缩略图质量可选
 - [ ] 持久化搜索历史
 - [ ] ...
 
@@ -63,6 +72,8 @@
 - [RxPermissions-6.0-运行时权限](https://github.com/tbruyelle/RxPermissions)
 - [Android-RecyclerViewWithFooter-加载更多的RecyclerView ](https://github.com/android-cjj/Android-RecyclerViewWithFooter)
 - [Dachshund-Tab-Layout - 扩展的 TabLayout](https://github.com/Andy671/Dachshund-Tab-Layout)
+- [BGASwipeBackLayout - 滑动返回](https://github.com/bingoogolapple/BGASwipeBackLayout-Android)
+- [material-dialogs - Material 风格的 Dialog](https://github.com/afollestad/material-dialogs)
 
 ## 特别鸣谢
  [代码家](https://github.com/daimajia)  [干货集中营](http://gank.io/) 提供 API

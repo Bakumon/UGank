@@ -216,7 +216,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     @Override
     public void showSearchHistory() {
-        mLlHistory.setVisibility(View.VISIBLE);
+        mLlHistory.setVisibility(View.GONE);
         mSwipeRefreshLayoutSearch.setVisibility(View.GONE);
     }
 
