@@ -24,6 +24,8 @@ import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
  */
 public class CategoryFragment extends Fragment implements CategoryContract.View, SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
 
+    public static final String CATEGORY_NAME = "me.bakumon.ugank.module.category.CATEGORY_NAME";
+
     @BindView(R.id.recycler_view)
     RecyclerViewWithFooter mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
@@ -38,7 +40,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        mCategoryName = bundle.getString("mCategoryName");
+        mCategoryName = bundle.getString(CATEGORY_NAME);
     }
 
     @Override
@@ -90,7 +92,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
         CategoryFragment categoryFragment = new CategoryFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putString("mCategoryName", mCategoryName);
+        bundle.putString(CATEGORY_NAME, mCategoryName);
 
         categoryFragment.setArguments(bundle);
         return categoryFragment;

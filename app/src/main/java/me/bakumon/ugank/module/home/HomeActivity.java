@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
+import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.ugank.module.category.CategoryFragment;
@@ -96,21 +97,27 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
         setFabDynamicState();
 
-        String[] titles = {"App", "Android", "iOS", "前端", "瞎推荐", "拓展资源"};
+        String[] titles = {
+                GlobalConfig.CATEGORY_NAME_APP,
+                GlobalConfig.CATEGORY_NAME_ANDROID,
+                GlobalConfig.CATEGORY_NAME_IOS,
+                GlobalConfig.CATEGORY_NAME_FRONT_END,
+                GlobalConfig.CATEGORY_NAME_RECOMMEND,
+                GlobalConfig.CATEGORY_NAME_RESOURCE};
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
         // App
-        CategoryFragment appFragment = CategoryFragment.newInstance("App");
+        CategoryFragment appFragment = CategoryFragment.newInstance(titles[0]);
         // Android
-        CategoryFragment androidFragment = CategoryFragment.newInstance("Android");
+        CategoryFragment androidFragment = CategoryFragment.newInstance(titles[1]);
         // iOS
-        CategoryFragment iOSFragment = CategoryFragment.newInstance("iOS");
+        CategoryFragment iOSFragment = CategoryFragment.newInstance(titles[2]);
         // 前端
-        CategoryFragment frontFragment = CategoryFragment.newInstance("前端");
+        CategoryFragment frontFragment = CategoryFragment.newInstance(titles[3]);
         // 瞎推荐
-        CategoryFragment referenceFragment = CategoryFragment.newInstance("瞎推荐");
+        CategoryFragment referenceFragment = CategoryFragment.newInstance(titles[4]);
         // 拓展资源s
-        CategoryFragment resFragment = CategoryFragment.newInstance("拓展资源");
+        CategoryFragment resFragment = CategoryFragment.newInstance(titles[5]);
 
         infoPagerAdapter.addFragment(appFragment);
         infoPagerAdapter.addFragment(androidFragment);
