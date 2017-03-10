@@ -2,7 +2,6 @@ package me.bakumon.ugank.module.search;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonAdapter4RecyclerView;
@@ -34,7 +33,19 @@ public class HistoryListAdapter extends CommonAdapter4RecyclerView<History> impl
         if (mData.get(position) == null) {
             return;
         }
-
-        Toast.makeText(mContext, "item" + position, Toast.LENGTH_SHORT).show();
+        if (mOnItemClickListener != null) {
+            mOnItemClickListener.OnItemClick(mData.get(position));
+        }
     }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnitemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void OnItemClick(History history);
+    }
+
 }

@@ -35,7 +35,7 @@ import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 
-public class SearchActivity extends SwipeBackBaseActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, OnLoadMoreListener {
+public class SearchActivity extends SwipeBackBaseActivity implements SearchContract.View, TextWatcher, TextView.OnEditorActionListener, OnLoadMoreListener, HistoryListAdapter.OnItemClickListener {
 
     @BindView(R.id.toolbar_search)
     Toolbar mToolbarSearch;
@@ -115,6 +115,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
         mHistoryListAdapter = new HistoryListAdapter(this);
 
+        mHistoryListAdapter.setOnitemClickListener(this);
         mHistoryListAdapter.mData = null;
         mRecyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerViewHistory.setAdapter(mHistoryListAdapter);
@@ -273,5 +274,16 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
             search();
         }
         return false;
+    }
+
+    @Override
+    public void OnItemClick(History history) {
+        if (history == null || history.getContent() == null) {
+            return;
+        }
+        KeyboardUtils.hideSoftInput(this);
+        mEdSearch.setText(history.getContent());
+        mEdSearch.setSelection(mEdSearch.getText().toString().length());
+        mSearchPresenter.search(history.getContent(), false);
     }
 }
