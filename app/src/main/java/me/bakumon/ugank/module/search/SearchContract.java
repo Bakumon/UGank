@@ -1,7 +1,10 @@
 package me.bakumon.ugank.module.search;
 
+import java.util.List;
+
 import me.bakumon.ugank.base.BasePresenter;
 import me.bakumon.ugank.base.BaseView;
+import me.bakumon.ugank.entity.History;
 import me.bakumon.ugank.entity.SearchResult;
 
 /**
@@ -40,10 +43,18 @@ public interface SearchContract {
         void showSearchResult();
 
         void showSearchHistory();
+
+        void setHistory(List<History> history);
     }
 
     interface Presenter extends BasePresenter {
 
         void search(String searchText, int page, boolean isLoadMore);
+
+        void queryHistory();
+
+        void saveOneHistory(String historyContent);
+
+        void deleteAllHistory();
     }
 }

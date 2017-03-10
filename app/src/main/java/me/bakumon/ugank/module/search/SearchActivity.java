@@ -19,7 +19,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -71,6 +70,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
         ButterKnife.bind(this);
         initView();
         mSearchPresenter.subscribe();
+        mSearchPresenter.queryHistory();
     }
 
     private void initView() {
@@ -115,15 +115,8 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
         mRecyclerViewSearch.setEmpty();
 
         mHistoryListAdapter = new HistoryListAdapter(this);
-        // 假数据
-        List<History> historyList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            History history = new History();
-            history.id = i;
-            history.content = "历史" + i;
-            historyList.add(history);
-        }
-        mHistoryListAdapter.mData = historyList;
+
+        mHistoryListAdapter.mData = null;
         mRecyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerViewHistory.setAdapter(mHistoryListAdapter);
 
@@ -216,8 +209,14 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     @Override
     public void showSearchHistory() {
-        mLlHistory.setVisibility(View.GONE);
+        mLlHistory.setVisibility(View.VISIBLE);
         mSwipeRefreshLayoutSearch.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setHistory(List<History> history) {
+        mHistoryListAdapter.mData = history;
+        mHistoryListAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -234,6 +233,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
         hideSwipLoading();
         showSearchHistory();
         mSearchPresenter.unsubscribe();
+        mSearchPresenter.queryHistory();
     }
 
     @OnClick(R.id.iv_search)
@@ -241,11 +241,12 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
         KeyboardUtils.hideSoftInput(this);
         mPage = 1;
         mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
+        mSearchPresenter.saveOneHistory(mEdSearch.getText().toString().trim());
     }
 
     @OnClick(R.id.tv_search_clean)
     public void cleanHistory() {
-        Snackbar.make(mRecyclerViewSearch, "clean", Snackbar.LENGTH_SHORT).show();
+        mSearchPresenter.deleteAllHistory();
     }
 
     @Override
@@ -266,19 +267,18 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
             hideEditClear();
             hideSwipLoading();
             mSearchPresenter.unsubscribe();
+            mRecyclerViewSearch.setEmpty();
+            mSearchListAdapter.mData = null;
+            mSearchListAdapter.notifyDataSetChanged();
+            showSearchHistory();
+            mSearchPresenter.queryHistory();
         }
-        mRecyclerViewSearch.setEmpty();
-        showSearchHistory();
-        mSearchListAdapter.mData = null;
-        mSearchListAdapter.notifyDataSetChanged();
     }
 
     @Override
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-            mPage = 1;
-            mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
-            KeyboardUtils.hideSoftInput(this);
+            search();
         }
         return false;
     }

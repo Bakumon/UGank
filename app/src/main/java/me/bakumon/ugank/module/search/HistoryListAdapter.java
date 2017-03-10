@@ -24,7 +24,7 @@ public class HistoryListAdapter extends CommonAdapter4RecyclerView<History> impl
     @Override
     public void convert(CommonHolder4RecyclerView holder, History history) {
         if (history != null) {
-            holder.setTextViewText(R.id.tv_item_content_history, history.content == null ? "unknown" : history.content);
+            holder.setTextViewText(R.id.tv_item_content_history, history.getContent() == null ? "unknown" : history.getContent());
             holder.setOnClickListener(this, R.id.ll_item_history);
         }
     }

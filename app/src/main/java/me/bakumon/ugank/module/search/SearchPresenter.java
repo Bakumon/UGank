@@ -3,8 +3,13 @@ package me.bakumon.ugank.module.search;
 import android.graphics.Color;
 import android.text.TextUtils;
 
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
+
 import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.ThemeManage;
+import me.bakumon.ugank.entity.History;
 import me.bakumon.ugank.entity.SearchResult;
 import me.bakumon.ugank.network.NetWork;
 import rx.Observer;
@@ -92,5 +97,45 @@ public class SearchPresenter implements SearchContract.Presenter {
 
                 });
         mSubscriptions.add(subscription);
+    }
+
+    @Override
+    public void queryHistory() {
+        // 展示查询所有，需要截取、去重和排序
+        List<History> historyList = DataSupport.order("createTimeMill desc").limit(5).find(History.class);
+        // 将查询结果转为list对象
+        if (historyList == null || historyList.size() < 1) {
+            mView.showSearchResult();
+        } else {
+            mView.setHistory(historyList);
+        }
+    }
+
+    @Override
+    public void saveOneHistory(String historyContent) {
+        if (TextUtils.isEmpty(historyContent)) {
+            return;
+        }
+        // 不知道 LitePal 支不支持去重
+        // 先这样写吧，新增之前查询是否有相同数据，有就更新 CreateTimeMill ，没有就直接新增
+        List<History> historyList = DataSupport.where("content = ?", historyContent).find(History.class);
+        if (historyList == null || historyList.size() < 1) { // 不存在
+            History history = new History();
+            history.setCreateTimeMill(System.currentTimeMillis());
+            history.setContent(historyContent);
+            history.save();
+        } else {
+            // 更新
+            History updateNews = new History();
+            updateNews.setCreateTimeMill(System.currentTimeMillis());
+            updateNews.updateAll("content = ?", historyContent);
+        }
+
+    }
+
+    @Override
+    public void deleteAllHistory() {
+        DataSupport.deleteAll(History.class);
+        mView.showSearchResult();
     }
 }

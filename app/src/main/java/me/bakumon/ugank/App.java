@@ -2,6 +2,8 @@ package me.bakumon.ugank;
 
 import android.app.Application;
 
+import org.litepal.LitePal;
+
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
 
 //import com.squareup.leakcanary.LeakCanary;
@@ -32,6 +34,7 @@ public class App extends Application {
         // 初始化主题色
         ThemeManage.INSTANCE.initColorPrimary(getResources().getColor(R.color.colorPrimary));
         ConfigManage.INSTANCE.initConfig(this);
+        LitePal.initialize(this);
     }
 
 
