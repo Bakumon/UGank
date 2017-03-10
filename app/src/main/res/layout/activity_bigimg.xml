@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorActivityBackground"
-    android:orientation="vertical"
-    tools:context="me.bakumon.ugank.module.bigimg.BigimgActivity">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:background="@color/colorActivityBackground"
+                                                 android:orientation="vertical"
+                                                 tools:context="me.bakumon.ugank.module.bigimg.BigimgActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar_big_img"
@@ -32,15 +32,27 @@
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                tools:text="这是标题" />
+                tools:text="这是标题"/>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+
+    <me.bakumon.ugank.widget.SquareLoading
+        android:id="@+id/sl_big_img_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorActivityBackground"
+        app:dividerSize="2dp"
+        app:squareColor="@color/colorPrimary"
+        app:squareCorner="2dp"
+        app:squareSize="12dp"
+        app:xCount="4"
+        app:yCount="3"/>
 
     <me.bakumon.ugank.widget.PinchImageView
         android:id="@+id/img_big"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -21,6 +21,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     @Override
     public void subscribe() {
         mBigimgView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
+        mBigimgView.setLoadingColor(ThemeManage.INSTANCE.getColorPrimary());
     }
 
     @Override
@@ -32,6 +33,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
         if (data == null) {
             return;
         }
+        mBigimgView.showLoading();
         mBigimgView.loadMeizuImg(data.getString(BigimgActivity.MEIZI_URL));
     }
 

@@ -20,6 +20,12 @@ public interface BigimgContract {
 
         void setToolbarBackgroundColor(int color);
 
+        void setLoadingColor(int color);
+
+        void showLoading();
+
+        void hideLoading();
+
     }
 
     interface Presenter extends BasePresenter {

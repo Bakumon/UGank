@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -16,6 +17,7 @@ import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.widget.PinchImageView;
+import me.bakumon.ugank.widget.SquareLoading;
 
 public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContract.View {
 
@@ -30,6 +32,8 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
     AppBarLayout appbarBigImg;
     @BindView(R.id.img_big)
     PinchImageView imgBig;
+    @BindView(R.id.sl_big_img_loading)
+    SquareLoading mSquareLoading;
 
     private BigimgContract.Presenter mBigimgPresenter = new BigimgPresenter(this);
 
@@ -60,6 +64,7 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
         Bundle bundle = getIntent().getExtras();
         mBigimgPresenter.loadMeiziImg(bundle);
         mBigimgPresenter.setMeiziTitle(bundle);
+
     }
 
     @Override
@@ -77,7 +82,17 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
     public void loadMeizuImg(String url) {
         Picasso.with(this)
                 .load(url)
-                .into(imgBig);
+                .into(imgBig, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        hideLoading();
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
     }
 
     @Override
@@ -85,5 +100,18 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
         appbarBigImg.setBackgroundColor(color);
     }
 
+    @Override
+    public void setLoadingColor(int color) {
+        mSquareLoading.setSquareColor(color);
+    }
 
+    @Override
+    public void showLoading() {
+        mSquareLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        mSquareLoading.setVisibility(View.GONE);
+    }
 }
