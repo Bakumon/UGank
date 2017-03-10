@@ -20,6 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.AlipayZeroSdk;
@@ -133,6 +134,16 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     @Override
     public void showCacheSize(String cache) {
         mTvCleanCache.setText(cache);
+    }
+
+    @Override
+    public void showSuccessTip(String msg) {
+        Toasty.success(this, msg).show();
+    }
+
+    @Override
+    public void showFailTip(String msg) {
+        Toasty.error(this, msg).show();
     }
 
     @OnClick(R.id.ll_setting_image_quality)

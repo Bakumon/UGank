@@ -16,7 +16,7 @@ public interface CategoryContract {
 
         void addAndroidItems(CategoryResult categoryResult);
 
-        void getAndroidItemsFail(String failMessage, final int number, final int page, final boolean isRefresh);
+        void getAndroidItemsFail(String failMessage);
 
         String getCategoryName();
 
@@ -29,6 +29,6 @@ public interface CategoryContract {
 
     interface Presenter extends BasePresenter {
 
-        void getAndroidItems(int number, int page, boolean isRefresh);
+        void getAndroidItems(boolean isRefresh);
     }
 }

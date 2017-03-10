@@ -19,6 +19,8 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
     private CategoryContract.View mCategoryView;
 
+    private int mPage = 1;
+
     @NonNull
     private CompositeSubscription mSubscriptions;
 
@@ -29,7 +31,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
     @Override
     public void subscribe() {
-        getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, 1, true);
+        getAndroidItems(true);
     }
 
     @Override
@@ -38,12 +40,15 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     }
 
     @Override
-    public void getAndroidItems(final int number, final int page, final boolean isRefresh) {
+    public void getAndroidItems(final boolean isRefresh) {
         if (isRefresh) {
             mCategoryView.showSwipLoading();
+            mPage = 1;
+        } else {
+            mPage += 1;
         }
         Subscription subscription = NetWork.getGankApi()
-                .getCategoryDate(mCategoryView.getCategoryName(), number, page)
+                .getCategoryDate(mCategoryView.getCategoryName(), GlobalConfig.PAGE_SIZE_CATEGORY, mPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CategoryResult>() {
@@ -54,8 +59,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         mCategoryView.hideSwipLoading();
-                        mCategoryView.getAndroidItemsFail(mCategoryView.getCategoryName() + " 列表数据获取失败，请重试。201"
-                                , number, page, isRefresh);
+                        mCategoryView.getAndroidItemsFail(mCategoryView.getCategoryName() + " 列表数据获取失败。");
                     }
 
                     @Override

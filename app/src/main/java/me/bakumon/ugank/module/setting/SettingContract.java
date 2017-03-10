@@ -28,6 +28,10 @@ public interface SettingContract {
         void setThumbnailQualityInfo(String quality);
 
         void showCacheSize(String cache);
+
+        void showSuccessTip(String msg);
+
+        void showFailTip(String msg);
     }
 
     interface Presenter extends BasePresenter {

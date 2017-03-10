@@ -1,7 +1,6 @@
 package me.bakumon.ugank.module.setting;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import me.bakumon.ugank.App;
 import me.bakumon.ugank.ConfigManage;
@@ -18,7 +17,6 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     private SettingContract.View mView;
 
-    @NonNull
     private CompositeSubscription mSubscriptions;
 
     public SettingPresenter(SettingContract.View view) {
@@ -96,7 +94,12 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void cleanCache(Context context) {
-        DataCleanManager.clearAllCache(context);
+        if (DataCleanManager.clearAllCache(context)) {
+            mView.showSuccessTip("缓存清理成功！");
+        } else {
+            mView.showFailTip("缓存清理失败！");
+        }
+
         try {
             mView.showCacheSize(DataCleanManager.getTotalCacheSize(context));
         } catch (Exception e) {

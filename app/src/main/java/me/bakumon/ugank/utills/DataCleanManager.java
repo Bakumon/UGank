@@ -41,11 +41,18 @@ public class DataCleanManager {
         return size;
     }
 
-    public static void clearAllCache(Context context) {
-        deleteDir(context.getCacheDir());
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            deleteDir(context.getExternalCacheDir());
+    public static boolean clearAllCache(Context context) {
+        if (!deleteDir(context.getCacheDir())) {
+            return false;
         }
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            if (!deleteDir(context.getExternalCacheDir())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static boolean deleteDir(File dir) {

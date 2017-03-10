@@ -27,6 +27,7 @@ public class SearchPresenter implements SearchContract.Presenter {
     private SearchContract.View mView;
 
     private CompositeSubscription mSubscriptions;
+    private int mPage = 1;
 
     public SearchPresenter(SearchContract.View view) {
         mView = view;
@@ -46,17 +47,20 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     @Override
-    public void search(final String searchText, final int page, final boolean isLoadMore) {
+    public void search(final String searchText, final boolean isLoadMore) {
         if (TextUtils.isEmpty(searchText)) {
-            mView.showTip("搜索内容不能为空");
+            mView.showTip("搜索内容不能为空。");
             return;
         }
         mView.showSearchResult();
         if (!isLoadMore) {
             mView.showSwipLoading();
+            mPage = 1;
+        } else {
+            mPage += 1;
         }
         Subscription subscription = NetWork.getGankApi()
-                .getSearchResult(searchText, GlobalConfig.PAGE_SIZE_CATEGORY, page)
+                .getSearchResult(searchText, GlobalConfig.PAGE_SIZE_CATEGORY, mPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<SearchResult>() {
@@ -66,7 +70,7 @@ public class SearchPresenter implements SearchContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.showSearchFail("搜索出错了，请重试", searchText, page, isLoadMore);
+                        mView.showSearchFail("搜索出错了。");
                         mView.hideSwipLoading();
                     }
 

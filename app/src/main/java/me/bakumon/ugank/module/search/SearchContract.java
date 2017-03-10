@@ -22,7 +22,7 @@ public interface SearchContract {
 
         void hideEditClear();
 
-        void showSearchFail(String failMsg, String searchText, int page, boolean isLoadMore);
+        void showSearchFail(String failMsg);
 
         void setSearchItems(SearchResult searchResult);
 
@@ -49,7 +49,7 @@ public interface SearchContract {
 
     interface Presenter extends BasePresenter {
 
-        void search(String searchText, int page, boolean isLoadMore);
+        void search(String searchText, boolean isLoadMore);
 
         void queryHistory();
 

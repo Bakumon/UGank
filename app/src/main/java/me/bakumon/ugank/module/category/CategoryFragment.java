@@ -2,7 +2,6 @@ package me.bakumon.ugank.module.category;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.bakumon.ugank.GlobalConfig;
+import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.widget.RecycleViewDivider;
@@ -33,10 +32,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     private CategoryListAdapter mAndroidListAdapter;
     private CategoryContract.Presenter mPresenter = new CategoryPresenter(this);
 
-    private int mPage = 1;
-
     private String mCategoryName;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,14 +113,12 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     @Override
     public void onRefresh() {
-        mPage = 1;
-        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, true);
+        mPresenter.getAndroidItems(true);
     }
 
     @Override
     public void onLoadMore() {
-        mPage += 1;
-        mPresenter.getAndroidItems(GlobalConfig.PAGE_SIZE_CATEGORY, mPage, false);
+        mPresenter.getAndroidItems(false);
     }
 
     @Override
@@ -133,14 +127,9 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void getAndroidItemsFail(String failMessage, final int number, final int page, final boolean isRefresh) {
+    public void getAndroidItemsFail(String failMessage) {
         if (getUserVisibleHint()) {
-            Snackbar.make(mSwipeRefreshLayout, failMessage, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mPresenter.getAndroidItems(number, page, isRefresh);
-                }
-            }).show();
+            Toasty.error(this.getContext(), failMessage).show();
         }
     }
 

@@ -4,7 +4,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
@@ -24,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.entity.History;
@@ -58,7 +58,6 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
 
-    private int mPage = 1;
     private SearchListAdapter mSearchListAdapter;
     private HistoryListAdapter mHistoryListAdapter;
 
@@ -149,13 +148,8 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
     }
 
     @Override
-    public void showSearchFail(String failMsg, final String searchText, final int page, final boolean isLoadMore) {
-        Snackbar.make(mSwipeRefreshLayoutSearch, failMsg, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSearchPresenter.search(searchText, page, isLoadMore);
-            }
-        }).show();
+    public void showSearchFail(String failMsg) {
+        Toasty.error(this, failMsg).show();
     }
 
     @Override
@@ -183,7 +177,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     @Override
     public void showTip(String msg) {
-        Snackbar.make(mRecyclerViewSearch, msg, Snackbar.LENGTH_SHORT).show();
+        Toasty.warning(this, msg).show();
     }
 
     @Override
@@ -221,8 +215,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     @Override
     public void onLoadMore() {
-        mPage += 1;
-        mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, true);
+        mSearchPresenter.search(mEdSearch.getText().toString().trim(), true);
     }
 
     @OnClick(R.id.iv_edit_clear)
@@ -239,8 +232,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
     @OnClick(R.id.iv_search)
     public void search() {
         KeyboardUtils.hideSoftInput(this);
-        mPage = 1;
-        mSearchPresenter.search(mEdSearch.getText().toString().trim(), mPage, false);
+        mSearchPresenter.search(mEdSearch.getText().toString().trim(), false);
         mSearchPresenter.saveOneHistory(mEdSearch.getText().toString().trim());
     }
 

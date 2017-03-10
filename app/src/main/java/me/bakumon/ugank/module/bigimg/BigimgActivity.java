@@ -1,6 +1,5 @@
 package me.bakumon.ugank.module.bigimg;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,17 +57,15 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
             }
         });
         mBigimgPresenter.subscribe();
+        Bundle bundle = getIntent().getExtras();
+        mBigimgPresenter.loadMeiziImg(bundle);
+        mBigimgPresenter.setMeiziTitle(bundle);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mBigimgPresenter.unsubscribe();
-    }
-
-    @Override
-    public Activity getBigimgContext() {
-        return this;
     }
 
     @Override

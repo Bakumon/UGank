@@ -12,7 +12,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -30,6 +29,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.ugank.module.category.CategoryFragment;
@@ -173,12 +173,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void showBannerFail(String failMessage, final boolean isRandom) {
-        Snackbar.make(mVpCategory, failMessage, Snackbar.LENGTH_LONG).setAction("重试", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mHomePresenter.getBanner(isRandom);
-            }
-        }).show();
+        Toasty.error(this, failMessage).show();
     }
 
     @Override

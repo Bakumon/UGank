@@ -63,6 +63,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:commons:0.9.3.0'
     compile 'cn.bingoogolapple:bga-swipebacklayout:1.0.7@aar'
     compile 'org.litepal.android:core:1.5.0'
+    compile 'com.github.GrenderG:Toasty:1.1.3'
     // LeakCanary 检测内存泄露，打开后去 APP.java 中打开初始化 LeakCanary 代码
 //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
