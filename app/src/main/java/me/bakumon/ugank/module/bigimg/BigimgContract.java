@@ -1,7 +1,5 @@
 package me.bakumon.ugank.module.bigimg;
 
-import android.os.Bundle;
-
 import me.bakumon.ugank.base.BasePresenter;
 import me.bakumon.ugank.base.BaseView;
 
@@ -24,15 +22,13 @@ public interface BigimgContract {
 
         void showLoading();
 
-        void hideLoading();
+        String getMeiziImg();
+
+        String getMeiziTitle();
 
     }
 
     interface Presenter extends BasePresenter {
-
-        void loadMeiziImg(Bundle data);
-
-        void setMeiziTitle(Bundle data);
 
     }
 }

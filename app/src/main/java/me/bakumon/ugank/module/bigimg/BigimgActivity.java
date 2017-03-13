@@ -61,9 +61,6 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
             }
         });
         mBigimgPresenter.subscribe();
-        Bundle bundle = getIntent().getExtras();
-        mBigimgPresenter.loadMeiziImg(bundle);
-        mBigimgPresenter.setMeiziTitle(bundle);
 
     }
 
@@ -111,6 +108,17 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
     }
 
     @Override
+    public String getMeiziImg() {
+        Bundle bundle = getIntent().getExtras();
+        return bundle.getString(BigimgActivity.MEIZI_URL);
+    }
+
+    @Override
+    public String getMeiziTitle() {
+        Bundle bundle = getIntent().getExtras();
+        return bundle.getString(BigimgActivity.MEIZI_TITLE);
+    }
+
     public void hideLoading() {
         mSquareLoading.setVisibility(View.GONE);
     }

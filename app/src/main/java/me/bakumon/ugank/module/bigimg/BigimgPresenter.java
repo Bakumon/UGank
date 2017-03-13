@@ -1,6 +1,6 @@
 package me.bakumon.ugank.module.bigimg;
 
-import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import me.bakumon.ugank.ThemeManage;
 
@@ -13,7 +13,7 @@ public class BigimgPresenter implements BigimgContract.Presenter {
 
     private BigimgContract.View mBigimgView;
 
-    public BigimgPresenter(BigimgContract.View bigimgView) {
+    public BigimgPresenter(@NonNull BigimgContract.View bigimgView) {
         mBigimgView = bigimgView;
 
     }
@@ -22,26 +22,26 @@ public class BigimgPresenter implements BigimgContract.Presenter {
     public void subscribe() {
         mBigimgView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         mBigimgView.setLoadingColor(ThemeManage.INSTANCE.getColorPrimary());
+        loadMeiziImg(mBigimgView.getMeiziImg());
+        setMeiziTitle(mBigimgView.getMeiziTitle());
     }
 
     @Override
     public void unsubscribe() {
     }
 
-    @Override
-    public void loadMeiziImg(Bundle data) {
-        if (data == null) {
+    private void loadMeiziImg(String url) {
+        if (url == null) {
             return;
         }
         mBigimgView.showLoading();
-        mBigimgView.loadMeizuImg(data.getString(BigimgActivity.MEIZI_URL));
+        mBigimgView.loadMeizuImg(url);
     }
 
-    @Override
-    public void setMeiziTitle(Bundle data) {
-        if (data == null) {
+    private void setMeiziTitle(String title) {
+        if (title == null) {
             return;
         }
-        mBigimgView.setMeiziTitle("妹子:" + data.getString(BigimgActivity.MEIZI_TITLE));
+        mBigimgView.setMeiziTitle("妹子:" + title);
     }
 }
