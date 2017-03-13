@@ -5,11 +5,7 @@
 
 ## 下载
 
-**蒲公英下载**
-
-![「有干货」启动图标](https://github.com/Bakumon/UGank/raw/master/art/app-qrcode-ugank.png)
-
-[或点击下载](https://www.pgyer.com/ugank)
+[酷安下载](http://www.coolapk.com/apk/me.bakumon.ugank)
 
 ## 介绍
 
