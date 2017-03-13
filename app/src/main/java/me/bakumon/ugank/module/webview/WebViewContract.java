@@ -1,7 +1,5 @@
 package me.bakumon.ugank.module.webview;
 
-import android.app.Activity;
-
 import me.bakumon.ugank.base.BasePresenter;
 import me.bakumon.ugank.base.BaseView;
 
@@ -14,17 +12,15 @@ public interface WebViewContract {
 
     interface View extends BaseView {
 
-        Activity getWebViewContext();
-
         void setGankTitle(String title);
 
         void loadGankURL(String url);
 
-        void initWebView();
-
         void setToolbarBackgroundColor(int color);
 
-        void setViewColorAccent(int color);
+        String getLoadUrl();
+
+        String getGankTitle();
 
     }
 

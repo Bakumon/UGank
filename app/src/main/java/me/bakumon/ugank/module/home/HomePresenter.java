@@ -89,7 +89,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mHomeView.showBannerFail("Banner 图加载失败。", isRandom);
+                        mHomeView.showBannerFail("Banner 图加载失败。");
                         mHomeView.enableFabButton();
                         mHomeView.stopBannerLoadingAnim();
                     }
@@ -99,7 +99,7 @@ public class HomePresenter implements HomeContract.Presenter {
                         if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
                         } else {
-                            mHomeView.showBannerFail("Banner 图加载失败。", isRandom);
+                            mHomeView.showBannerFail("Banner 图加载失败。");
                         }
                     }
                 });

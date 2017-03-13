@@ -179,7 +179,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     @Override
-    public void showBannerFail(String failMessage, final boolean isRandom) {
+    public void showBannerFail(String failMessage) {
         Toasty.error(this, failMessage).show();
     }
 

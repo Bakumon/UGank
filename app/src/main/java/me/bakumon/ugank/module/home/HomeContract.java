@@ -13,7 +13,7 @@ import me.bakumon.ugank.base.BaseView;
 public interface HomeContract {
     interface View extends BaseView {
 
-        void showBannerFail(String failMessage, boolean isRandom);
+        void showBannerFail(String failMessage);
 
         void setBanner(String imgUrl);
 

@@ -1,7 +1,5 @@
 package me.bakumon.ugank.module.setting;
 
-import android.content.Context;
-
 import me.bakumon.ugank.base.BasePresenter;
 import me.bakumon.ugank.base.BaseView;
 
@@ -44,6 +42,6 @@ public interface SettingContract {
 
         void setThumbnailQuality(int quality);
 
-        void cleanCache(Context context);
+        void cleanCache();
     }
 }

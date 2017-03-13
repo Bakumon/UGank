@@ -173,7 +173,7 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
 
     @OnClick(R.id.ll_setting_clean_cache)
     public void cleanCache() {
-        mSettingPresenter.cleanCache(this);
+        mSettingPresenter.cleanCache();
     }
 
     @OnClick(R.id.ll_setting_issues)

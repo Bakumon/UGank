@@ -1,8 +1,5 @@
 package me.bakumon.ugank.module.webview;
 
-import android.app.Activity;
-import android.content.Intent;
-
 import me.bakumon.ugank.ThemeManage;
 
 /**
@@ -14,8 +11,6 @@ public class WebViewPresenter implements WebViewContract.Presenter {
 
     private WebViewContract.View mWebViewView;
 
-    private Activity mContext;
-
     private String mGankUrl;
 
     public WebViewPresenter(WebViewContract.View webViewView) {
@@ -24,16 +19,13 @@ public class WebViewPresenter implements WebViewContract.Presenter {
 
     @Override
     public void subscribe() {
-        mContext = mWebViewView.getWebViewContext();
         mWebViewView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
+        mWebViewView.setGankTitle(mWebViewView.getGankTitle());
         loadDate();
     }
 
     private void loadDate() {
-        Intent intent = mContext.getIntent();
-        mWebViewView.setGankTitle(intent.getStringExtra(WebViewActivity.GANK_TITLE));
-        mWebViewView.initWebView();
-        mGankUrl = intent.getStringExtra(WebViewActivity.GANK_URL);
+        mGankUrl = mWebViewView.getLoadUrl();
         mWebViewView.loadGankURL(mGankUrl);
     }
 

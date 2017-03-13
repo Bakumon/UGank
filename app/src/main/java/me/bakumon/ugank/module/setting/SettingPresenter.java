@@ -33,12 +33,7 @@ public class SettingPresenter implements SettingContract.Presenter {
         setImageQualityChooseIsEnable(ConfigManage.INSTANCE.isListShowImg());
         mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
         setThumbnailQuality(ConfigManage.INSTANCE.getThumbnailQuality());
-        try {
-            mView.showCacheSize(DataCleanManager.getTotalCacheSize((Context) mView));
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
+        mView.showCacheSize(DataCleanManager.getTotalCacheSize());
     }
 
     private void setThumbnailQualityInfo(int quality) {
@@ -93,15 +88,15 @@ public class SettingPresenter implements SettingContract.Presenter {
     }
 
     @Override
-    public void cleanCache(Context context) {
-        if (DataCleanManager.clearAllCache(context)) {
+    public void cleanCache() {
+        if (DataCleanManager.clearAllCache()) {
             mView.showSuccessTip("缓存清理成功！");
         } else {
             mView.showFailTip("缓存清理失败！");
         }
 
         try {
-            mView.showCacheSize(DataCleanManager.getTotalCacheSize(context));
+            mView.showCacheSize(DataCleanManager.getTotalCacheSize());
         } catch (Exception e) {
             e.printStackTrace();
 

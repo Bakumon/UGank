@@ -1,10 +1,11 @@
 package me.bakumon.ugank.utills;
 
-import android.content.Context;
 import android.os.Environment;
 
 import java.io.File;
 import java.math.BigDecimal;
+
+import me.bakumon.ugank.App;
 
 /**
  * 清理缓存
@@ -12,10 +13,15 @@ import java.math.BigDecimal;
  */
 
 public class DataCleanManager {
-    public static String getTotalCacheSize(Context context) throws Exception {
-        long cacheSize = getFolderSize(context.getCacheDir());
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            cacheSize += getFolderSize(context.getExternalCacheDir());
+    public static String getTotalCacheSize() {
+        long cacheSize;
+        try {
+            cacheSize = getFolderSize(App.getInstance().getCacheDir());
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                cacheSize += getFolderSize(App.getInstance().getExternalCacheDir());
+            }
+        } catch (Exception e) {
+            cacheSize = 0;
         }
         return getFormatSize(cacheSize);
     }
@@ -41,13 +47,13 @@ public class DataCleanManager {
         return size;
     }
 
-    public static boolean clearAllCache(Context context) {
-        if (!deleteDir(context.getCacheDir())) {
+    public static boolean clearAllCache() {
+        if (!deleteDir(App.getInstance().getCacheDir())) {
             return false;
         }
 
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            if (!deleteDir(context.getExternalCacheDir())) {
+            if (!deleteDir(App.getInstance().getExternalCacheDir())) {
                 return false;
             }
         }
@@ -112,49 +118,49 @@ public class DataCleanManager {
     /**
      * 清除本应用内部缓存(/data/data/com.xxx.xxx/cache) * * @param context
      */
-    public static void cleanInternalCache(Context context) {
-        deleteFilesByDirectory(context.getCacheDir());
+    public static void cleanInternalCache() {
+        deleteFilesByDirectory(App.getInstance().getCacheDir());
     }
 
     /**
      * 清除本应用所有数据库(/data/data/com.xxx.xxx/databases) * * @param context
      */
-    public static void cleanDatabases(Context context) {
+    public static void cleanDatabases() {
         deleteFilesByDirectory(new File("/data/data/"
-                + context.getPackageName() + "/databases"));
+                + App.getInstance().getPackageName() + "/databases"));
     }
 
     /**
      * * 清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs) * * @param
      * context
      */
-    public static void cleanSharedPreference(Context context) {
+    public static void cleanSharedPreference() {
         deleteFilesByDirectory(new File("/data/data/"
-                + context.getPackageName() + "/shared_prefs"));
+                + App.getInstance().getPackageName() + "/shared_prefs"));
     }
 
     /**
      * 按名字清除本应用数据库 * * @param context * @param dbName
      */
-    public static void cleanDatabaseByName(Context context, String dbName) {
-        context.deleteDatabase(dbName);
+    public static void cleanDatabaseByName(String dbName) {
+        App.getInstance().deleteDatabase(dbName);
     }
 
     /**
      * 清除/data/data/com.xxx.xxx/files下的内容 * * @param context
      */
-    public static void cleanFiles(Context context) {
-        deleteFilesByDirectory(context.getFilesDir());
+    public static void cleanFiles() {
+        deleteFilesByDirectory(App.getInstance().getFilesDir());
     }
 
     /**
      * * 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache) * * @param
      * context
      */
-    public static void cleanExternalCache(Context context) {
+    public static void cleanExternalCache() {
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
-            deleteFilesByDirectory(context.getExternalCacheDir());
+            deleteFilesByDirectory(App.getInstance().getExternalCacheDir());
         }
     }
 
@@ -168,12 +174,12 @@ public class DataCleanManager {
     /**
      * 清除本应用所有的数据 * * @param context * @param filepath
      */
-    public static void cleanApplicationData(Context context, String... filepath) {
-        cleanInternalCache(context);
-        cleanExternalCache(context);
-        cleanDatabases(context);
-        cleanSharedPreference(context);
-        cleanFiles(context);
+    public static void cleanApplicationData(String... filepath) {
+        cleanInternalCache();
+        cleanExternalCache();
+        cleanDatabases();
+        cleanSharedPreference();
+        cleanFiles();
         for (String filePath : filepath) {
             cleanCustomCache(filePath);
         }

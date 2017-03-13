@@ -1,6 +1,5 @@
 package me.bakumon.ugank.module.webview;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -65,11 +64,10 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
                 finish();
             }
         });
-
+        initWebView();
         mWebViewPresenter.subscribe();
     }
 
-    @Override
     public void initWebView() {
         WebSettings settings = mWebView.getSettings();
         settings.setLoadWithOverviewMode(true);
@@ -88,11 +86,16 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     }
 
     @Override
-    public void setViewColorAccent(int color) {
-
+    public String getLoadUrl() {
+        return getIntent().getStringExtra(WebViewActivity.GANK_URL);
     }
 
-    class MyWebChrome extends WebChromeClient {
+    @Override
+    public String getGankTitle() {
+        return getIntent().getStringExtra(WebViewActivity.GANK_TITLE);
+    }
+
+    private class MyWebChrome extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             mProgressbar.setVisibility(View.VISIBLE);
@@ -100,16 +103,11 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
         }
     }
 
-    class MyWebClient extends WebViewClient {
+    private class MyWebClient extends WebViewClient {
         @Override
         public void onPageFinished(WebView view, String url) {
             mProgressbar.setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    public Activity getWebViewContext() {
-        return this;
     }
 
     @Override
