@@ -288,11 +288,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         if (isBannerBig) {
             startBannerAnim();
         } else {
-//            super.onBackPressed();
-            // 没错，这是段挺流氓的代码
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
+            super.onBackPressed();
         }
     }
 
