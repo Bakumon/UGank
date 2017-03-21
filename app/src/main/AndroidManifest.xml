@@ -14,7 +14,7 @@
         <!-- 启动页 -->
         <activity
             android:name=".module.launcher.LauncherActivity"
-            android:theme="@style/AppTheme.Home">
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

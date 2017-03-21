@@ -1,7 +1,5 @@
 package me.bakumon.ugank.module.setting;
 
-import android.content.Context;
-
 import me.bakumon.ugank.App;
 import me.bakumon.ugank.ConfigManage;
 import me.bakumon.ugank.ThemeManage;
@@ -90,6 +88,7 @@ public class SettingPresenter implements SettingContract.Presenter {
     @Override
     public void cleanCache() {
         if (DataCleanManager.clearAllCache()) {
+            ConfigManage.INSTANCE.setBannerURL("");
             mView.showSuccessTip("缓存清理成功！");
         } else {
             mView.showFailTip("缓存清理失败！");

@@ -4,5 +4,9 @@
               android:layout_width="match_parent"
               android:background="@android:color/transparent"
               android:layout_height="match_parent">
-
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/img_launcher_welcome"
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent" />
 </LinearLayout>

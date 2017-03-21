@@ -13,9 +13,11 @@ public enum ConfigManage {
     private final String spName = "app_config";
     private final String key_isListShowImg = "isListShowImg";
     private final String key_thumbnailQuality = "thumbnailQuality";
+    private final String key_banner_url = "keyBannerUrl";
 
     private boolean isListShowImg;
     private int thumbnailQuality;
+    private String bannerURL;
 
     public void initConfig(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
@@ -23,6 +25,8 @@ public enum ConfigManage {
         isListShowImg = sharedPreferences.getBoolean(key_isListShowImg, false);
         // 缩略图质量 0：原图 1：默认 2：省流
         thumbnailQuality = sharedPreferences.getInt(key_thumbnailQuality, 1);
+        // Banner URL 用于加载页显示
+        bannerURL = sharedPreferences.getString(key_banner_url, "");
     }
 
     public boolean isListShowImg() {
@@ -48,6 +52,19 @@ public enum ConfigManage {
         editor.putInt(key_thumbnailQuality, thumbnailQuality);
         if (editor.commit()) {
             this.thumbnailQuality = thumbnailQuality;
+        }
+    }
+
+    public String getBannerURL() {
+        return bannerURL;
+    }
+
+    public void setBannerURL(String bannerURL) {
+        SharedPreferences sharedPreferences = App.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key_banner_url, bannerURL);
+        if (editor.commit()) {
+            this.bannerURL = bannerURL;
         }
     }
 }

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.graphics.Palette;
 
 import me.bakumon.ugank.App;
+import me.bakumon.ugank.ConfigManage;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.ThemeManage;
 import me.bakumon.ugank.entity.CategoryResult;
@@ -27,7 +28,7 @@ public class HomePresenter implements HomeContract.Presenter {
     @NonNull
     private CompositeSubscription mSubscriptions;
 
-    HomePresenter(HomeContract.View homeView) {
+    public HomePresenter(HomeContract.View homeView) {
         mHomeView = homeView;
         mSubscriptions = new CompositeSubscription();
     }
@@ -98,6 +99,7 @@ public class HomePresenter implements HomeContract.Presenter {
                     public void onNext(CategoryResult meiziResult) {
                         if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
+                            ConfigManage.INSTANCE.setBannerURL(meiziResult.results.get(0).url);
                         } else {
                             mHomeView.showBannerFail("Banner 图加载失败。");
                         }
