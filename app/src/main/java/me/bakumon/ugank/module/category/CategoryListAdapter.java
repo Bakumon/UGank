@@ -2,6 +2,7 @@ package me.bakumon.ugank.module.category;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -54,6 +55,7 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
                             .resize(size, size)
                             .placeholder(R.mipmap.image_default)
                             .tag("Thumbnails_categoryList_item")
+                            .config(Bitmap.Config.RGB_565)
                             .into(imageView);
                 } else {
 //                    Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);

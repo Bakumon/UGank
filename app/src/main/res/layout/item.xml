@@ -70,7 +70,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
+    <me.bakumon.ugank.widget.RecyclableImageView
         android:id="@+id/iv_item_img"
         android:layout_width="70dp"
         android:layout_height="70dp"
