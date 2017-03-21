@@ -5,9 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,6 +20,9 @@ import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
+
+import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
+import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
 
 /**
  * CategoryFragment
@@ -73,6 +79,18 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
         mRecyclerView.setAdapter(mAndroidListAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
         mRecyclerView.setEmpty();
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                final Picasso picasso = Picasso.with(CategoryFragment.this.getContext());
+
+                if (newState == SCROLL_STATE_IDLE || newState == SCROLL_STATE_TOUCH_SCROLL) {
+                    picasso.resumeTag("Thumbnails_categoryList_item");
+                } else {
+                    picasso.pauseTag("Thumbnails_categoryList_item");
+                }
+            }
+        });
         return view;
     }
 

@@ -47,7 +47,11 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
                             break;
                     }
                     imageView.setVisibility(View.VISIBLE);
-                    Picasso.with(mContext).load(androidResult.images.get(0) + quality).placeholder(R.mipmap.image_default).into(imageView);
+                    Picasso.with(mContext)
+                            .load(androidResult.images.get(0) + quality)
+                            .placeholder(R.mipmap.image_default)
+                            .tag("Thumbnails_categoryList_item")
+                            .into(imageView);
                 } else {
 //                    Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);
                     imageView.setVisibility(View.GONE);
