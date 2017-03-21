@@ -9,7 +9,7 @@
               android:clickable="true"
               android:gravity="center"
               android:orientation="horizontal"
-              android:padding="10dp">
+              android:padding="15dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -27,7 +27,6 @@
             android:lineSpacingMultiplier="1.1"
             android:maxLines="2"
             android:textColor="#323232"
-            android:textSize="15sp"
             tools:text="主题换色，夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式，省流量，这可能是最友好的Gank.io客户端了"/>
 
         <LinearLayout
