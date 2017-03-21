@@ -20,6 +20,7 @@
     <color name="colorDivider">#D9DDE1</color>
     <color name="colorLine">#EEEEEE</color>
 
+    <color name="colorTextSubTitle">#BDBDBD</color>
     <color name="colorTextBlack">#4B4B4B</color>
     <color name="colorTextPress">#737373</color>
     <color name="colorTextUnEnable">#C1C1C1</color>

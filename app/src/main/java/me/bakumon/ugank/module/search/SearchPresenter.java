@@ -53,6 +53,7 @@ public class SearchPresenter implements SearchContract.Presenter {
             return;
         }
         mView.showSearchResult();
+        saveOneHistory(searchText);
         if (!isLoadMore) {
             mView.showSwipLoading();
             mPage = 1;
@@ -115,8 +116,7 @@ public class SearchPresenter implements SearchContract.Presenter {
         }
     }
 
-    @Override
-    public void saveOneHistory(String historyContent) {
+    private void saveOneHistory(String historyContent) {
         if (TextUtils.isEmpty(historyContent)) {
             return;
         }

@@ -82,6 +82,7 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
                 .into(imgBig, new Callback() {
                     @Override
                     public void onSuccess() {
+                        // 这里可能会有内存泄露
                         hideLoading();
                     }
 
@@ -121,5 +122,12 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
 
     public void hideLoading() {
         mSquareLoading.setVisibility(View.GONE);
+        /*
+        * 由于 mSquareLoading 持有 Activity Context 引用，在 Picasso 的 Callback 匿名内部类中使用可能会
+        * 发生内存泄露
+        *
+        * 因为 mSquareLoading 不在使用，所有直接置空，否则选择静态内部类和弱引用的方式避免内存泄露
+        * */
+        mSquareLoading = null;
     }
 }

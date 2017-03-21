@@ -234,7 +234,6 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
     public void search() {
         KeyboardUtils.hideSoftInput(this);
         mSearchPresenter.search(mEdSearch.getText().toString().trim(), false);
-        mSearchPresenter.saveOneHistory(mEdSearch.getText().toString().trim());
     }
 
     @OnClick(R.id.tv_search_clean)

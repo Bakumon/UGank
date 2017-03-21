@@ -53,8 +53,6 @@ public interface SearchContract {
 
         void queryHistory();
 
-        void saveOneHistory(String historyContent);
-
         void deleteAllHistory();
     }
 }

@@ -27,6 +27,7 @@
             android:lineSpacingMultiplier="1.1"
             android:maxLines="2"
             android:textColor="#323232"
+            android:textSize="15sp"
             tools:text="主题换色，夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式，省流量，这可能是最友好的Gank.io客户端了"/>
 
         <LinearLayout
@@ -45,6 +46,7 @@
                 android:id="@+id/tv_item_type_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSubTitle"
                 android:textSize="12sp"
                 tools:text="Android"/>
 
@@ -58,6 +60,7 @@
                 android:id="@+id/tv_item_publisher_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorTextSubTitle"
                 android:textSize="12sp"
                 tools:text="代码家"/>
 
@@ -73,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textColor="@color/colorTextSubTitle"
                 android:textSize="12sp"
                 tools:text="2016-12-08"/>
         </LinearLayout>

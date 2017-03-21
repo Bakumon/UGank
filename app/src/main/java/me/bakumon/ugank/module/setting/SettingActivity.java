@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -191,7 +190,7 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         if (AlipayZeroSdk.hasInstalledAlipayClient(this)) {
             AlipayZeroSdk.startAlipayClient(this, "aex01251c8foqaprudcp503");
         } else {
-            Snackbar.make(mToolbarSetting, "谢谢，您没有安装支付宝客户端", Snackbar.LENGTH_LONG).show();
+            Toasty.info(this, "谢谢，您没有安装支付宝客户端").show();
         }
     }
 }

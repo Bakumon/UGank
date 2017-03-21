@@ -241,6 +241,11 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mHomePresenter.getRandomBanner();
     }
 
+    @OnClick(R.id.iv_home_collection)
+    public void collection() {
+        Toasty.info(this, "收藏").show();
+    }
+
     private boolean isBannerBig; // banner 是否是大图
     private boolean isBannerAniming; // banner 放大缩小的动画是否正在执行
 

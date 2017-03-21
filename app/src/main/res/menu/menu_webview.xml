@@ -1,17 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="me.bakumon.ugank.module.webview.WebViewActivity">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="me.bakumon.ugank.module.webview.WebViewActivity">
     <item
         android:id="@+id/menu_share"
         android:title="@string/menu_share"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_favorite"
+        android:checkable="true"
+        android:checked="false"
+        android:title="@string/menu_favorite"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/menu_copy_link"
         android:title="@string/menu_copy_link"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
     <item
         android:id="@+id/menu_open_with"
         android:title="@string/menu_open_with"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 </menu>

@@ -141,6 +141,9 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
             case R.id.menu_share:
                 AndroidUtil.share(this, mWebViewPresenter.getGankUrl());
                 break;
+            case R.id.action_favorite:
+                item.setChecked(!item.isChecked());
+                break;
             case R.id.menu_copy_link:
                 if (AndroidUtil.copyText(this, mWebViewPresenter.getGankUrl())) {
                     Snackbar.make(mWebView, "链接复制成功", Snackbar.LENGTH_LONG).show();
