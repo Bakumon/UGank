@@ -15,6 +15,7 @@ import me.bakumon.ugank.base.adapter.ListenerWithPosition;
 import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.module.webview.WebViewActivity;
 import me.bakumon.ugank.utills.DateUtil;
+import me.bakumon.ugank.utills.DisplayUtils;
 
 /**
  * CategoryListAdapter
@@ -47,8 +48,10 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
                             break;
                     }
                     imageView.setVisibility(View.VISIBLE);
+                    int size = DisplayUtils.dp2px(70, mContext);
                     Picasso.with(mContext)
                             .load(androidResult.images.get(0) + quality)
+                            .resize(size, size)
                             .placeholder(R.mipmap.image_default)
                             .tag("Thumbnails_categoryList_item")
                             .into(imageView);
