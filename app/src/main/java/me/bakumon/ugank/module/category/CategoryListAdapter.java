@@ -37,10 +37,10 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
                 if (androidResult.images != null && androidResult.images.size() > 0) {
                     switch (ConfigManage.INSTANCE.getThumbnailQuality()) {
                         case 0: // 原图
-                            quality = "";
+                            quality = "?imageView2/0/w/400";
                             break;
                         case 1: //
-                            quality = "?imageView2/0/w/400";
+                            quality = "?imageView2/0/w/280";
                             break;
                         case 2:
                             quality = "?imageView2/0/w/190";
