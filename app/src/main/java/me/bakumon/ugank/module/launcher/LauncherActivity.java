@@ -23,6 +23,12 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         Intent intent = new Intent(LauncherActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();

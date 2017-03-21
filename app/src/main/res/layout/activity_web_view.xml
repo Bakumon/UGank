@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorActivityBackground"
-    android:orientation="vertical"
-    tools:context="me.bakumon.ugank.module.webview.WebViewActivity">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:background="@color/colorActivityBackground"
+                                                 android:orientation="vertical"
+                                                 tools:context="me.bakumon.ugank.module.webview.WebViewActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -32,7 +32,7 @@
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                tools:text="这是标题" />
+                tools:text="这是标题"/>
         </android.support.v7.widget.Toolbar>
 
         <ProgressBar
@@ -43,13 +43,21 @@
             android:layout_gravity="center"
             android:paddingTop="0dp"
             android:progressDrawable="@drawable/progressbar"
-            android:visibility="visible" />
+            android:visibility="visible"/>
     </android.support.design.widget.AppBarLayout>
 
-    <WebView
+    <me.bakumon.ugank.widget.ObservableWebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"></WebView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_web_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_unfavorite"/>
+
+</android.support.design.widget.CoordinatorLayout>

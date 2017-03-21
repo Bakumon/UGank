@@ -22,6 +22,8 @@ public interface WebViewContract {
 
         String getGankTitle();
 
+        void setFabButtonColor(int color);
+
     }
 
     interface Presenter extends BasePresenter {

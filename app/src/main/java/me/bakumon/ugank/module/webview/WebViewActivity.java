@@ -4,7 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,10 +18,14 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.AndroidUtil;
 import me.bakumon.ugank.utills.DisplayUtils;
+import me.bakumon.ugank.utills.MDTintUtil;
+import me.bakumon.ugank.widget.ObservableWebView;
 
 public class WebViewActivity extends SwipeBackBaseActivity implements WebViewContract.View {
 
@@ -33,11 +37,13 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     @BindView(R.id.tv_title)
     TextView mTvTitle;
     @BindView(R.id.web_view)
-    WebView mWebView;
+    ObservableWebView mWebView;
     @BindView(R.id.progressbar_webview)
     ProgressBar mProgressbar;
     @BindView(R.id.appbar)
     AppBarLayout mAppbar;
+    @BindView(R.id.fab_web_favorite)
+    FloatingActionButton mFloatingActionButton;
 
     private WebViewContract.Presenter mWebViewPresenter = new WebViewPresenter(this);
 
@@ -78,6 +84,16 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
 
         mWebView.setWebChromeClient(new MyWebChrome());
         mWebView.setWebViewClient(new MyWebClient());
+        mWebView.setOnScrollChangedCallback(new ObservableWebView.OnScrollChangedCallback() {
+            @Override
+            public void onScroll(int dx, int dy) {
+                if (dy > 0) {
+                    mFloatingActionButton.hide();
+                } else {
+                    mFloatingActionButton.show();
+                }
+            }
+        });
     }
 
     @Override
@@ -93,6 +109,11 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     @Override
     public String getGankTitle() {
         return getIntent().getStringExtra(WebViewActivity.GANK_TITLE);
+    }
+
+    @Override
+    public void setFabButtonColor(int color) {
+        MDTintUtil.setTint(mFloatingActionButton, color);
     }
 
     private class MyWebChrome extends WebChromeClient {
@@ -120,6 +141,12 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
         mWebView.loadUrl(url);
     }
 
+    @OnClick(R.id.fab_web_favorite)
+    public void favorite() {
+        Toasty.success(this, "收藏成功").show();
+        mFloatingActionButton.setImageResource(R.drawable.ic_favorite);
+    }
+
     @Override
     public void onBackPressed() {
         if (mWebView.canGoBack()) {
@@ -141,12 +168,9 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
             case R.id.menu_share:
                 AndroidUtil.share(this, mWebViewPresenter.getGankUrl());
                 break;
-            case R.id.action_favorite:
-                item.setChecked(!item.isChecked());
-                break;
             case R.id.menu_copy_link:
                 if (AndroidUtil.copyText(this, mWebViewPresenter.getGankUrl())) {
-                    Snackbar.make(mWebView, "链接复制成功", Snackbar.LENGTH_LONG).show();
+                    Toasty.normal(this, "链接复制成功").show();
                 }
                 break;
             case R.id.menu_open_with:

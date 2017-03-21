@@ -21,6 +21,8 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     public void subscribe() {
         mWebViewView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         mWebViewView.setGankTitle(mWebViewView.getGankTitle());
+        // 设置 FabButton 的背景色
+        mWebViewView.setFabButtonColor(ThemeManage.INSTANCE.getColorPrimary());
         loadDate();
     }
 
