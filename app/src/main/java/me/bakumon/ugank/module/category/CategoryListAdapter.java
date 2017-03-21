@@ -46,11 +46,13 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
                             quality = "?imageView2/0/w/190";
                             break;
                     }
-                    Picasso.with(mContext).load(androidResult.images.get(0) + quality).into(imageView);
-                } else { // 列表不显示图片
-                    Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);
+                    imageView.setVisibility(View.VISIBLE);
+                    Picasso.with(mContext).load(androidResult.images.get(0) + quality).placeholder(R.mipmap.image_default).into(imageView);
+                } else {
+//                    Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);
+                    imageView.setVisibility(View.GONE);
                 }
-            } else {
+            } else { // 列表不显示图片
                 imageView.setVisibility(View.GONE);
             }
             holder.setTextViewText(R.id.tv_item_title, androidResult.desc == null ? "unknown" : androidResult.desc);
