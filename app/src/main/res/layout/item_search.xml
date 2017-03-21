@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/ll_item_search"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?attr/selectableItemBackground"
-              android:clickable="true"
-              android:orientation="horizontal"
-              android:padding="15dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_item_search"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,7 +27,7 @@
             android:lineSpacingMultiplier="1.1"
             android:maxLines="2"
             android:textColor="#323232"
-            tools:text="主题换色，夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式，省流量，这可能是最友好的Gank.io客户端了"/>
+            tools:text="主题换色，夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式夜间模式，省流量，这可能是最友好的Gank.io客户端了" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,7 +39,7 @@
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_item_label"/>
+                app:srcCompat="@drawable/ic_item_label" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_item_type_search"
@@ -44,13 +47,13 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSubTitle"
                 android:textSize="12sp"
-                tools:text="Android"/>
+                tools:text="Android" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/ic_item_author"/>
+                app:srcCompat="@drawable/ic_item_author" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_item_publisher_search"
@@ -58,13 +61,13 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextSubTitle"
                 android:textSize="12sp"
-                tools:text="代码家"/>
+                tools:text="代码家" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/ic_item_time"/>
+                app:srcCompat="@drawable/ic_item_time" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_item_time_search"
@@ -74,7 +77,7 @@
                 android:maxLines="1"
                 android:textColor="@color/colorTextSubTitle"
                 android:textSize="12sp"
-                tools:text="2016-12-08"/>
+                tools:text="2016-12-08" />
         </LinearLayout>
     </LinearLayout>
 
