@@ -17,6 +17,8 @@ public interface HomeContract {
 
         void setBanner(String imgUrl);
 
+        void cacheImg(String imgUrl);
+
         void startBannerLoadingAnim();
 
         void stopBannerLoadingAnim();
@@ -38,6 +40,8 @@ public interface HomeContract {
         void setThemeColor(@Nullable Palette palette);
 
         void getBanner(final boolean isRandom);
+
+        void saveCacheImgUrl(String url);
 
     }
 }

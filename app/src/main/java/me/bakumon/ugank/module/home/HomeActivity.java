@@ -24,6 +24,7 @@ import android.widget.ImageView;
 
 import com.github.florent37.picassopalette.PicassoPalette;
 import com.kekstudio.dachshundtablayout.DachshundTabLayout;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -194,6 +195,22 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                                         mHomePresenter.setThemeColor(palette);
                                     }
                                 }));
+    }
+
+    @Override
+    public void cacheImg(final String imgUrl) {
+        // 预加载 提前缓存好的欢迎图
+        Picasso.with(this).load(imgUrl).fetch(new Callback() {
+            @Override
+            public void onSuccess() {
+                mHomePresenter.saveCacheImgUrl(imgUrl);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 
     @Override

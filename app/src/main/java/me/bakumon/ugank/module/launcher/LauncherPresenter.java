@@ -19,6 +19,11 @@ public class LauncherPresenter implements LauncherContract.Presenter {
 
     @Override
     public void subscribe() {
+        double random = Math.random();
+        if (random < 0.66) {
+            mLauncherView.goHomeActivity();
+            return;
+        }
         String imgCacheUrl = ConfigManage.INSTANCE.getBannerURL();
         if (TextUtils.isEmpty(imgCacheUrl)) {
             mLauncherView.goHomeActivity();

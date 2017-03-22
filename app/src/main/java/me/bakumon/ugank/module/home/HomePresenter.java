@@ -36,6 +36,7 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void subscribe() {
         getBanner(false);
+        cacheRandomImg();
     }
 
     @Override
@@ -63,6 +64,36 @@ public class HomePresenter implements HomeContract.Presenter {
             mHomeView.enableFabButton();
             mHomeView.stopBannerLoadingAnim();
         }
+    }
+
+    private void cacheRandomImg() {
+        Observable<CategoryResult> observable;
+        observable = NetWork.getGankApi().getRandomBeauties(1);
+        Subscription subscription = observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CategoryResult>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onNext(CategoryResult meiziResult) {
+                        if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
+                            mHomeView.cacheImg(meiziResult.results.get(0).url);
+                        }
+                    }
+                });
+        mSubscriptions.add(subscription);
+    }
+
+    @Override
+    public void saveCacheImgUrl(String url) {
+        ConfigManage.INSTANCE.setBannerURL(url);
     }
 
     /**

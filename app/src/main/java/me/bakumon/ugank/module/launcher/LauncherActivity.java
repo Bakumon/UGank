@@ -47,7 +47,7 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
                                 public void run() {
                                     goHomeActivity();
                                 }
-                            }, 1000);
+                            }, 1200);
                         }
 
                         @Override
