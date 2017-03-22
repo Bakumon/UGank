@@ -133,12 +133,12 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     @Override
     public void onRefresh() {
-        mPresenter.getAndroidItems(true);
+        mPresenter.getCategoryItems(true);
     }
 
     @Override
     public void onLoadMore() {
-        mPresenter.getAndroidItems(false);
+        mPresenter.getCategoryItems(false);
     }
 
     @Override
@@ -147,20 +147,20 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void getAndroidItemsFail(String failMessage) {
+    public void getCategoryItemsFail(String failMessage) {
         if (getUserVisibleHint()) {
             Toasty.error(this.getContext(), failMessage).show();
         }
     }
 
     @Override
-    public void setAndroidItems(CategoryResult categoryResult) {
+    public void setCategoryItems(CategoryResult categoryResult) {
         mAndroidListAdapter.mData = categoryResult.results;
         mAndroidListAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void addAndroidItems(CategoryResult categoryResult) {
+    public void addGategoryItems(CategoryResult categoryResult) {
         mAndroidListAdapter.mData.addAll(categoryResult.results);
         mAndroidListAdapter.notifyDataSetChanged();
     }

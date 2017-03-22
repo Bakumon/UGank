@@ -35,6 +35,7 @@ import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonViewPagerAdapter;
 import me.bakumon.ugank.module.category.CategoryFragment;
+import me.bakumon.ugank.module.favorite.FavoriteActivity;
 import me.bakumon.ugank.module.search.SearchActivity;
 import me.bakumon.ugank.module.setting.SettingActivity;
 import me.bakumon.ugank.utills.DisplayUtils;
@@ -260,7 +261,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @OnClick(R.id.iv_home_collection)
     public void collection() {
-        Toasty.info(this, "收藏").show();
+        startActivity(new Intent(HomeActivity.this, FavoriteActivity.class));
     }
 
     private boolean isBannerBig; // banner 是否是大图

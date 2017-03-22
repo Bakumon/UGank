@@ -20,6 +20,6 @@
     <string name="setting_donate">捐赠开发者</string>
     <string name="setting_feedback">反馈</string>
     <string name="setting_clean_cache">清除缓存</string>
-    <string name="menu_favorite">收藏</string>
+    <string name="favorite_title">收藏</string>
     <string name="welcome_ugank"><![CDATA[>> 欢迎进入 UGank]]></string>
 </resources>

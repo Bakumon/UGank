@@ -12,11 +12,11 @@ public interface CategoryContract {
 
     interface View extends BaseView {
 
-        void setAndroidItems(CategoryResult categoryResult);
+        void setCategoryItems(CategoryResult categoryResult);
 
-        void addAndroidItems(CategoryResult categoryResult);
+        void addGategoryItems(CategoryResult categoryResult);
 
-        void getAndroidItemsFail(String failMessage);
+        void getCategoryItemsFail(String failMessage);
 
         String getCategoryName();
 
@@ -29,6 +29,6 @@ public interface CategoryContract {
 
     interface Presenter extends BasePresenter {
 
-        void getAndroidItems(boolean isRefresh);
+        void getCategoryItems(boolean isRefresh);
     }
 }
