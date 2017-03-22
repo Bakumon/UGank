@@ -15,13 +15,13 @@ public enum ConfigManage {
     private final String key_thumbnailQuality = "thumbnailQuality";
     private final String key_banner_url = "keyBannerUrl";
     private final String key_launcher_img_show = "keyLauncherImgShow";
-    private final String key_launcher_img_always_show = "keyLauncherImgAlwaysShow";
+    private final String key_launcher_img_probability_show = "keyLauncherImgProbabilityShow";
 
     private boolean isListShowImg;
     private int thumbnailQuality;
     private String bannerURL;
     private boolean isShowLauncherImg;
-    private boolean isAlwaysShowLauncherImg;
+    private boolean isProbabilityShowLauncherImg;
 
     public void initConfig(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
@@ -34,7 +34,7 @@ public enum ConfigManage {
         // 启动页是否显示妹子图
         isShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_show, true);
         // 启动页是否概率出现
-        isAlwaysShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_always_show, true);
+        isProbabilityShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_probability_show, true);
     }
 
     public boolean isListShowImg() {
@@ -89,16 +89,16 @@ public enum ConfigManage {
         }
     }
 
-    public boolean isAlwaysShowLauncherImg() {
-        return isAlwaysShowLauncherImg;
+    public boolean isProbabilityShowLauncherImg() {
+        return isProbabilityShowLauncherImg;
     }
 
-    public void setAlwaysShowLauncherImg(boolean alwaysShowLauncherImg) {
+    public void setProbabilityShowLauncherImg(boolean probabilityShowLauncherImg) {
         SharedPreferences sharedPreferences = App.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key_launcher_img_always_show, alwaysShowLauncherImg);
+        editor.putBoolean(key_launcher_img_probability_show, probabilityShowLauncherImg);
         if (editor.commit()) {
-            isAlwaysShowLauncherImg = alwaysShowLauncherImg;
+            isProbabilityShowLauncherImg = probabilityShowLauncherImg;
         }
     }
 }

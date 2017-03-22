@@ -29,7 +29,7 @@ public class SettingPresenter implements SettingContract.Presenter {
         // 初始化开关显示状态
         mView.changeSwitchState(ConfigManage.INSTANCE.isListShowImg());
         mView.changeIsShowLauncherImgSwitchState(ConfigManage.INSTANCE.isShowLauncherImg());
-        mView.changeIsAlwaysShowLauncherImgSwitchState(ConfigManage.INSTANCE.isAlwaysShowLauncherImg());
+        mView.changeIsAlwaysShowLauncherImgSwitchState(ConfigManage.INSTANCE.isProbabilityShowLauncherImg());
 
         setImageQualityChooseIsEnable(ConfigManage.INSTANCE.isListShowImg());
         setIsLauncherAlwaysShowImgEnable(ConfigManage.INSTANCE.isShowLauncherImg());
@@ -79,7 +79,7 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void saveIsLauncherAlwaysShowImg(boolean isLauncherAlwaysShowImg) {
-        ConfigManage.INSTANCE.setAlwaysShowLauncherImg(isLauncherAlwaysShowImg);
+        ConfigManage.INSTANCE.setProbabilityShowLauncherImg(isLauncherAlwaysShowImg);
         if (isLauncherAlwaysShowImg) {
             mView.setAlwaysShowLauncherTip("偶尔来个惊喜就行");
         } else {

@@ -70,8 +70,8 @@ public class HomePresenter implements HomeContract.Presenter {
         if (!ConfigManage.INSTANCE.isShowLauncherImg()) { // 不显示欢迎妹子，也就不需要预加载了
             return;
         }
-        if (ConfigManage.INSTANCE.isAlwaysShowLauncherImg()) { // 概率出现欢迎妹子
-            if (Math.random() < 0.65) {
+        if (ConfigManage.INSTANCE.isProbabilityShowLauncherImg()) { // 概率出现欢迎妹子
+            if (Math.random() < 0.45) {
                 ConfigManage.INSTANCE.setBannerURL("");
                 return;
             }
