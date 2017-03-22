@@ -55,6 +55,8 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     AppCompatTextView mTvAlwaysShowLauncherImgTitle;
     @BindView(R.id.tv_is_always_show_launcher_img_content)
     AppCompatTextView mTvAlwaysShowLauncherImgContent;
+    @BindView(R.id.tv_is_show_launcher_img_content)
+    AppCompatTextView mTvShowLauncherImgContent;
 
     private SettingPresenter mSettingPresenter = new SettingPresenter(this);
 
@@ -204,6 +206,16 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     @Override
     public void showFailTip(String msg) {
         Toasty.error(this, msg).show();
+    }
+
+    @Override
+    public void setShowLauncherTip(String tip) {
+        mTvShowLauncherImgContent.setText(tip);
+    }
+
+    @Override
+    public void setAlwaysShowLauncherTip(String tip) {
+        mTvAlwaysShowLauncherImgContent.setText(tip);
     }
 
     @OnClick(R.id.ll_setting_image_quality)

@@ -70,11 +70,21 @@ public class SettingPresenter implements SettingContract.Presenter {
     public void saveIsLauncherShowImg(boolean isLauncherShowImg) {
         ConfigManage.INSTANCE.setShowLauncherImg(isLauncherShowImg);
         setIsLauncherAlwaysShowImgEnable(isLauncherShowImg);
+        if (isLauncherShowImg) {
+            mView.setShowLauncherTip("没有妹子太寂寞");
+        } else {
+            mView.setShowLauncherTip("基佬怎么会需要妹子");
+        }
     }
 
     @Override
     public void saveIsLauncherAlwaysShowImg(boolean isLauncherAlwaysShowImg) {
         ConfigManage.INSTANCE.setAlwaysShowLauncherImg(isLauncherAlwaysShowImg);
+        if (isLauncherAlwaysShowImg) {
+            mView.setAlwaysShowLauncherTip("偶尔来个惊喜就行");
+        } else {
+            mView.setAlwaysShowLauncherTip("我每次都要幸临，没毛病");
+        }
     }
 
     private void setIsLauncherAlwaysShowImgEnable(boolean isEnable) {

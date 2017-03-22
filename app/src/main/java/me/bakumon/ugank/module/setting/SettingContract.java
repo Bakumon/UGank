@@ -38,6 +38,11 @@ public interface SettingContract {
         void showSuccessTip(String msg);
 
         void showFailTip(String msg);
+
+        void setShowLauncherTip(String tip);
+
+        void setAlwaysShowLauncherTip(String tip);
+
     }
 
     interface Presenter extends BasePresenter {

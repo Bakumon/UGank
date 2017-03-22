@@ -67,8 +67,14 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     private void cacheRandomImg() {
-        if (Math.random() < 0.65) {
+        if (!ConfigManage.INSTANCE.isShowLauncherImg()) { // 不显示欢迎妹子，也就不需要预加载了
             return;
+        }
+        if (ConfigManage.INSTANCE.isAlwaysShowLauncherImg()) { // 概率出现欢迎妹子
+            if (Math.random() < 0.65) {
+                ConfigManage.INSTANCE.setBannerURL("");
+                return;
+            }
         }
         Observable<CategoryResult> observable;
         observable = NetWork.getGankApi().getRandomBeauties(1);

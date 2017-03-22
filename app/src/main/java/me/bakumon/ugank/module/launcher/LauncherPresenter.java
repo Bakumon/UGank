@@ -19,6 +19,10 @@ public class LauncherPresenter implements LauncherContract.Presenter {
 
     @Override
     public void subscribe() {
+        if (!ConfigManage.INSTANCE.isShowLauncherImg()) {
+            mLauncherView.goHomeActivity();
+            return;
+        }
         String imgCacheUrl = ConfigManage.INSTANCE.getBannerURL();
         if (!TextUtils.isEmpty(imgCacheUrl)) {
             mLauncherView.loadImg(imgCacheUrl);
