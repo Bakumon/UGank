@@ -22,6 +22,7 @@ import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
+import me.bakumon.ugank.entity.Favorite;
 import me.bakumon.ugank.utills.AndroidUtil;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
@@ -31,6 +32,7 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
 
     public static final String GANK_URL = "me.bakumon.gank.module.webview.WebViewActivity.gank_url";
     public static final String GANK_TITLE = "me.bakumon.gank.module.webview.WebViewActivity.gank_title";
+    public static final String FAVORITE_DATA = "me.bakumon.gank.module.webview.WebViewActivity.favorite_data";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -112,6 +114,31 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     }
 
     @Override
+    public Favorite getFavoriteData() {
+        return (Favorite) getIntent().getSerializableExtra(WebViewActivity.FAVORITE_DATA);
+    }
+
+    @Override
+    public void setFavoriteState(boolean isFavorite) {
+        if (isFavorite) {
+            mFloatingActionButton.setImageResource(R.drawable.ic_favorite);
+        } else {
+            mFloatingActionButton.setImageResource(R.drawable.ic_unfavorite);
+        }
+    }
+
+    @Override
+    public void hideFavoriteFab() {
+        mFloatingActionButton.setVisibility(View.GONE);
+
+    }
+
+    @Override
+    public void showTip(String tip) {
+        Toasty.error(this, tip).show();
+    }
+
+    @Override
     public void setFabButtonColor(int color) {
         MDTintUtil.setTint(mFloatingActionButton, color);
     }
@@ -143,8 +170,8 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
 
     @OnClick(R.id.fab_web_favorite)
     public void favorite() {
-        Toasty.success(this, "收藏成功").show();
-        mFloatingActionButton.setImageResource(R.drawable.ic_favorite);
+        mWebViewPresenter.favoriteGank();
+        mWebView.setOnScrollChangedCallback(null);
     }
 
     @Override

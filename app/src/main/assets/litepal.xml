@@ -33,6 +33,7 @@
     -->
     <list>
         <mapping class="me.bakumon.ugank.entity.History"/>
+        <mapping class="me.bakumon.ugank.entity.Favorite" />
     </list>
 
     <!--

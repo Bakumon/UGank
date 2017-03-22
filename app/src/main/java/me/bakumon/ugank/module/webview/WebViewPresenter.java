@@ -1,6 +1,11 @@
 package me.bakumon.ugank.module.webview;
 
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
+
 import me.bakumon.ugank.ThemeManage;
+import me.bakumon.ugank.entity.Favorite;
 
 /**
  * WebViewPresenter
@@ -12,6 +17,8 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     private WebViewContract.View mWebViewView;
 
     private String mGankUrl;
+    private boolean mIsFavorite;
+    private Favorite mFavoriteData;
 
     public WebViewPresenter(WebViewContract.View webViewView) {
         mWebViewView = webViewView;
@@ -23,6 +30,8 @@ public class WebViewPresenter implements WebViewContract.Presenter {
         mWebViewView.setGankTitle(mWebViewView.getGankTitle());
         // 设置 FabButton 的背景色
         mWebViewView.setFabButtonColor(ThemeManage.INSTANCE.getColorPrimary());
+        mFavoriteData = mWebViewView.getFavoriteData();
+        findHasFavoriteGank();
         loadDate();
     }
 
@@ -38,5 +47,43 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     @Override
     public String getGankUrl() {
         return mGankUrl;
+    }
+
+    @Override
+    public void favoriteGank() {
+        if (mIsFavorite) { // 已经收藏
+            unFavorite();
+        } else { // 未收藏
+            favorite();
+        }
+    }
+
+    private void unFavorite() {
+        int cows = DataSupport.deleteAll(Favorite.class, "gankID = ?", mFavoriteData.getGankID());
+        if (cows > 0) {
+            mWebViewView.setFavoriteState(false);
+        } else {
+            mWebViewView.showTip("取消收藏失败,请重试");
+        }
+    }
+
+    private void favorite() {
+        boolean save = mFavoriteData.save();
+        if (save) {
+            mWebViewView.setFavoriteState(true);
+        } else {
+            mWebViewView.showTip("收藏失败,请重试");
+        }
+    }
+
+    private void findHasFavoriteGank() {
+        if (mFavoriteData == null) {
+            // 隐藏收藏 fab
+            mWebViewView.hideFavoriteFab();
+            return;
+        }
+        List<Favorite> favorites = DataSupport.where("gankID = ?", mFavoriteData.getGankID()).find(Favorite.class);
+        mIsFavorite = favorites.size() > 0;
+        mWebViewView.setFavoriteState(mIsFavorite);
     }
 }
