@@ -17,6 +17,7 @@
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text=">> 欢迎进入 UGank"
+        android:textStyle="bold"
+        android:text="@string/welcome_ugank"
         android:textColor="@android:color/white"/>
 </FrameLayout>
