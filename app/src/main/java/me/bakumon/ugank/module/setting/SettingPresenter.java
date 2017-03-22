@@ -28,7 +28,12 @@ public class SettingPresenter implements SettingContract.Presenter {
         mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         // 初始化开关显示状态
         mView.changeSwitchState(ConfigManage.INSTANCE.isListShowImg());
+        mView.changeIsShowLauncherImgSwitchState(ConfigManage.INSTANCE.isShowLauncherImg());
+        mView.changeIsAlwaysShowLauncherImgSwitchState(ConfigManage.INSTANCE.isAlwaysShowLauncherImg());
+
         setImageQualityChooseIsEnable(ConfigManage.INSTANCE.isListShowImg());
+        setIsLauncherAlwaysShowImgEnable(ConfigManage.INSTANCE.isShowLauncherImg());
+
         mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
         setThumbnailQuality(ConfigManage.INSTANCE.getThumbnailQuality());
         mView.showCacheSize(DataCleanManager.getTotalCacheSize());
@@ -59,6 +64,25 @@ public class SettingPresenter implements SettingContract.Presenter {
     public void saveIsListShowImg(boolean isListShowImg) {
         ConfigManage.INSTANCE.setListShowImg(isListShowImg);
         setImageQualityChooseIsEnable(isListShowImg);
+    }
+
+    @Override
+    public void saveIsLauncherShowImg(boolean isLauncherShowImg) {
+        ConfigManage.INSTANCE.setShowLauncherImg(isLauncherShowImg);
+        setIsLauncherAlwaysShowImgEnable(isLauncherShowImg);
+    }
+
+    @Override
+    public void saveIsLauncherAlwaysShowImg(boolean isLauncherAlwaysShowImg) {
+        ConfigManage.INSTANCE.setAlwaysShowLauncherImg(isLauncherAlwaysShowImg);
+    }
+
+    private void setIsLauncherAlwaysShowImgEnable(boolean isEnable) {
+        if (isEnable) {
+            mView.setLauncherImgProbabilityEnable();
+        } else {
+            mView.setLauncherImgProbabilityUnEnable();
+        }
     }
 
     private void setImageQualityChooseIsEnable(boolean isEnable) {

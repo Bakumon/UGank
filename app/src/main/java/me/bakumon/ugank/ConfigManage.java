@@ -14,10 +14,14 @@ public enum ConfigManage {
     private final String key_isListShowImg = "isListShowImg";
     private final String key_thumbnailQuality = "thumbnailQuality";
     private final String key_banner_url = "keyBannerUrl";
+    private final String key_launcher_img_show = "keyLauncherImgShow";
+    private final String key_launcher_img_always_show = "keyLauncherImgAlwaysShow";
 
     private boolean isListShowImg;
     private int thumbnailQuality;
     private String bannerURL;
+    private boolean isShowLauncherImg;
+    private boolean isAlwaysShowLauncherImg;
 
     public void initConfig(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
@@ -27,6 +31,10 @@ public enum ConfigManage {
         thumbnailQuality = sharedPreferences.getInt(key_thumbnailQuality, 1);
         // Banner URL 用于加载页显示
         bannerURL = sharedPreferences.getString(key_banner_url, "");
+        // 启动页是否显示妹子图
+        isShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_show, true);
+        // 启动页是否概率出现
+        isAlwaysShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_always_show, true);
     }
 
     public boolean isListShowImg() {
@@ -65,6 +73,32 @@ public enum ConfigManage {
         editor.putString(key_banner_url, bannerURL);
         if (editor.commit()) {
             this.bannerURL = bannerURL;
+        }
+    }
+
+    public boolean isShowLauncherImg() {
+        return isShowLauncherImg;
+    }
+
+    public void setShowLauncherImg(boolean showLauncherImg) {
+        SharedPreferences sharedPreferences = App.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key_launcher_img_show, showLauncherImg);
+        if (editor.commit()) {
+            isShowLauncherImg = showLauncherImg;
+        }
+    }
+
+    public boolean isAlwaysShowLauncherImg() {
+        return isAlwaysShowLauncherImg;
+    }
+
+    public void setAlwaysShowLauncherImg(boolean alwaysShowLauncherImg) {
+        SharedPreferences sharedPreferences = App.getInstance().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key_launcher_img_always_show, alwaysShowLauncherImg);
+        if (editor.commit()) {
+            isAlwaysShowLauncherImg = alwaysShowLauncherImg;
         }
     }
 }

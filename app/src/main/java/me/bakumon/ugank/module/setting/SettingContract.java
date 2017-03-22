@@ -15,6 +15,10 @@ public interface SettingContract {
 
         void changeSwitchState(boolean isChecked);
 
+        void changeIsShowLauncherImgSwitchState(boolean isChecked);
+
+        void changeIsAlwaysShowLauncherImgSwitchState(boolean isChecked);
+
         void setSwitchCompatsColor(int color);
 
         void setAppVersionNameInTv(String versionName);
@@ -22,6 +26,10 @@ public interface SettingContract {
         void setImageQualityChooseUnEnable();
 
         void setImageQualityChooseEnable();
+
+        void setLauncherImgProbabilityUnEnable();
+
+        void setLauncherImgProbabilityEnable();
 
         void setThumbnailQualityInfo(String quality);
 
@@ -35,6 +43,10 @@ public interface SettingContract {
     interface Presenter extends BasePresenter {
 
         void saveIsListShowImg(boolean isListShowImg);
+
+        void saveIsLauncherShowImg(boolean isLauncherShowImg);
+
+        void saveIsLauncherAlwaysShowImg(boolean isLauncherAlwaysShowImg);
 
         int getColorPrimary();
 

@@ -67,6 +67,9 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     private void cacheRandomImg() {
+        if (Math.random() < 0.65) {
+            return;
+        }
         Observable<CategoryResult> observable;
         observable = NetWork.getGankApi().getRandomBeauties(1);
         Subscription subscription = observable
@@ -130,7 +133,6 @@ public class HomePresenter implements HomeContract.Presenter {
                     public void onNext(CategoryResult meiziResult) {
                         if (meiziResult != null && meiziResult.results != null && meiziResult.results.size() > 0 && meiziResult.results.get(0).url != null) {
                             mHomeView.setBanner(meiziResult.results.get(0).url);
-                            ConfigManage.INSTANCE.setBannerURL(meiziResult.results.get(0).url);
                         } else {
                             mHomeView.showBannerFail("Banner 图加载失败。");
                         }

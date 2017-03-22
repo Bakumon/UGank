@@ -45,6 +45,16 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     TextView mTvImageQualityContent;
     @BindView(R.id.tv_setting_clean_cache)
     TextView mTvCleanCache;
+    @BindView(R.id.switch_setting_show_launcher_img)
+    SwitchCompat mSwitchSettingShowLauncherImg;
+    @BindView(R.id.switch_setting_always_show_launcher_img)
+    SwitchCompat mSwitchSettingAlwaysShowLauncherImg;
+    @BindView(R.id.ll_is_always_show_launcher_img)
+    LinearLayout mLlAlwaysShowLauncherImg;
+    @BindView(R.id.tv_is_always_show_launcher_img_title)
+    AppCompatTextView mTvAlwaysShowLauncherImgTitle;
+    @BindView(R.id.tv_is_always_show_launcher_img_content)
+    AppCompatTextView mTvAlwaysShowLauncherImgContent;
 
     private SettingPresenter mSettingPresenter = new SettingPresenter(this);
 
@@ -72,6 +82,8 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
             }
         });
         mSwitchSetting.setOnCheckedChangeListener(this);
+        mSwitchSettingShowLauncherImg.setOnCheckedChangeListener(this);
+        mSwitchSettingAlwaysShowLauncherImg.setOnCheckedChangeListener(this);
         mSettingPresenter.subscribe();
     }
 
@@ -86,9 +98,30 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mSwitchSetting.setChecked(!mSwitchSetting.isChecked());
     }
 
+    @OnClick(R.id.ll_is_show_launcher_img)
+    public void isShowLauncherImg() {
+        mSwitchSettingShowLauncherImg.setChecked(!mSwitchSettingShowLauncherImg.isChecked());
+    }
+
+    @OnClick(R.id.ll_is_always_show_launcher_img)
+    public void isAlwaysShowLauncherImg() {
+        mSwitchSettingAlwaysShowLauncherImg.setChecked(!mSwitchSettingAlwaysShowLauncherImg.isChecked());
+    }
+
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-        mSettingPresenter.saveIsListShowImg(isChecked);
+        switch (compoundButton.getId()) {
+            case R.id.switch_setting:
+                mSettingPresenter.saveIsListShowImg(isChecked);
+                break;
+            case R.id.switch_setting_show_launcher_img:
+                mSettingPresenter.saveIsLauncherShowImg(isChecked);
+                break;
+            case R.id.switch_setting_always_show_launcher_img:
+                mSettingPresenter.saveIsLauncherAlwaysShowImg(isChecked);
+                break;
+        }
+
     }
 
     @Override
@@ -102,8 +135,20 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     }
 
     @Override
+    public void changeIsShowLauncherImgSwitchState(boolean isChecked) {
+        mSwitchSettingShowLauncherImg.setChecked(isChecked);
+    }
+
+    @Override
+    public void changeIsAlwaysShowLauncherImgSwitchState(boolean isChecked) {
+        mSwitchSettingAlwaysShowLauncherImg.setChecked(isChecked);
+    }
+
+    @Override
     public void setSwitchCompatsColor(int color) {
         MDTintUtil.setTint(mSwitchSetting, color);
+        MDTintUtil.setTint(mSwitchSettingShowLauncherImg, color);
+        MDTintUtil.setTint(mSwitchSettingAlwaysShowLauncherImg, color);
     }
 
     @Override
@@ -123,6 +168,22 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mLlImageQuality.setClickable(true);
         mTvImageQualityTitle.setTextColor(getResources().getColor(R.color.colorTextEnable));
         mTvImageQualityContent.setTextColor(getResources().getColor(R.color.colorTextEnableGary));
+    }
+
+    @Override
+    public void setLauncherImgProbabilityUnEnable() {
+        mLlAlwaysShowLauncherImg.setClickable(false);
+        mSwitchSettingAlwaysShowLauncherImg.setClickable(false);
+        mTvAlwaysShowLauncherImgTitle.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
+        mTvAlwaysShowLauncherImgContent.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
+    }
+
+    @Override
+    public void setLauncherImgProbabilityEnable() {
+        mLlAlwaysShowLauncherImg.setClickable(true);
+        mSwitchSettingAlwaysShowLauncherImg.setClickable(true);
+        mTvAlwaysShowLauncherImgTitle.setTextColor(getResources().getColor(R.color.colorTextEnable));
+        mTvAlwaysShowLauncherImgContent.setTextColor(getResources().getColor(R.color.colorTextEnableGary));
     }
 
     @Override
