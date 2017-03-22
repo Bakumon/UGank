@@ -23,6 +23,9 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
     @BindView(R.id.img_launcher_welcome)
     AppCompatImageView mImageView;
 
+    // 记录该 Activity 是否在前台显示
+    private boolean isResume;
+
     private LauncherContract.Presenter mLauncherPresenter = new LauncherPresenter(this);
 
     @Override
@@ -45,6 +48,10 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    if (!isResume) {
+                                        finish();
+                                        return;
+                                    }
                                     goHomeActivity();
                                 }
                             }, 1200);
@@ -61,10 +68,28 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        isResume = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isResume = false;
+    }
+
+    @Override
     public void goHomeActivity() {
+
         Intent intent = new Intent(LauncherActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // 禁掉返回键
     }
 
     @Override
