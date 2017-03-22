@@ -81,9 +81,10 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
 
     @Override
     public void goHomeActivity() {
-
         Intent intent = new Intent(LauncherActivity.this, HomeActivity.class);
         startActivity(intent);
+        // Activity 切换淡入淡出动画
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
 
