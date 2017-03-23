@@ -60,21 +60,21 @@ public class WebViewPresenter implements WebViewContract.Presenter {
 
     private void unFavorite() {
         int cows = DataSupport.deleteAll(Favorite.class, "gankID = ?", mFavoriteData.getGankID());
-        mIsFavorite = cows > 0;
+        // 不调用这句保存 在保存会失败，并且返回的是true
+        // https://github.com/LitePalFramework/LitePal/issues/77
+        mFavoriteData.clearSavedState();
+        mIsFavorite = cows < 1;
+        mWebViewView.setFavoriteState(mIsFavorite);
         if (mIsFavorite) {
-            mWebViewView.setFavoriteState(false);
-        } else {
             mWebViewView.showTip("取消收藏失败,请重试");
         }
     }
 
     private void favorite() {
         mFavoriteData.setCreatetime(System.currentTimeMillis());
-        boolean save = mFavoriteData.save();
-        mIsFavorite = save;
-        if (save) {
-            mWebViewView.setFavoriteState(true);
-        } else {
+        mIsFavorite = mFavoriteData.save();
+        mWebViewView.setFavoriteState(mIsFavorite);
+        if (!mIsFavorite) {
             mWebViewView.showTip("收藏失败,请重试");
         }
     }

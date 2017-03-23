@@ -68,8 +68,6 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
             if (position != -1) {
                 mAdapter.notifyItemRemoved(position);
                 mAdapter.mData.remove(position);
-                List list = mAdapter.mData;
-                Toasty.info(this, "").show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

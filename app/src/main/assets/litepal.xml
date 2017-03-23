@@ -8,7 +8,7 @@
         For example:
         <dbname value="demo" />
     -->
-    <dbname value="search_history"/>
+    <dbname value="ugank_database"/>
 
     <!--
         Define the version of your database. Each time you want
