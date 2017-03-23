@@ -18,6 +18,13 @@
 3. Material Design 风格（未完全遵守）
 4. 沉浸式状态栏
 
+
+## 截图
+
+![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank1.png)
+![ugank2.png](https://github.com/Bakumon/UGank/raw/master/art/ugank2.png)
+
+
 ## 版本
 
 ### v2.0.0 🆕
@@ -51,11 +58,6 @@
 2. 默认不显示列表缩略图（可设置），以节省流量
 3. Material Design 风格（未完全遵守）
 4. 沉浸式状态栏
-
-## 截图
-
-![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank1.png)
-![ugank2.png](https://github.com/Bakumon/UGank/raw/master/art/ugank2.png)
 
 ## Todolist
 
