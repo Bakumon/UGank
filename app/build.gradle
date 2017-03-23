@@ -22,8 +22,14 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            //  混淆
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 签名
             signingConfig signingConfigs.release
         }
         applicationVariants.all { variant ->
@@ -60,11 +66,11 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.afollestad.material-dialogs:commons:0.9.3.0'
     compile 'cn.bingoogolapple:bga-swipebacklayout:1.0.7@aar'
-    compile 'org.litepal.android:core:1.5.1'
+    compile 'org.litepal.android:core:1.5.0'
     compile 'com.github.GrenderG:Toasty:1.1.3'
     testCompile 'junit:junit:4.12'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+//    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
