@@ -60,7 +60,8 @@ public class WebViewPresenter implements WebViewContract.Presenter {
 
     private void unFavorite() {
         int cows = DataSupport.deleteAll(Favorite.class, "gankID = ?", mFavoriteData.getGankID());
-        if (cows > 0) {
+        mIsFavorite = cows > 0;
+        if (mIsFavorite) {
             mWebViewView.setFavoriteState(false);
         } else {
             mWebViewView.showTip("取消收藏失败,请重试");
@@ -68,7 +69,9 @@ public class WebViewPresenter implements WebViewContract.Presenter {
     }
 
     private void favorite() {
+        mFavoriteData.setCreatetime(System.currentTimeMillis());
         boolean save = mFavoriteData.save();
+        mIsFavorite = save;
         if (save) {
             mWebViewView.setFavoriteState(true);
         } else {

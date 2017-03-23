@@ -71,7 +71,7 @@ public class HomePresenter implements HomeContract.Presenter {
             return;
         }
         if (ConfigManage.INSTANCE.isProbabilityShowLauncherImg()) { // 概率出现欢迎妹子
-            if (Math.random() < 0.45) {
+            if (Math.random() < 0.75) {
                 ConfigManage.INSTANCE.setBannerURL("");
                 return;
             }

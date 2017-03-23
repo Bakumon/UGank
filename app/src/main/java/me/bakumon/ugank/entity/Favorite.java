@@ -16,6 +16,7 @@ public class Favorite extends DataSupport implements Serializable{
     private String data;
     private String url;
     private String gankID;
+    private long createtime;
 
     public String getTitle() {
         return title;
@@ -63,5 +64,13 @@ public class Favorite extends DataSupport implements Serializable{
 
     public void setGankID(String gankID) {
         this.gankID = gankID;
+    }
+
+    public long getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(long createtime) {
+        this.createtime = createtime;
     }
 }

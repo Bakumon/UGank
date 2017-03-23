@@ -1,7 +1,10 @@
 package me.bakumon.ugank.module.favorite;
 
+import java.util.List;
+
 import me.bakumon.ugank.base.BasePresenter;
 import me.bakumon.ugank.base.BaseView;
+import me.bakumon.ugank.entity.Favorite;
 
 /**
  * FavoriteContract
@@ -15,6 +18,17 @@ public class FavoriteContract {
 
         void showSwipLoading();
 
+        void addFavoriteItems(List<Favorite> favorites);
+
+        void setFavoriteItems(List<Favorite> favorites);
+
+        void hideSwipLoading();
+
+        void setLoading();
+
+        void setEmpty();
+
+        void setLoadMoreIsLastPage();
     }
 
     interface Presenter extends BasePresenter {

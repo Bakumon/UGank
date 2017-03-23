@@ -6,6 +6,7 @@ package me.bakumon.ugank;
  */
 public class GlobalConfig {
     public final static int PAGE_SIZE_CATEGORY = 10;
+    public final static int PAGE_SIZE_FAVORITE = 10;
 
     public final static String CATEGORY_NAME_APP = "App";
     public final static String CATEGORY_NAME_ANDROID = "Android";

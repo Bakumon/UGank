@@ -131,7 +131,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mVpCategory.setAdapter(infoPagerAdapter);
         mDachshundTabLayout.setupWithViewPager(mVpCategory);
         mVpCategory.setCurrentItem(1);
-        mVpCategory.setOffscreenPageLimit(6);
     }
 
     private CollapsingToolbarLayoutState state; // CollapsingToolbarLayout 折叠状态

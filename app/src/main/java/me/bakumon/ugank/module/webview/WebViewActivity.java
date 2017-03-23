@@ -1,5 +1,6 @@
 package me.bakumon.ugank.module.webview;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.entity.Favorite;
+import me.bakumon.ugank.module.favorite.FavoriteActivity;
 import me.bakumon.ugank.utills.AndroidUtil;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
@@ -33,6 +35,7 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     public static final String GANK_URL = "me.bakumon.gank.module.webview.WebViewActivity.gank_url";
     public static final String GANK_TITLE = "me.bakumon.gank.module.webview.WebViewActivity.gank_title";
     public static final String FAVORITE_DATA = "me.bakumon.gank.module.webview.WebViewActivity.favorite_data";
+    public static final String FAVORITE_POSITION = "me.bakumon.gank.module.webview.WebViewActivity.favorite_position";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -48,6 +51,7 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     FloatingActionButton mFloatingActionButton;
 
     private WebViewContract.Presenter mWebViewPresenter = new WebViewPresenter(this);
+    private boolean isForResult; // 是否回传结果
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,12 +129,23 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
         } else {
             mFloatingActionButton.setImageResource(R.drawable.ic_unfavorite);
         }
+        isForResult = !isFavorite;
+    }
+
+    @Override
+    public void finish() {
+        if (isForResult) {
+            Intent intent = new Intent();
+            intent.putExtra(FavoriteActivity.FAVORITE_POSITION, getIntent().getIntExtra(WebViewActivity.FAVORITE_POSITION, -1));
+            setResult(RESULT_OK, intent);
+        }
+        super.finish();
     }
 
     @Override
     public void hideFavoriteFab() {
         mFloatingActionButton.setVisibility(View.GONE);
-
+        mWebView.setOnScrollChangedCallback(null);
     }
 
     @Override
@@ -171,7 +186,6 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
     @OnClick(R.id.fab_web_favorite)
     public void favorite() {
         mWebViewPresenter.favoriteGank();
-        mWebView.setOnScrollChangedCallback(null);
     }
 
     @Override
@@ -197,7 +211,7 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
                 break;
             case R.id.menu_copy_link:
                 if (AndroidUtil.copyText(this, mWebViewPresenter.getGankUrl())) {
-                    Toasty.normal(this, "链接复制成功").show();
+                    Toasty.success(this, "链接复制成功").show();
                 }
                 break;
             case R.id.menu_open_with:

@@ -1,5 +1,6 @@
 package me.bakumon.ugank.module.favorite;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,10 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
+import me.bakumon.ugank.entity.Favorite;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
@@ -29,7 +34,11 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
     @BindView(R.id.swipe_refresh_layout_favorite)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    public static final int REQUEST_CODE_FAVORITE = 101;
+    public static final String FAVORITE_POSITION = "me.bakumon.ugank.module.favorite.FavoriteActivity.favorite_position";
+
     private FavoriteContract.Presenter mPresenter = new FavoritePresenter(this);
+    private FavoriteListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,20 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
         }
         initView();
         mPresenter.subscribe();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_FAVORITE) {
+            int position = data.getIntExtra(FAVORITE_POSITION, -1);
+            if (position != -1) {
+                mAdapter.notifyItemRemoved(position);
+                mAdapter.mData.remove(position);
+                List list = mAdapter.mData;
+                Toasty.info(this, "").show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -74,10 +97,10 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
                 R.color.colorSwipeRefresh6);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        FavoriteListAdapter adapter = new FavoriteListAdapter(this);
+        mAdapter = new FavoriteListAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new RecycleViewDivider(this, LinearLayoutManager.HORIZONTAL));
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
         mRecyclerView.setEmpty();
     }
@@ -93,13 +116,46 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
     }
 
     @Override
-    public void onRefresh() {
+    public void addFavoriteItems(List<Favorite> favorites) {
+        mAdapter.mData.addAll(favorites);
+        mAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void setFavoriteItems(List<Favorite> favorites) {
+        mAdapter.mData = favorites;
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void hideSwipLoading() {
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void setLoading() {
+        mRecyclerView.setLoading();
+    }
+
+    @Override
+    public void setEmpty() {
+        mRecyclerView.setEmpty();
+        Toasty.info(this, "暂无收藏").show();
+    }
+
+    @Override
+    public void setLoadMoreIsLastPage() {
+        mRecyclerView.setEnd("没有更多数据了");
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.getFavoriteItems(true);
     }
 
     @Override
     public void onLoadMore() {
-
+        mPresenter.getFavoriteItems(false);
     }
 
 }
