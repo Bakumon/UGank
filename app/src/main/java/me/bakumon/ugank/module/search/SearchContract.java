@@ -45,6 +45,10 @@ public interface SearchContract {
         void showSearchHistory();
 
         void setHistory(List<History> history);
+
+        void startEmojiRain();
+
+        void stopEmojiRain();
     }
 
     interface Presenter extends BasePresenter {

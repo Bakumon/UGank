@@ -12,6 +12,7 @@ import me.bakumon.ugank.ThemeManage;
 import me.bakumon.ugank.entity.History;
 import me.bakumon.ugank.entity.SearchResult;
 import me.bakumon.ugank.network.NetWork;
+import me.bakumon.ugank.utills.EmojiFilter;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -48,6 +49,11 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     @Override
     public void search(final String searchText, final boolean isLoadMore) {
+        String searchTextNoEmoji = EmojiFilter.filterEmoji(searchText);
+        if (TextUtils.isEmpty(searchTextNoEmoji)) {
+            mView.startEmojiRain();
+            return;
+        }
         if (TextUtils.isEmpty(searchText)) {
             mView.showTip("搜索内容不能为空。");
             return;

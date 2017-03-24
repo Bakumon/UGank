@@ -73,4 +73,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    compile 'com.luolc:emoji-rain:0.1.1'
 }

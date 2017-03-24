@@ -18,6 +18,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.luolc.emojirain.EmojiRainLayout;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -55,6 +57,8 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
     LinearLayout mLlHistory;
     @BindView(R.id.recycler_search_history)
     RecyclerView mRecyclerViewHistory;
+    @BindView(R.id.emoji_rainLayout)
+    EmojiRainLayout mEmojiRainLayout;
 
     private SearchContract.Presenter mSearchPresenter = new SearchPresenter(this);
 
@@ -119,6 +123,13 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
         mHistoryListAdapter.mData = null;
         mRecyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerViewHistory.setAdapter(mHistoryListAdapter);
+
+        mEmojiRainLayout.addEmoji(R.mipmap.emoji1);
+        mEmojiRainLayout.addEmoji(R.mipmap.emoji2);
+        mEmojiRainLayout.addEmoji(R.mipmap.emoji3);
+        mEmojiRainLayout.addEmoji(R.mipmap.emoji4);
+        mEmojiRainLayout.addEmoji(R.mipmap.emoji5);
+        mEmojiRainLayout.addEmoji(R.mipmap.emoji6);
 
     }
 
@@ -212,6 +223,16 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
     public void setHistory(List<History> history) {
         mHistoryListAdapter.mData = history;
         mHistoryListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void startEmojiRain() {
+        mEmojiRainLayout.startDropping();
+    }
+
+    @Override
+    public void stopEmojiRain() {
+        mEmojiRainLayout.stopDropping();
     }
 
     @Override

@@ -370,7 +370,7 @@
 
 
 # Retrolambda
-#-dontwarn java.lang.invoke.*
+-dontwarn java.lang.invoke.*
 
 
 # RxJava RxAndroid
