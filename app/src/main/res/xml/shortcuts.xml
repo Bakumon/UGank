@@ -1,0 +1,30 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 从上往下的顺序  对应桌面上靠近和远离 App 启动图标的顺序 -->
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_search_shortcut"
+        android:shortcutDisabledMessage="@string/shortcuts_search_disable"
+        android:shortcutId="search"
+        android:shortcutLongLabel="@string/shortcuts_search_long"
+        android:shortcutShortLabel="@string/shortcuts_search_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="me.bakumon.ugank.module.search.SearchActivity"
+            android:targetPackage="me.bakumon.ugank"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+    <!-- Specify more shortcuts here. -->
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_collection_shortcut"
+        android:shortcutDisabledMessage="@string/shortcuts_favorite_disable"
+        android:shortcutId="favorite"
+        android:shortcutLongLabel="@string/shortcuts_favorite_long"
+        android:shortcutShortLabel="@string/shortcuts_favorite_short">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="me.bakumon.ugank.module.favorite.FavoriteActivity"
+            android:targetPackage="me.bakumon.ugank"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+</shortcuts>

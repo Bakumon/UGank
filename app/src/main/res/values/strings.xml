@@ -22,4 +22,10 @@
     <string name="setting_clean_cache">清除缓存</string>
     <string name="favorite_title">收藏</string>
     <string name="welcome_ugank"><![CDATA[>> 欢迎进入 UGank]]></string>
+    <string name="shortcuts_search_disable">搜索（不可用）</string>
+    <string name="shortcuts_search_short">搜索</string>
+    <string name="shortcuts_search_long">搜索</string>
+    <string name="shortcuts_favorite_disable">收藏（不可用）</string>
+    <string name="shortcuts_favorite_short">收藏</string>
+    <string name="shortcuts_favorite_long">我的收藏</string>
 </resources>
