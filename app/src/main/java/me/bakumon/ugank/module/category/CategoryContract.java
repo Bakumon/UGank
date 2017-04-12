@@ -14,15 +14,15 @@ public interface CategoryContract {
 
         void setCategoryItems(CategoryResult categoryResult);
 
-        void addGategoryItems(CategoryResult categoryResult);
+        void addCategoryItems(CategoryResult categoryResult);
 
         void getCategoryItemsFail(String failMessage);
 
         String getCategoryName();
 
-        void showSwipLoading();
+        void showSwipeLoading();
 
-        void hideSwipLoading();
+        void hideSwipeLoading();
 
         void setLoading();
     }

@@ -42,7 +42,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
     @Override
     public void getCategoryItems(final boolean isRefresh) {
         if (isRefresh) {
-            mCategoryView.showSwipLoading();
+            mCategoryView.showSwipeLoading();
             mPage = 1;
         } else {
             mPage += 1;
@@ -58,7 +58,7 @@ public class CategoryPresenter implements CategoryContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mCategoryView.hideSwipLoading();
+                        mCategoryView.hideSwipeLoading();
                         mCategoryView.getCategoryItemsFail(mCategoryView.getCategoryName() + " 列表数据获取失败。");
                     }
 
@@ -66,10 +66,10 @@ public class CategoryPresenter implements CategoryContract.Presenter {
                     public void onNext(CategoryResult androidResult) {
                         if (isRefresh) {
                             mCategoryView.setCategoryItems(androidResult);
-                            mCategoryView.hideSwipLoading();
+                            mCategoryView.hideSwipeLoading();
                             mCategoryView.setLoading();
                         } else {
-                            mCategoryView.addGategoryItems(androidResult);
+                            mCategoryView.addCategoryItems(androidResult);
                         }
                     }
                 });

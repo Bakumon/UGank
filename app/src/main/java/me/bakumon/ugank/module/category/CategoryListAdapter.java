@@ -3,13 +3,14 @@ package me.bakumon.ugank.module.category;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
 import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.ConfigManage;
+import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonAdapter4RecyclerView;
 import me.bakumon.ugank.base.adapter.CommonHolder4RecyclerView;
@@ -18,7 +19,6 @@ import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.entity.Favorite;
 import me.bakumon.ugank.module.webview.WebViewActivity;
 import me.bakumon.ugank.utills.DateUtil;
-import me.bakumon.ugank.utills.DisplayUtils;
 
 /**
  * CategoryListAdapter
@@ -34,7 +34,7 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
     @Override
     public void convert(CommonHolder4RecyclerView holder, CategoryResult.ResultsBean androidResult) {
         if (androidResult != null) {
-            ImageView imageView = holder.getView(R.id.iv_item_img);
+            AppCompatImageView imageView = holder.getView(R.id.iv_item_img);
             if (ConfigManage.INSTANCE.isListShowImg()) { // 列表显示图片
                 imageView.setVisibility(View.VISIBLE);
                 String quality = "";
@@ -43,24 +43,24 @@ public class CategoryListAdapter extends CommonAdapter4RecyclerView<CategoryResu
                         case 0: // 原图
                             quality = "?imageView2/0/w/400";
                             break;
-                        case 1: //
+                        case 1: // 默认
                             quality = "?imageView2/0/w/280";
                             break;
-                        case 2:
+                        case 2: // 省流
                             quality = "?imageView2/0/w/190";
                             break;
                     }
                     imageView.setVisibility(View.VISIBLE);
-                    int size = DisplayUtils.dp2px(70, mContext);
+//                    Picasso.with(mContext).setIndicatorsEnabled(true);//显示指示器
                     Picasso.with(mContext)
                             .load(androidResult.images.get(0) + quality)
-                            .resize(size, size)
                             .placeholder(R.mipmap.image_default)
-                            .tag("Thumbnails_categoryList_item")
+                            .tag(GlobalConfig.PICASSO_TAG_THUMBNAILS_CATEGORY_LIST_ITEM)
+                            .centerCrop()
+                            .fit()
                             .config(Bitmap.Config.RGB_565)
                             .into(imageView);
-                } else {
-//                    Picasso.with(mContext).load(R.mipmap.image_default).into(imageView);
+                } else { // 图片 URL 不存在
                     imageView.setVisibility(View.GONE);
                 }
             } else { // 列表不显示图片

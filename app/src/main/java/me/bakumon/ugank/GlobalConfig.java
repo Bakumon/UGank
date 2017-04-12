@@ -14,4 +14,6 @@ public class GlobalConfig {
     public final static String CATEGORY_NAME_FRONT_END = "前端";
     public final static String CATEGORY_NAME_RECOMMEND = "瞎推荐";
     public final static String CATEGORY_NAME_RESOURCE = "拓展资源";
+
+    public final static String PICASSO_TAG_THUMBNAILS_CATEGORY_LIST_ITEM = "Thumbnails_categoryList_item";
 }

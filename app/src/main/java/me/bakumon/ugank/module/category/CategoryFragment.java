@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
+import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.entity.CategoryResult;
 import me.bakumon.ugank.widget.RecycleViewDivider;
@@ -22,7 +23,6 @@ import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL;
 
 /**
  * CategoryFragment
@@ -53,6 +53,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     public void onResume() {
         super.onResume();
         // 用于设置项改变后，刷新列表显示
+        // TODO: 2017/4/12 需要优化，不要每次都刷新列表
         mAndroidListAdapter.notifyDataSetChanged();
     }
 
@@ -84,10 +85,10 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 final Picasso picasso = Picasso.with(CategoryFragment.this.getContext());
 
-                if (newState == SCROLL_STATE_IDLE || newState == SCROLL_STATE_TOUCH_SCROLL) {
-                    picasso.resumeTag("Thumbnails_categoryList_item");
+                if (newState == SCROLL_STATE_IDLE) {
+                    picasso.resumeTag(GlobalConfig.PICASSO_TAG_THUMBNAILS_CATEGORY_LIST_ITEM);
                 } else {
-                    picasso.pauseTag("Thumbnails_categoryList_item");
+                    picasso.pauseTag(GlobalConfig.PICASSO_TAG_THUMBNAILS_CATEGORY_LIST_ITEM);
                 }
             }
         });
@@ -103,6 +104,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Picasso.with(CategoryFragment.this.getContext()).cancelTag(GlobalConfig.PICASSO_TAG_THUMBNAILS_CATEGORY_LIST_ITEM);
         mPresenter.unsubscribe();
     }
 
@@ -122,12 +124,12 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void showSwipLoading() {
+    public void showSwipeLoading() {
         mSwipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
-    public void hideSwipLoading() {
+    public void hideSwipeLoading() {
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -160,8 +162,9 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void addGategoryItems(CategoryResult categoryResult) {
+    public void addCategoryItems(CategoryResult categoryResult) {
         mAndroidListAdapter.mData.addAll(categoryResult.results);
+        // TODO: 2017/4/12 这里想办法优化，不刷新所有数据
         mAndroidListAdapter.notifyDataSetChanged();
     }
 
