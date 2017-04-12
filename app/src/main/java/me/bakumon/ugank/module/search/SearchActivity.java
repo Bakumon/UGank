@@ -173,8 +173,9 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     @Override
     public void addSearchItems(SearchResult searchResult) {
+        int start = mSearchListAdapter.getItemCount();
         mSearchListAdapter.mData.addAll(searchResult.results);
-        mSearchListAdapter.notifyDataSetChanged();
+        mSearchListAdapter.notifyItemRangeInserted(start, searchResult.results.size());
     }
 
     @Override

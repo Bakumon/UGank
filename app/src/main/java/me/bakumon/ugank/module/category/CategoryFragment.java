@@ -165,9 +165,9 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     @Override
     public void addCategoryItems(CategoryResult categoryResult) {
+        int start = mAndroidListAdapter.getItemCount();
         mAndroidListAdapter.mData.addAll(categoryResult.results);
-        // TODO: 2017/4/12 这里想办法优化，不刷新所有数据
-        mAndroidListAdapter.notifyDataSetChanged();
+        mAndroidListAdapter.notifyItemRangeInserted(start, categoryResult.results.size());
     }
 
 }

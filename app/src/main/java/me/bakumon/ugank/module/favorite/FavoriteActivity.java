@@ -115,8 +115,9 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
 
     @Override
     public void addFavoriteItems(List<Favorite> favorites) {
+        int start = mAdapter.getItemCount();
         mAdapter.mData.addAll(favorites);
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemRangeInserted(start, favorites.size());
     }
 
     @Override
