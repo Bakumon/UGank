@@ -17,6 +17,10 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     private CompositeSubscription mSubscriptions;
 
+    private boolean mSwitchSettingInitState;
+
+    private int mTvImageQualityContentInitState;
+
     public SettingPresenter(SettingContract.View view) {
         mView = view;
     }
@@ -24,6 +28,7 @@ public class SettingPresenter implements SettingContract.Presenter {
     @Override
     public void subscribe() {
         mSubscriptions = new CompositeSubscription();
+        // 设置 View 界面的主题色
         mView.setSwitchCompatsColor(ThemeManage.INSTANCE.getColorPrimary());
         mView.setToolbarBackgroundColor(ThemeManage.INSTANCE.getColorPrimary());
         // 初始化开关显示状态
@@ -37,22 +42,15 @@ public class SettingPresenter implements SettingContract.Presenter {
         mView.setAppVersionNameInTv(PackageUtil.getVersionName(App.getInstance()));
         setThumbnailQuality(ConfigManage.INSTANCE.getThumbnailQuality());
         mView.showCacheSize(DataCleanManager.getTotalCacheSize());
+
+        mSwitchSettingInitState = ConfigManage.INSTANCE.isListShowImg();
+        mTvImageQualityContentInitState = ConfigManage.INSTANCE.getThumbnailQuality();
     }
 
-    private void setThumbnailQualityInfo(int quality) {
-        String thumbnailQuality = "";
-        switch (quality) {
-            case 0:
-                thumbnailQuality = "原图";
-                break;
-            case 1:
-                thumbnailQuality = "默认";
-                break;
-            case 2:
-                thumbnailQuality = "省流";
-                break;
-        }
-        mView.setThumbnailQualityInfo(thumbnailQuality);
+    @Override
+    public boolean isThumbnailSettingChanged() {
+        return mSwitchSettingInitState != ConfigManage.INSTANCE.isListShowImg()
+                || mTvImageQualityContentInitState > ConfigManage.INSTANCE.getThumbnailQuality();
     }
 
     @Override
@@ -116,7 +114,7 @@ public class SettingPresenter implements SettingContract.Presenter {
     @Override
     public void setThumbnailQuality(int quality) {
         ConfigManage.INSTANCE.setThumbnailQuality(quality);
-        setThumbnailQualityInfo(quality);
+        mView.setThumbnailQualityInfo(quality);
     }
 
     @Override

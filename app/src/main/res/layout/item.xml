@@ -25,7 +25,7 @@
             android:id="@+id/tv_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:paddingRight="10dp"
             android:ellipsize="end"
             android:lineSpacingMultiplier="1.1"
             android:maxLines="2"
@@ -35,7 +35,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -55,7 +55,7 @@
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp"
                 app:srcCompat="@drawable/ic_item_time" />
 
             <android.support.v7.widget.AppCompatTextView

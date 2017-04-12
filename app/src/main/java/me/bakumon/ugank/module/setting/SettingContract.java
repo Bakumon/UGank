@@ -31,7 +31,7 @@ public interface SettingContract {
 
         void setLauncherImgProbabilityEnable();
 
-        void setThumbnailQualityInfo(String quality);
+        void setThumbnailQualityInfo(int quality);
 
         void showCacheSize(String cache);
 
@@ -46,6 +46,8 @@ public interface SettingContract {
     }
 
     interface Presenter extends BasePresenter {
+
+        boolean isThumbnailSettingChanged();
 
         void saveIsListShowImg(boolean isListShowImg);
 

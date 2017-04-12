@@ -1,5 +1,7 @@
 package me.bakumon.ugank.module.category;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,7 @@ import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.entity.CategoryResult;
+import me.bakumon.ugank.module.home.HomeActivity;
 import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
@@ -50,11 +53,10 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        // 用于设置项改变后，刷新列表显示
-        // TODO: 2017/4/12 需要优化，不要每次都刷新列表
-        mAndroidListAdapter.notifyDataSetChanged();
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK && requestCode == HomeActivity.SETTING_REQUEST_CODE) {
+            mAndroidListAdapter.notifyDataSetChanged();
+        }
     }
 
     @Nullable

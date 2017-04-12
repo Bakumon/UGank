@@ -80,13 +80,21 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mToolbarSetting.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
         mSwitchSetting.setOnCheckedChangeListener(this);
         mSwitchSettingShowLauncherImg.setOnCheckedChangeListener(this);
         mSwitchSettingAlwaysShowLauncherImg.setOnCheckedChangeListener(this);
         mSettingPresenter.subscribe();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mSettingPresenter.isThumbnailSettingChanged()) { // 显示缩略图设置项改变
+            setResult(RESULT_OK);
+        }
+        super.onBackPressed();
     }
 
     @Override
@@ -189,8 +197,20 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     }
 
     @Override
-    public void setThumbnailQualityInfo(String quality) {
-        mTvImageQualityContent.setText(quality);
+    public void setThumbnailQualityInfo(int quality) {
+        String thumbnailQuality = "";
+        switch (quality) {
+            case 0:
+                thumbnailQuality = "原图";
+                break;
+            case 1:
+                thumbnailQuality = "默认";
+                break;
+            case 2:
+                thumbnailQuality = "省流";
+                break;
+        }
+        mTvImageQualityContent.setText(thumbnailQuality);
     }
 
     @Override

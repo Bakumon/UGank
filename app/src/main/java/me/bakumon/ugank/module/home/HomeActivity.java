@@ -65,6 +65,14 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     AppCompatImageView mIvSetting;
 
     private HomeContract.Presenter mHomePresenter = new HomePresenter(this);
+    public final static int SETTING_REQUEST_CODE = 101;
+
+    private CategoryFragment appFragment;
+    private CategoryFragment androidFragment;
+    private CategoryFragment iOSFragment;
+    private CategoryFragment frontFragment;
+    private CategoryFragment referenceFragment;
+    private CategoryFragment resFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,17 +117,17 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         CommonViewPagerAdapter infoPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), titles);
 
         // App
-        CategoryFragment appFragment = CategoryFragment.newInstance(titles[0]);
+        appFragment = CategoryFragment.newInstance(titles[0]);
         // Android
-        CategoryFragment androidFragment = CategoryFragment.newInstance(titles[1]);
+        androidFragment = CategoryFragment.newInstance(titles[1]);
         // iOS
-        CategoryFragment iOSFragment = CategoryFragment.newInstance(titles[2]);
+        iOSFragment = CategoryFragment.newInstance(titles[2]);
         // 前端
-        CategoryFragment frontFragment = CategoryFragment.newInstance(titles[3]);
+        frontFragment = CategoryFragment.newInstance(titles[3]);
         // 瞎推荐
-        CategoryFragment referenceFragment = CategoryFragment.newInstance(titles[4]);
+        referenceFragment = CategoryFragment.newInstance(titles[4]);
         // 拓展资源s
-        CategoryFragment resFragment = CategoryFragment.newInstance(titles[5]);
+        resFragment = CategoryFragment.newInstance(titles[5]);
 
         infoPagerAdapter.addFragment(appFragment);
         infoPagerAdapter.addFragment(androidFragment);
@@ -316,6 +324,31 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @OnClick(R.id.iv_home_setting)
     public void goSetting() {
-        startActivity(new Intent(HomeActivity.this, SettingActivity.class));
+        startActivityForResult(new Intent(HomeActivity.this, SettingActivity.class), SETTING_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (mVpCategory.getCurrentItem()) {
+            case 0:
+                appFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+            case 1:
+                androidFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+            case 2:
+                iOSFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+            case 3:
+                frontFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+            case 4:
+                referenceFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+            case 5:
+                resFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+        }
     }
 }

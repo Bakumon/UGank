@@ -13,6 +13,7 @@
     <string name="setting_basic">基本设置</string>
     <string name="setting_thumb_show">显示缩略图</string>
     <string name="setting_thumb_quality">缩略图质量</string>
+    <string name="setting_thumb_quality_tip">提升质量返回生效，降低质量刷新列表生效</string>
     <string name="setting_quality_hige">原图</string>
     <string name="setting_more">更多</string>
     <string name="setting_about_ugank">关于有干货</string>

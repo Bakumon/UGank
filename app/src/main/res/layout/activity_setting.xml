@@ -102,6 +102,14 @@
                     android:textSize="15sp"/>
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/setting_thumb_quality_tip"
+                    android:textColor="@color/colorTextEnableGary"
+                    android:textSize="12sp"/>
+
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/tv_setting_image_quality_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
