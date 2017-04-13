@@ -16,13 +16,9 @@ public class FavoriteContract {
 
         void setToolbarBackgroundColor(int color);
 
-        void showSwipLoading();
-
         void addFavoriteItems(List<Favorite> favorites);
 
         void setFavoriteItems(List<Favorite> favorites);
-
-        void hideSwipLoading();
 
         void setLoading();
 

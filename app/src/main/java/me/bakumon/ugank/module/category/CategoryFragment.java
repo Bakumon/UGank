@@ -40,7 +40,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private CategoryListAdapter mAndroidListAdapter;
+    private CategoryListAdapter mCategoryListAdapter;
     private CategoryContract.Presenter mPresenter = new CategoryPresenter(this);
 
     private String mCategoryName;
@@ -55,7 +55,7 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == HomeActivity.SETTING_REQUEST_CODE) {
-            mAndroidListAdapter.notifyDataSetChanged();
+            mCategoryListAdapter.notifyDataSetChanged();
         }
     }
 
@@ -75,11 +75,11 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
                 R.color.colorSwipeRefresh6);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        mAndroidListAdapter = new CategoryListAdapter(getContext());
+        mCategoryListAdapter = new CategoryListAdapter(getContext());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.HORIZONTAL));
-        mRecyclerView.setAdapter(mAndroidListAdapter);
+        mRecyclerView.setAdapter(mCategoryListAdapter);
         mRecyclerView.setOnLoadMoreListener(this);
         mRecyclerView.setEmpty();
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -159,15 +159,15 @@ public class CategoryFragment extends Fragment implements CategoryContract.View,
 
     @Override
     public void setCategoryItems(CategoryResult categoryResult) {
-        mAndroidListAdapter.mData = categoryResult.results;
-        mAndroidListAdapter.notifyDataSetChanged();
+        mCategoryListAdapter.mData = categoryResult.results;
+        mCategoryListAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void addCategoryItems(CategoryResult categoryResult) {
-        int start = mAndroidListAdapter.getItemCount();
-        mAndroidListAdapter.mData.addAll(categoryResult.results);
-        mAndroidListAdapter.notifyItemRangeInserted(start, categoryResult.results.size());
+        int start = mCategoryListAdapter.getItemCount();
+        mCategoryListAdapter.mData.addAll(categoryResult.results);
+        mCategoryListAdapter.notifyItemRangeInserted(start, categoryResult.results.size());
     }
 
 }

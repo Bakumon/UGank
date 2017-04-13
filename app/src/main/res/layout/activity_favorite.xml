@@ -25,17 +25,11 @@
             app:titleTextColor="@android:color/white" />
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout_favorite"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter
             android:id="@+id/recycler_view_favorite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             tools:listitem="@layout/item" />
-    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

@@ -23,7 +23,7 @@ import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
 
-public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteContract.View, SwipeRefreshLayout.OnRefreshListener, OnLoadMoreListener {
+public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteContract.View, OnLoadMoreListener {
 
     @BindView(R.id.toolbar_favorite)
     Toolbar mToolbarFavorite;
@@ -31,8 +31,6 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
     AppBarLayout mAppbarFavorite;
     @BindView(R.id.recycler_view_favorite)
     RecyclerViewWithFooter mRecyclerView;
-    @BindView(R.id.swipe_refresh_layout_favorite)
-    SwipeRefreshLayout mSwipeRefreshLayout;
 
     public static final int REQUEST_CODE_FAVORITE = 101;
     public static final String FAVORITE_POSITION = "me.bakumon.ugank.module.favorite.FavoriteActivity.favorite_position";
@@ -86,14 +84,7 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
                 finish();
             }
         });
-        mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.colorSwipeRefresh1,
-                R.color.colorSwipeRefresh2,
-                R.color.colorSwipeRefresh3,
-                R.color.colorSwipeRefresh4,
-                R.color.colorSwipeRefresh5,
-                R.color.colorSwipeRefresh6);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+
 
         mAdapter = new FavoriteListAdapter(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -106,11 +97,6 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
     @Override
     public void setToolbarBackgroundColor(int color) {
         mAppbarFavorite.setBackgroundColor(color);
-    }
-
-    @Override
-    public void showSwipLoading() {
-        mSwipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
@@ -127,11 +113,6 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
     }
 
     @Override
-    public void hideSwipLoading() {
-        mSwipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
     public void setLoading() {
         mRecyclerView.setLoading();
     }
@@ -145,11 +126,6 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
     @Override
     public void setLoadMoreIsLastPage() {
         mRecyclerView.setEnd("没有更多数据了");
-    }
-
-    @Override
-    public void onRefresh() {
-        mPresenter.getFavoriteItems(true);
     }
 
     @Override

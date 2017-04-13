@@ -37,7 +37,6 @@ public class FavoritePresenter implements FavoriteContract.Presenter {
     @Override
     public void getFavoriteItems(boolean isRefresh) {
         if (isRefresh) {
-            mView.showSwipLoading();
             mPage = 0;
         } else {
             mPage += 1;
@@ -49,10 +48,8 @@ public class FavoritePresenter implements FavoriteContract.Presenter {
                 .find(Favorite.class);
         if (isRefresh) {
             mView.setFavoriteItems(favoriteList);
-            mView.hideSwipLoading();
             mView.setLoading();
             if (favoriteList == null || favoriteList.size() < 1) {
-                mView.hideSwipLoading();
                 mView.setEmpty();
                 return;
             }
