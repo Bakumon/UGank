@@ -113,7 +113,7 @@ public class SearchPresenter implements SearchContract.Presenter {
     @Override
     public void queryHistory() {
         // 展示查询所有，需要截取、去重和排序
-        List<History> historyList = DataSupport.order("createTimeMill desc").limit(5).find(History.class);
+        List<History> historyList = DataSupport.order("createTimeMill desc").limit(10).find(History.class);
         // 将查询结果转为list对象
         if (historyList == null || historyList.size() < 1) {
             mView.showSearchResult();

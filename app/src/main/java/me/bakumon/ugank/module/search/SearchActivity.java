@@ -18,6 +18,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.flexbox.FlexboxLayoutManager;
 import com.luolc.emojirain.EmojiRainLayout;
 
 import java.util.List;
@@ -121,7 +122,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
         mHistoryListAdapter.setOnitemClickListener(this);
         mHistoryListAdapter.mData = null;
-        mRecyclerViewHistory.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerViewHistory.setLayoutManager(new FlexboxLayoutManager());
         mRecyclerViewHistory.setAdapter(mHistoryListAdapter);
 
         mEmojiRainLayout.addEmoji(R.mipmap.emoji1);
