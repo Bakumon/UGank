@@ -120,7 +120,7 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
         mHistoryListAdapter = new HistoryListAdapter(this);
 
-        mHistoryListAdapter.setOnitemClickListener(this);
+        mHistoryListAdapter.setOnItemClickListener(this);
         mHistoryListAdapter.mData = null;
         mRecyclerViewHistory.setLayoutManager(new FlexboxLayoutManager());
         mRecyclerViewHistory.setAdapter(mHistoryListAdapter);

@@ -26,4 +26,8 @@
     <color name="colorTextUnEnable">#C1C1C1</color>
     <color name="colorTextEnable">#323232</color>
     <color name="colorTextEnableGary">#9F9F9F</color>
+
+    <color name="colorHistoryItemPress">#CED0D0</color>
+    <color name="colorHistoryItemTextPress">#FFFFFF</color>
+    <color name="colorHistoryItemTextNormal">#303131</color>
 </resources>

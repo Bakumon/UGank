@@ -24,7 +24,7 @@ public class HistoryListAdapter extends CommonAdapter4RecyclerView<History> impl
     public void convert(CommonHolder4RecyclerView holder, History history) {
         if (history != null) {
             holder.setTextViewText(R.id.tv_item_content_history, history.getContent() == null ? "unknown" : history.getContent());
-            holder.setOnClickListener(this, R.id.ll_item_history);
+            holder.setOnClickListener(this, R.id.tv_item_content_history);
         }
     }
 
@@ -40,7 +40,7 @@ public class HistoryListAdapter extends CommonAdapter4RecyclerView<History> impl
 
     private OnItemClickListener mOnItemClickListener;
 
-    public void setOnitemClickListener(OnItemClickListener onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 

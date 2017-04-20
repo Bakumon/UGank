@@ -43,6 +43,8 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
     TextView mTvImageQualityTitle;
     @BindView(R.id.tv_setting_image_quality_content)
     TextView mTvImageQualityContent;
+    @BindView(R.id.tv_setting_image_quality_tip)
+    TextView mTvImageQualityTip;
     @BindView(R.id.tv_setting_clean_cache)
     TextView mTvCleanCache;
     @BindView(R.id.switch_setting_show_launcher_img)
@@ -171,6 +173,7 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mLlImageQuality.setClickable(false);
         mTvImageQualityTitle.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
         mTvImageQualityContent.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
+        mTvImageQualityTip.setTextColor(getResources().getColor(R.color.colorTextUnEnable));
     }
 
     @Override
@@ -178,6 +181,7 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         mLlImageQuality.setClickable(true);
         mTvImageQualityTitle.setTextColor(getResources().getColor(R.color.colorTextEnable));
         mTvImageQualityContent.setTextColor(getResources().getColor(R.color.colorTextEnableGary));
+        mTvImageQualityTip.setTextColor(getResources().getColor(R.color.colorTextEnableGary));
     }
 
     @Override

@@ -110,7 +110,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_search_history"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
 
         </LinearLayout>
 

@@ -102,6 +102,7 @@
                     android:textSize="15sp"/>
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_setting_image_quality_tip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
