@@ -2,7 +2,6 @@ package me.bakumon.ugank.module.webview;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -26,8 +25,8 @@ import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.entity.Favorite;
 import me.bakumon.ugank.module.favorite.FavoriteActivity;
 import me.bakumon.ugank.utills.AndroidUtil;
-import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
+import me.bakumon.ugank.utills.StatusBarUtil;
 import me.bakumon.ugank.widget.ObservableWebView;
 
 public class WebViewActivity extends SwipeBackBaseActivity implements WebViewContract.View {
@@ -59,13 +58,8 @@ public class WebViewActivity extends SwipeBackBaseActivity implements WebViewCon
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_web_view);
         ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mAppbar.setPadding(
-                    mAppbar.getPaddingLeft(),
-                    mAppbar.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
-                    mAppbar.getPaddingRight(),
-                    mAppbar.getPaddingBottom());
-        }
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this, mToolbar);
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);

@@ -34,6 +34,7 @@ import me.bakumon.ugank.entity.SearchResult;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.KeyboardUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
+import me.bakumon.ugank.utills.StatusBarUtil;
 import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
@@ -79,14 +80,8 @@ public class SearchActivity extends SwipeBackBaseActivity implements SearchContr
 
     private void initView() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mAppbarSearch.setPadding(
-                    mAppbarSearch.getPaddingLeft(),
-                    mAppbarSearch.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
-                    mAppbarSearch.getPaddingRight(),
-                    mAppbarSearch.getPaddingBottom());
-        }
-
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this, mToolbarSearch);
         setSupportActionBar(mToolbarSearch);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

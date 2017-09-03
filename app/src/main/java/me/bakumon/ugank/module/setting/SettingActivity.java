@@ -25,6 +25,7 @@ import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.AlipayZeroSdk;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
+import me.bakumon.ugank.utills.StatusBarUtil;
 import me.bakumon.ugank.widget.AboutDialog;
 
 public class SettingActivity extends SwipeBackBaseActivity implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
@@ -68,13 +69,8 @@ public class SettingActivity extends SwipeBackBaseActivity implements SettingCon
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mAppbarSetting.setPadding(
-                    mAppbarSetting.getPaddingLeft(),
-                    mAppbarSetting.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
-                    mAppbarSetting.getPaddingRight(),
-                    mAppbarSetting.getPaddingBottom());
-        }
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this, mAppbarSetting);
         setSupportActionBar(mToolbarSetting);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

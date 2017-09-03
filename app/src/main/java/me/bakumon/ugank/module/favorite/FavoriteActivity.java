@@ -19,6 +19,7 @@ import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.entity.Favorite;
 import me.bakumon.ugank.utills.DisplayUtils;
+import me.bakumon.ugank.utills.StatusBarUtil;
 import me.bakumon.ugank.widget.RecycleViewDivider;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.OnLoadMoreListener;
 import me.bakumon.ugank.widget.recyclerviewwithfooter.RecyclerViewWithFooter;
@@ -44,13 +45,8 @@ public class FavoriteActivity extends SwipeBackBaseActivity implements FavoriteC
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_favorite);
         ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mAppbarFavorite.setPadding(
-                    mAppbarFavorite.getPaddingLeft(),
-                    mAppbarFavorite.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
-                    mAppbarFavorite.getPaddingRight(),
-                    mAppbarFavorite.getPaddingBottom());
-        }
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this, mToolbarFavorite);
         setSupportActionBar(mToolbarFavorite);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

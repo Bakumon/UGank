@@ -1,12 +1,9 @@
 package me.bakumon.ugank.module.home;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -18,7 +15,6 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
@@ -40,6 +36,7 @@ import me.bakumon.ugank.module.search.SearchActivity;
 import me.bakumon.ugank.module.setting.SettingActivity;
 import me.bakumon.ugank.utills.DisplayUtils;
 import me.bakumon.ugank.utills.MDTintUtil;
+import me.bakumon.ugank.utills.StatusBarUtil;
 
 /**
  * HomeActivity
@@ -91,19 +88,9 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     }
 
     private void initView() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // 4.4 以上版本
-            // 设置 Toolbar 高度为 80dp，适配状态栏
-            ViewGroup.LayoutParams layoutParams = mToolbar.getLayoutParams();
-            layoutParams.height = DisplayUtils.dp2px(80, this);
-            mToolbar.setLayoutParams(layoutParams);
-        } else { // 4.4 一下版本
-            // 设置 设置图标距离顶部（状态栏最底）为
-            mIvSetting.setPadding(mIvSetting.getPaddingLeft(),
-                    DisplayUtils.dp2px(15, this),
-                    mIvSetting.getPaddingRight(),
-                    mIvSetting.getPaddingBottom());
-        }
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this, mIvHomeBanner);
+        StatusBarUtil.setPaddingSmart(this, mToolbar);
 
         setFabDynamicState();
 
@@ -168,7 +155,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
                         layoutParams.height = DisplayUtils.dp2px(240, HomeActivity.this);
                         mAppBarLayout.setLayoutParams(layoutParams);
-                        isBannerBig = false;
                     }
                 } else {
                     if (state != CollapsingToolbarLayoutState.INTERNEDIATE) {
@@ -269,57 +255,6 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     @OnClick(R.id.iv_home_collection)
     public void collection() {
         startActivity(new Intent(HomeActivity.this, FavoriteActivity.class));
-    }
-
-    private boolean isBannerBig; // banner 是否是大图
-    private boolean isBannerAniming; // banner 放大缩小的动画是否正在执行
-
-    @OnClick(R.id.iv_home_banner)
-    public void wantBig(View view) {
-        if (isBannerAniming) {
-            return;
-        }
-        startBannerAnim();
-    }
-
-    private void startBannerAnim() {
-        final CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
-        ValueAnimator animator;
-        if (isBannerBig) {
-            animator = ValueAnimator.ofInt(DisplayUtils.getScreenHeight(this), DisplayUtils.dp2px(240, this));
-        } else {
-            animator = ValueAnimator.ofInt(DisplayUtils.dp2px(240, this), DisplayUtils.getScreenHeight(this));
-        }
-        animator.setDuration(1000);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                layoutParams.height = (int) valueAnimator.getAnimatedValue();
-                mAppBarLayout.setLayoutParams(layoutParams);
-            }
-        });
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                isBannerBig = !isBannerBig;
-                isBannerAniming = false;
-            }
-        });
-        animator.start();
-        isBannerAniming = true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (isBannerAniming) {
-            return;
-        }
-        if (isBannerBig) {
-            startBannerAnim();
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @OnClick(R.id.iv_home_setting)

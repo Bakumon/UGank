@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.SwipeBackBaseActivity;
 import me.bakumon.ugank.utills.DisplayUtils;
+import me.bakumon.ugank.utills.StatusBarUtil;
 import me.bakumon.ugank.widget.PinchImageView;
 import me.bakumon.ugank.widget.SquareLoading;
 
@@ -43,13 +44,8 @@ public class BigimgActivity extends SwipeBackBaseActivity implements BigimgContr
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_bigimg);
         ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            appbarBigImg.setPadding(
-                    appbarBigImg.getPaddingLeft(),
-                    appbarBigImg.getPaddingTop() + DisplayUtils.getStatusBarHeight(this),
-                    appbarBigImg.getPaddingRight(),
-                    appbarBigImg.getPaddingBottom());
-        }
+        StatusBarUtil.immersive(this);
+        StatusBarUtil.setPaddingSmart(this, toolbarBigImg);
         setSupportActionBar(toolbarBigImg);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
