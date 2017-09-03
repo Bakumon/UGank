@@ -26,7 +26,7 @@ public enum ConfigManage {
     public void initConfig(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
         // 列表是否显示图片
-        isListShowImg = sharedPreferences.getBoolean(key_isListShowImg, false);
+        isListShowImg = sharedPreferences.getBoolean(key_isListShowImg, true);
         // 缩略图质量 0：原图 1：默认 2：省流
         thumbnailQuality = sharedPreferences.getInt(key_thumbnailQuality, 1);
         // Banner URL 用于加载页显示
@@ -34,7 +34,7 @@ public enum ConfigManage {
         // 启动页是否显示妹子图
         isShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_show, true);
         // 启动页是否概率出现
-        isProbabilityShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_probability_show, true);
+        isProbabilityShowLauncherImg = sharedPreferences.getBoolean(key_launcher_img_probability_show, false);
     }
 
     public boolean isListShowImg() {

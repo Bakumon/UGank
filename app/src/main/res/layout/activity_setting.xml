@@ -188,7 +188,7 @@
                         android:id="@+id/tv_is_always_show_launcher_img_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="概率出现"
+                        android:text="随机出现"
                         android:textColor="@color/colorTextEnable"
                         android:textSize="15sp"/>
 
