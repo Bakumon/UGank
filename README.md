@@ -16,9 +16,9 @@
 两种架构：MVP 和 Google 推出的 LiveData。
 
 
-- [master 分支](https://github.com/Bakumon/UGank/tree/master) 采用 MVP 架构。
+- [master 分支](https://github.com/Bakumon/UGank/tree/master) 采用 MVP 架构。参考：[android-architecture#todo-mvp-rxjava](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava)
 
-- [livedata 分支](https://github.com/Bakumon/UGank/tree/livedata) 采用 LiveData 。
+- [livedata 分支](https://github.com/Bakumon/UGank/tree/livedata) 采用 LiveData 。参考：[android-architecture-components#BasicSample](https://github.com/googlesamples/android-architecture-components/tree/master/BasicSample)
 
 ## 截图
 
