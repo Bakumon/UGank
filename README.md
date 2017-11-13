@@ -13,16 +13,17 @@
 
 ## 架构
 
-### MVP
+两种架构：MVP 和 Google 推出的 LiveData。
 
-[master 分支](https://github.com/Bakumon/UGank/tree/master) 采用 MVP 架构，
 
+- [master 分支](https://github.com/Bakumon/UGank/tree/master) 采用 MVP 架构。
+
+- [livedata 分支](https://github.com/Bakumon/UGank/tree/livedata) 采用 LiveData 。
 
 ## 截图
 
 ![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank_1.png)
 ![ugank2.png](https://github.com/Bakumon/UGank/raw/master/art/ugank_2.png)
-
 
 
 ## API
