@@ -22,8 +22,7 @@
 
 ## 截图
 
-![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank_1.jpg)
-![ugank2.png](https://github.com/Bakumon/UGank/raw/master/art/ugank_2.jpg)
+![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank.jpg)
 
 
 ## API
