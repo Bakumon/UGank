@@ -5,7 +5,10 @@
 
 ## 下载
 
-[酷安下载](http://www.coolapk.com/apk/me.bakumon.ugank)
+去酷安下载：
+
+<a href='http://www.coolapk.com/apk/me.bakumon.ugank'><img alt='去酷安下载' src='https://ws4.sinaimg.cn/large/006tNc79ly1fsphx16ybdj30go06st8q.jpg' height="60"/>
+</a>
 
 ## 介绍
 
@@ -13,16 +16,13 @@
 
 ## 架构
 
-两种架构：MVP 和 Google 推出的 LiveData。
+采用 MVP 架构。
 
-
-- [master 分支](https://github.com/Bakumon/UGank/tree/master) 采用 MVP 架构。参考：[android-architecture#todo-mvp-rxjava](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava)
-
-- [livedata 分支](https://github.com/Bakumon/UGank/tree/livedata) 采用 LiveData 。参考：[android-architecture-components#BasicSample](https://github.com/googlesamples/android-architecture-components/tree/master/BasicSample)
+参考：[android-architecture#todo-mvp-rxjava](https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava)
 
 ## 截图
 
-![ugank1.png](https://github.com/Bakumon/UGank/raw/master/art/ugank.png)
+![ugank1.png](https://github.com/Bakumon/UGank/raw/livedata/art/ugank.png)
 
 
 ## API
