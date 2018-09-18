@@ -2,6 +2,8 @@ package me.bakumon.ugank;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import org.litepal.LitePal;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
@@ -23,12 +25,12 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         // 初始化 LeakCanary
-//        if (LeakCanary.isInAnalyzerProcess(this)) {
-//            // This process is dedicated to LeakCanary for heap analysis.
-//            // You should not init your app in this process.
-//            return;
-//        }
-//        LeakCanary.install(this);
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
         BGASwipeBackManager.getInstance().init(this);
         INSTANCE = this;
         // 初始化主题色

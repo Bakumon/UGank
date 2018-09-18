@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import es.dmoral.toasty.Toasty;
 import me.bakumon.ugank.GlobalConfig;
 import me.bakumon.ugank.R;
 import me.bakumon.ugank.base.adapter.CommonViewPagerAdapter;
+import me.bakumon.ugank.module.bigimg.BigimgActivity;
 import me.bakumon.ugank.module.category.CategoryFragment;
 import me.bakumon.ugank.module.favorite.FavoriteActivity;
 import me.bakumon.ugank.module.search.SearchActivity;
@@ -70,6 +72,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     private CategoryFragment frontFragment;
     private CategoryFragment referenceFragment;
     private CategoryFragment resFragment;
+
+    private String mImgUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,12 +132,24 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         mVpCategory.setCurrentItem(1);
     }
 
-    private CollapsingToolbarLayoutState state; // CollapsingToolbarLayout 折叠状态
+    /**
+     * CollapsingToolbarLayout 折叠状态
+     */
+    private CollapsingToolbarLayoutState state;
 
     private enum CollapsingToolbarLayoutState {
-        EXPANDED, // 完全展开
-        COLLAPSED, // 折叠
-        INTERNEDIATE // 中间状态
+        /**
+         * 完全展开
+         */
+        EXPANDED,
+        /**
+         * 折叠
+         */
+        COLLAPSED,
+        /**
+         * 中间状态
+         */
+        INTERNEDIATE
     }
 
     /**
@@ -146,12 +162,14 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
                 if (verticalOffset == 0) {
                     if (state != CollapsingToolbarLayoutState.EXPANDED) {
-                        state = CollapsingToolbarLayoutState.EXPANDED; // 修改状态标记为展开
+                        // 修改状态标记为展开
+                        state = CollapsingToolbarLayoutState.EXPANDED;
                     }
                 } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
                     if (state != CollapsingToolbarLayoutState.COLLAPSED) {
                         mFloatingActionButton.hide();
-                        state = CollapsingToolbarLayoutState.COLLAPSED; // 修改状态标记为折叠
+                        // 修改状态标记为折叠
+                        state = CollapsingToolbarLayoutState.COLLAPSED;
                         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
                         layoutParams.height = DisplayUtils.dp2px(240, HomeActivity.this);
                         mAppBarLayout.setLayoutParams(layoutParams);
@@ -161,7 +179,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                         if (state == CollapsingToolbarLayoutState.COLLAPSED) {
                             mFloatingActionButton.show();
                         }
-                        state = CollapsingToolbarLayoutState.INTERNEDIATE; // 修改状态标记为中间
+                        // 修改状态标记为中间
+                        state = CollapsingToolbarLayoutState.INTERNEDIATE;
                     }
                 }
             }
@@ -180,6 +199,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
 
     @Override
     public void setBanner(String imgUrl) {
+        mImgUrl = imgUrl;
         Picasso.with(this).load(imgUrl)
                 .into(mIvHomeBanner,
                         PicassoPalette.with(imgUrl, mIvHomeBanner)
@@ -262,6 +282,18 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         startActivityForResult(new Intent(HomeActivity.this, SettingActivity.class), SETTING_REQUEST_CODE);
     }
 
+    @OnClick(R.id.iv_home_banner)
+    public void goBigImg() {
+        if (TextUtils.isEmpty(mImgUrl)) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setClass(this, BigimgActivity.class);
+        intent.putExtra(BigimgActivity.MEIZI_TITLE, "");
+        intent.putExtra(BigimgActivity.MEIZI_URL, mImgUrl);
+        startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -283,6 +315,8 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
                 break;
             case 5:
                 resFragment.onActivityResult(requestCode, resultCode, data);
+                break;
+            default:
                 break;
         }
     }

@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+// 加载 keystore.properties 文件
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion ANDROID_BUILD_SDK_VERSION as int
     buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
@@ -15,9 +20,9 @@ android {
     signingConfigs {
         release {
             storeFile file("ugank.jks")
-            storePassword System.getenv("KEYSTORE_PASS")
-            keyAlias System.getenv("ALIAS_NAME")
-            keyPassword System.getenv("ALIAS_PASS")
+            storePassword keystoreProperties['KEYSTORE_PASSWORD']
+            keyAlias keystoreProperties['KEY_ALIAS']
+            keyPassword keystoreProperties['KEY_PASSWORD']
         }
     }
     buildTypes {
@@ -53,7 +58,6 @@ dependencies {
     compile('com.github.Andy671:Dachshund-Tab-Layout:v0.3.0') {
         exclude group: 'com.android.support'
     }
-    // LeakCanary 检测内存泄露，打开后去 APP.java 中打开初始化 LeakCanary 代码
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
     compile 'com.android.support:design:25.1.1'
@@ -69,10 +73,10 @@ dependencies {
     compile 'org.litepal.android:core:1.5.0'
     compile 'com.github.GrenderG:Toasty:1.1.3'
     testCompile 'junit:junit:4.12'
-//    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.luolc:emoji-rain:0.1.1'
     compile 'com.google.android:flexbox:0.3.0-alpha3'
 }

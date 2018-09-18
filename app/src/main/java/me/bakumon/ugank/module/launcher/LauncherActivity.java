@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
+import android.text.TextUtils;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.bakumon.ugank.R;
+import me.bakumon.ugank.module.bigimg.BigimgActivity;
 import me.bakumon.ugank.module.home.HomeActivity;
 
 /**
@@ -26,6 +29,7 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
 
     // 记录该 Activity 是否在前台显示
     private boolean isResume;
+    private String mUrl;
 
     private LauncherContract.Presenter mLauncherPresenter = new LauncherPresenter(this);
 
@@ -40,6 +44,7 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
 
     @Override
     public void loadImg(String url) {
+        mUrl = url;
         try {
             Picasso.with(this)
                     .load(url)
@@ -88,6 +93,19 @@ public class LauncherActivity extends AppCompatActivity implements LauncherContr
         // Activity 切换淡入淡出动画
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
+    }
+
+    @OnClick(R.id.img_launcher_welcome)
+    public void goBigImg(){
+        if (TextUtils.isEmpty(mUrl)) {
+            return;
+        }
+        goHomeActivity();
+        Intent intent = new Intent();
+        intent.setClass(this, BigimgActivity.class);
+        intent.putExtra(BigimgActivity.MEIZI_TITLE, "");
+        intent.putExtra(BigimgActivity.MEIZI_URL, mUrl);
+        startActivity(intent);
     }
 
     @Override
